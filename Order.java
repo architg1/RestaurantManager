@@ -9,6 +9,7 @@ public class Order {
 	private LocalTime timestamp;
 	private Item[] items;
 	private SetPackage[] packages;
+	ArrayList<Item> orders = new ArrayList<Item>();
 
 	/**
 	 * 
@@ -16,7 +17,6 @@ public class Order {
 	 */
 	public void addItem(Item item) {
 		// TODO - implement Order.addItem
-		ArrayList<Item> orders = new ArrayList<Item>();
 		orders.add(item);
 		System.out.println("Your current order is: " + orders);
 		throw new UnsupportedOperationException();
@@ -28,9 +28,8 @@ public class Order {
 	 */
 	public void addSetPackage(SetPackage setPackage) {
 		// TODO - implement Order.addSetPackage
-		ArrayList<SetPackage> setPackages = new ArrayList<SetPackage>();
-		setPackages.add(setPackage);
-		System.out.println("Your current order is: " + setPackages);
+		orders.addAll((Collection<? extends Item>) setPackage);
+		System.out.println("Your current order is: " + orders);
 		throw new UnsupportedOperationException();
 	}
 
@@ -40,7 +39,6 @@ public class Order {
 	 */
 	public void removeItem(Item item) {
 		// TODO - implement Order.removeItem
-		ArrayList<Item> orders = new ArrayList<Item>();
 		orders.remove(item);
 		System.out.println("Your current order is: " + orders);
 		throw new UnsupportedOperationException();
@@ -52,9 +50,8 @@ public class Order {
 	 */
 	public void removeSetPackage(SetPackage setPackage) {
 		// TODO - implement Order.removeSetPackage
-		ArrayList<SetPackage> setPackages = new ArrayList<SetPackage>();
-		setPackages.remove(setPackage);
-		System.out.println("Your current order is: " + setPackages);
+		orders.remove(setPackage);
+		System.out.println("Your current order is: " + orders);
 		throw new UnsupportedOperationException();
 	}
 
