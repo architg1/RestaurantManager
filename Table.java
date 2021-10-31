@@ -4,77 +4,61 @@ import java.util.*;
 import java.util.ArrayList;
 
 public class Table {
-	public String tableIdentification;
-	public boolean isReserved;
-	public int maximumSeating;
-	public LocalTime reservationTime;
-	public LocalDate reservationDate;
-	public String reservationName;
-	public long reservationContact;
-	public boolean reservationMembership;
-	
-	private Order order;
+	private long tableIdentification;
+	private boolean isReserved;
+	private int maximumSeating;
+	private int reservedSeating;
+	private LocalTime reservationTime;
+	private LocalDate reservationDate;
+	private String reservationName;
+	private long reservationContact;
+	private boolean reservationMembership;
 	private Staff staff;
-	
-	//constructor to initialise table
-	public Table(String tableid, int maxseat) {
-		tableIdentification=tableid;
-		isReserved=false;
-		maximumSeating=maxseat;
-		reservationTime=null;
-		reservationDate=null;
-		reservationName=null;
-		reservationContact=-1;
-		reservationMembership=false;
-		order=Order(); //empty order initialised
-		staff=Staff(); //empty staff initialised
+
+
+	private Order order;
+
+
+	public Table(long tableIdentification, int maximumSeating) {
+		this.tableIdentification = tableIdentification;
+		isReserved = false;
+		this.maximumSeating = maximumSeating;
+		reservationTime = null;
+		reservationDate = null;
+		reservationName = null;
+		reservationContact = -1;
+		reservationMembership = false;
+		Order order = new Order(); //empty order initialised
+		Staff staff= new Staff(); //empty staff initialised
 	}
-	
-	public void takeOrder() {
-		int choice=0;
-		Scanner sc	= new Scanner(System.in);
-		do {
-			System.out.println("What would you like to do?");
-			System.out.println("1. Add an item to order");
-			System.out.println("2. Add a set package to order");
-			System.out.println("3. Remove an item from order");
-			System.out.println("4. Remove a set package from order");
-			System.out.println("5. Confirm order");
-			choice=sc.nextInt();
-			
-			switch(choice) {
-			case 1:{
-				//get the menu to show all items
-				order.addItem();
-			}
-			
-			case 2:{
-				//get the meny to show all set packages
-				order.addSetPackage();
-			}
-			
-			case 3:{
-				order.removeItem();
-			}
-			
-			case 4:{
-				order.removeSetPackage();
-			}
-	
-			case 5:{
-				System.out.println("Order confirmed.");
-				break;
-			}
-			
-			default:{
-				break;
-			}
-			}
-		}while(choice!=5);
+
+	public boolean isReserved(){
+		if(this.isReserved == true) return true;
+		else return false;
 	}
+
+	public int getMaximumSeating() {
+		return maximumSeating;
+	}
+
+	public void setStaff(Staff staff){
+		this.staff = staff;
+	}
+
+
+	public void reserveTable(String reservationName, long reservationContact, boolean reservationMembership, LocalDate reservationDate, LocalTime reservationTime, int reservedSeating){
+		this.reservationName = reservationName;
+		this.reservationContact = reservationContact;
+		this.reservationMembership = reservationMembership;
+		this.reservationTime = reservationTime;
+		this.reservationDate = reservationDate;
+		this.reservedSeating = reservedSeating;
+		this.isReserved = true;
+	}
+
 	
 	public void createInvoice() {
-		Invoice invoice=new Invoice(reservationTime, order.calculateTotalCost(), reservationMembership);
+		//Invoice invoice=new Invoice(reservationTime, 0, reservationMembership);
 		//maybe add function to calculate total cost in order class?
 		
 		//function to add invoice to revenue database

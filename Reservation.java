@@ -3,45 +3,37 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.Calendar;;
 
-public class Reservation implements Table //Is this correct use?
+public class Reservation
 {
 	
 	Table table;
 	
-	private Calendar orderDateTime; //Check to see how we want to standardize the date time formats
-	private int seatsBooked;
-	private String reservationName;
-	private String tableID;
-	private long int reservationContact;
-	private boolean isSuccess;
-	private boolean isMember;
-	private int tableID;
-	private int reservationID;
+	protected Calendar orderDateTime; //Check to see how we want to standardize the date time formats
+	protected int seatsBooked;
+	protected String reservationName;
+	protected String tableID;
+	protected long reservationContact;
+	protected boolean isSuccess;
+	protected boolean isMember;
+	//private int tableID;
+	protected int reservationID;
 	
 	//How many tables do we want? Fixed number or ArrayList flexible (table or reservation class?)
-	private Reservation[] rList = new Reservation[20];
+	protected Reservation[] rList = new Reservation[20];
 
 	//private ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 
 	//datetime, pax,name,contact,etc
-	/**
-	 * 
-	 * @param tableID
-	 * @param name
-	 * @param dateTime
-	 * @param contact
-	 * @param membership
-	 * @param seatingPax
-	 */
+
 	public void makeReservation(String tableID, String name, 
-			Calendar dateTime, long int contact, 
+			Calendar dateTime, long contact,
 			boolean membership, int seatingPax, int tableNo) 
 	{
 		// TODO - implement Reservation.makeReservation
 		if(rList[tableNo] == null)
 		{
 			
-			rList[tableNo].tableID = tableId;
+			rList[tableNo].tableID = tableID;
 			rList[tableNo].reservationName = name;
 			rList[tableNo].orderDateTime = dateTime;
 			rList[tableNo].reservationContact = contact;
@@ -69,7 +61,7 @@ public class Reservation implements Table //Is this correct use?
 	
 	/**
 	 * 
-	 * @param tableID
+	 * //@param tableID
 	 */
 	public void cancelReservation(int tableNo) 
 	{
