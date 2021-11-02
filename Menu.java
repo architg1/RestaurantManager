@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Menu {
 
-	ArrayList<SetPackage> packages = new ArrayList<SetPackage>();
-	ArrayList<Item> items = new ArrayList<Item>();
+	protected ArrayList<SetPackage> packages = new ArrayList<SetPackage>();
+	protected ArrayList<Item> items = new ArrayList<Item>();
 
 	public void addItem() {
 
