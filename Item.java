@@ -1,9 +1,9 @@
 public class Item{
    
-   public Category category;
-   public String name;
-   public double price;
-   public String description;
+   protected Category category;
+   protected String name;
+   protected double price;
+   protected String description;
    
    
    public Item(String name, Category category, String description, double price){
