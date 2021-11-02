@@ -15,6 +15,7 @@ public class Table {
 	private boolean reservationMembership;
 	private Staff staff;
 	private Order order;
+	private boolean arrived;
 
 
 	public Table(long tableIdentification, int maximumSeating) {
@@ -28,6 +29,13 @@ public class Table {
 		reservationMembership = false;
 		Order order = new Order(); //empty order initialised
 		Staff staff= new Staff(); //empty staff initialised
+	}
+
+	public void autoCancel(){
+		int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
+		if(time > 1800){
+			this.cancelReservation();
+		}
 	}
 
 	public boolean isReserved(){
@@ -58,12 +66,9 @@ public class Table {
 		this.isReserved = true;
 	}
 
-	
-	public void createInvoice() {
-		//Invoice invoice=new Invoice(reservationTime, 0, reservationMembership);
-		//maybe add function to calculate total cost in order class?
-		
-		//function to add invoice to revenue database
+	public void cancelReservation(){
+		this.isReserved = false;
+		this.reservedSeating = 0;
 	}
 	
 }
