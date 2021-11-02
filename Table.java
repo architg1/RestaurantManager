@@ -14,8 +14,6 @@ public class Table {
 	private long reservationContact;
 	private boolean reservationMembership;
 	private Staff staff;
-
-
 	private Order order;
 
 
@@ -35,6 +33,10 @@ public class Table {
 	public boolean isReserved(){
 		if(this.isReserved == true) return true;
 		else return false;
+	}
+
+	public Order getOrder() {
+		return order;
 	}
 
 	public int getMaximumSeating() {
