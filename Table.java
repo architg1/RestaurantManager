@@ -13,7 +13,7 @@ public class Table {
 	private String reservationName;
 	private long reservationContact;
 	private boolean reservationMembership;
-	private Staff staff;
+	private String staffname;
 	private Order order;
 	private boolean arrived;
 
@@ -28,7 +28,7 @@ public class Table {
 		reservationContact = -1;
 		reservationMembership = false;
 		Order order = new Order(); //empty order initialised
-		Staff staff= new Staff(); //empty staff initialised
+		staffname = null; 
 	}
 
 	public void autoCancel(){
@@ -51,8 +51,8 @@ public class Table {
 		return maximumSeating;
 	}
 
-	public void setStaff(Staff staff){
-		this.staff = staff;
+	public void setStaff(String staff){
+		this.staffname = staff;
 	}
 
 
