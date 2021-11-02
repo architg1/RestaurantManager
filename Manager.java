@@ -7,12 +7,11 @@ public class Manager {
 
     private ArrayList<Table> tables = new ArrayList<Table>();
     private ArrayList<Staff> staff = new ArrayList<Staff>();
-    private Menu menu;
+    private Menu menu = new Menu();
 
     Scanner sc = new Scanner(System.in);
 
     public void createMenu(){
-        Menu menu = new Menu();
         menu.createMenu();
     }
 
@@ -51,16 +50,16 @@ public class Manager {
 
     public void makeReservation(){
 
-        System.out.println("What's their name?");
+        System.out.println("What's your name?");
         String reservationName = sc.next();
 
-        System.out.println("What's their contact number?");
+        System.out.println("What's your contact number?");
         long reservationContact = sc.nextLong();
 
         System.out.println("How's many people?");
         int reservedSeating = sc.nextInt();
 
-        System.out.println("Are they a member?");
+        System.out.println("Are you a member?");
         Boolean reservationMembership = sc.nextBoolean();
 
         LocalTime reservationTime = LocalTime.now();

@@ -7,10 +7,12 @@ public class MenuCtrl{
 
    private static Scanner sc = new Scanner(System.in);
    
+
    String name;
    Category category;
    String description;
    Double price;
+
   
    // Declare an array list for menu and populate with items
    public ArrayList<Item> FullMenu = new ArrayList<Item>();

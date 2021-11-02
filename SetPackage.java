@@ -35,11 +35,12 @@ public class SetPackage {
 		String packageDescription = sc.nextLine();
 		this.packageDescription = packageDescription;
 
-		System.out.println("What's the price of the item? ");
+		System.out.println("What's the price of the package? ");
 		Integer packagePrice = sc.nextInt();
 		this.packagePrice = packagePrice;
 
 		while(true) {
+			System.out.println("Please add an item: ");
 			this.addItem();
 			System.out.println("Do you want to add more items? ");
 			String choice = sc.next();
