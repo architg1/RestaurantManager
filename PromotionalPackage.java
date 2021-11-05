@@ -1,7 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class PromotionalPackage{
+public class PromotionalPackage implements Serializable{
 
    
    private static Scanner sc = new Scanner(System.in);
