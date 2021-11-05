@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Calendar;;
@@ -20,12 +21,12 @@ public class Reservation
 	
 	private boolean isReserved;
 	private String reservationName;
-	private long int reservationContact;
+	private long reservationContact;
 	private boolean reservationMembership;
 	private LocalTime reservationTime;
 	private LocalDate reservationDate;
 	private int reservedSeating;
-	
+
 	private Table reserveTable;
 	
 	
@@ -36,19 +37,17 @@ public class Reservation
 
 	//datetime, pax,name,contact,etc
 
-	public  Reservation(String reservationName, 
+	public Reservation (String reservationName,
 						long reservationContact, 
 						boolean reservationMembership, 
 						LocalDate reservationDate, 
-						LocalTime reservationTime, int reservedSeating)
-	{
+						LocalTime reservationTime, int reservedSeating){
 		this.reservationName = reservationName;
 		this.reservationContact = reservationContact;
 		this.reservationMembership = reservationMembership;
 		this.reservationTime = reservationTime;
 		this.reservationDate = reservationDate;
 		this.reservedSeating = reservedSeating;
-	
 	}
 	
 	/**
