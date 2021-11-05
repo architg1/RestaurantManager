@@ -3,49 +3,70 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.text.DecimalFormat;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
-public class MenuCtrl implements Serializable{
-
+public class MenuCtrl{
    private static Scanner sc = new Scanner(System.in);
    private static final DecimalFormat df = new DecimalFormat("0.00");
    
-   
-   String name;
-   Category category;
-   String description;
-   Double price;
-  
    // Declare an array list for menu and populate with items
    public ArrayList<Item> FullMenu = new ArrayList<Item>();
    public ArrayList<PromotionalPackage> PromotionalPackages = new ArrayList<PromotionalPackage>();
-  
-   // testing purposes, delete later
-   public static void main(String args[]){
-     // Read array list from file
-      File file = new File("/Users/joey/Documents/school/y2s1/cz2002 object oriented/FullMenu.txt");
-      file.createNewFile();
-      
-      FileInputStream fis = new FileInputStream(file);
-      ObjectInputStream ois = new ObjectInputStream(fis);
-      ArrayList<Item> FullMenu = (ArrayList<Item>)ois.readObject();     
-      ois.close();  
-      
-      MenuCtrl menuctrl  = new MenuCtrl();
-      menuctrl.MenuOptions();
-      
-      FileOutputStream fos = new FileOutputStream(file);
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(FullMenu);
-      oos.close();
+   
+   // Read the full menu and packages from a file
+   public void FileReader(){
+      String file = "./FullMenu.txt";
+      String secondfile = "./PromotionalPackages.txt";
+      try
+      {
+         FileInputStream fis = new FileInputStream(file);
+         ObjectInputStream ois = new ObjectInputStream(fis);
+         
+         FullMenu = (ArrayList) ois.readObject();
+         PromotionalPackages = (ArrayList) ois.readObject();
+         
+         ois.close();
+         fis.close();
+      } catch (IOException ioe) {
+         ioe.printStackTrace();
+         return; } 
+      catch (ClassNotFoundException c) 
+      {
+         System.out.println("Class not found");
+         c.printStackTrace();
+         return;
+      }
    }
+   
+   // Write the menu and packages into a file
+   public void FileWriter(){
+      String file = "./FullMenu.txt";
+      String secondFile = "./PromotionalPackages.txt";
+      try
+      {
+         FileOutputStream fos = new FileOutputStream(file);
+         ObjectOutputStream oos = new ObjectOutputStream(fos);
+         oos.writeObject(FullMenu);
+         oos.writeObject(PromotionalPackages);
+         oos.close();
+         fos.close();
+      } 
+      catch (IOException ioe) 
+      {
+         ioe.printStackTrace();
+      }
+   }
+   
+
   
     // Get the user's input 
    public void MenuOptions(){
       int choice;
       
       do{
-         System.out.println("MENU OPTIONS");
+         System.out.println("What would you like to do?");
          System.out.println("(1) View menu");
          System.out.println("(2) Add new item to menu");
          System.out.println("(3) Remove item from menu");
@@ -158,13 +179,31 @@ public class MenuCtrl implements Serializable{
                break;
                
             case 4:   
-               updateFoodItem();
+               System.out.println("ITEM TYPE");
+               System.out.println("(1) Food Item");
+               System.out.println("(2) Promotional Package");
+                 
+               int itemTypeChoiceUpdate = sc.nextInt();
+                  
+               switch(itemTypeChoiceUpdate){
+                  case 1: 
+                     updateFoodItem();
+                     break;
+                  
+                  case 2: 
+                     updatePromotionalPackage();
+                     break;
+                  
+                  case 3:
+                     break;
+               }
                break;
-              
+         
             case 5:
                break;
          } 
       } while (choice != 5);
+      FileWriter();
    }
 
 
@@ -492,6 +531,67 @@ public class MenuCtrl implements Serializable{
          }
       } while(false);
    }
+   
+   //(4)(2) Update Promotional Package
+   public void updatePromotionalPackage(){
+      do{
+         try{
+            System.out.println("What's the name of the promotional package to update? ");
+            String name = sc.nextLine();
+            
+            int indexofPackage = -1;
+            for (int i = 0; i < PromotionalPackages.size(); i++){
+               PromotionalPackage p = PromotionalPackages.get(i);
+               if (p.getPackageName().equals(name)){
+                  indexofPackage = i;
+               }
+            }
+            
+            if (indexofPackage == -1){
+               System.out.println("Promotional Package does not exist.");
+            }
+         
+            System.out.println("Choose what to update: ");
+            System.out.println("(1) Name");
+            System.out.println("(2) Price");
+            System.out.println("(3) Description");
+            System.out.println("(4) Return back to menu options");
+            int updateChoice = sc.nextInt();
+            
+            switch(updateChoice)
+            {
+               case 1:
+                  System.out.println("Enter new name: ");
+                  sc.nextLine();
+                  String newname = sc.nextLine();
+                  PromotionalPackages.get(indexofPackage).setPackageName(newname);
+                  
+                  break;
+              
+               case 2:
+                  System.out.println("Enter new price: ");
+                  Double newPrice = sc.nextDouble();
+                  PromotionalPackages.get(indexofPackage).setPackagePrice(newPrice);
+                  
+                  break;
+                  
+               case 3:
+                  System.out.println("Enter new description: ");
+                  String newDescription = sc.nextLine();
+                  PromotionalPackages.get(indexofPackage).setPackageDescription(newDescription);
+                  
+                  break;
+                  
+               case 4:
+                  break;
+            }
+         }
+         catch (Exception e){
+            System.out.println("Invalid input. Please try again.");
+         }
+      } while(false);
+   }
+
    
    
    
