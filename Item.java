@@ -1,4 +1,6 @@
-public class Item{
+import java.io.Serializable;
+
+public class Item implements Serializable{
    
    public Category category;
    public String name;
@@ -36,10 +38,4 @@ public class Item{
    public void setDescription(String description){
       this.description = description;
    }
-  
-   
-   /*@Override
-    public String toString() {
-      return String.format("%s $%.2f %s", name, price, description);
-   }*/
 }
