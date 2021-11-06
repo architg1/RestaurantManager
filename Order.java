@@ -1,21 +1,20 @@
 import java.time.LocalTime;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Order {
    public Staff staff;
-   public Item orderitem;
-   public PromotionalPackage orderpp;
-   public LocalTime orderts;
+   public ArrayList<Item> orderItems;
+   public ArrayList<PromotionalPackage> orderPackages;
+   public LocalTime orderTime;
    public Table table;
    public int orderID;
    
    //Constructor for order
-   public Order(Staff staff, Item orderitem, PromotionalPackage orderpp, LocalTime orderts, Table table){
+   public Order(Staff staff, ArrayList<Item> orderItems, ArrayList<PromotionalPackage> orderPackages, LocalTime orderTime, Table table){
       this.staff = staff;
-      this.orderitem = orderitem;
-      this.orderpp = orderpp;
-      this.orderts = orderts;
+      this.orderItems = orderItems;
+      this.orderPackages = orderPackages;
+      this.orderTime = orderTime;
       this.table = table;
    }
    
@@ -23,16 +22,16 @@ public class Order {
       return this.staff;
    }
    
-   public Item getOrderItem(){
-      return this.orderitem;
+   public ArrayList<Item> getOrderItems(){
+      return this.orderItems;
    }
    
-   public PromotionalPackage getOrderPP(){
-      return this.orderpp;
+   public ArrayList<PromotionalPackage> getOrderPackages(){
+      return this.orderPackages;
    }
    
-   public LocalTime getOrderTS(){
-      return this.orderts;
+   public LocalTime getOrderTime(){
+      return this.orderTime;
    }
    
    public Table getTable(){
