@@ -1,7 +1,6 @@
 import java.io.Serializable;
 
 public class Item implements Serializable{
-   
    public Category category;
    public String name;
    public double price;
@@ -37,5 +36,13 @@ public class Item implements Serializable{
    
    public void setDescription(String description){
       this.description = description;
+   }
+   
+   public Category getCategory(){
+      return this.category;
+   }
+   
+   public void setCategory(Category category){
+      this.category = category;
    }
 }
