@@ -3,75 +3,31 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.text.DecimalFormat;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class MenuCtrl{
    private static Scanner sc = new Scanner(System.in);
-   private static final DecimalFormat df = new DecimalFormat("0.00");
+   private static final DecimalFormat df = new DecimalFormat("0.00");   
    
    // Declare an array list for menu and populate with items
-   public ArrayList<Item> FullMenu = new ArrayList<Item>();
-   public ArrayList<PromotionalPackage> PromotionalPackages = new ArrayList<PromotionalPackage>();
+   ArrayList<Item> FullMenu = Home.FullMenu;
+   ArrayList<PromotionalPackage> PromotionalPackages = Home.PromotionalPackages;
    
-   // Read the full menu and packages from a file
-   public void FileReader(){
-      String file = "./FullMenu.txt";
-      String secondfile = "./PromotionalPackages.txt";
-      try
-      {
-         FileInputStream fis = new FileInputStream(file);
-         ObjectInputStream ois = new ObjectInputStream(fis);
-         
-         FullMenu = (ArrayList) ois.readObject();
-         PromotionalPackages = (ArrayList) ois.readObject();
-         
-         ois.close();
-         fis.close();
-      } catch (IOException ioe) {
-         ioe.printStackTrace();
-         return; } 
-      catch (ClassNotFoundException c) 
-      {
-         System.out.println("Class not found");
-         c.printStackTrace();
-         return;
-      }
-   }
    
-   // Write the menu and packages into a file
-   public void FileWriter(){
-      String file = "./FullMenu.txt";
-      String secondFile = "./PromotionalPackages.txt";
-      try
-      {
-         FileOutputStream fos = new FileOutputStream(file);
-         ObjectOutputStream oos = new ObjectOutputStream(fos);
-         oos.writeObject(FullMenu);
-         oos.writeObject(PromotionalPackages);
-         oos.close();
-         fos.close();
-      } 
-      catch (IOException ioe) 
-      {
-         ioe.printStackTrace();
-      }
-   }
-   
-
   
     // Get the user's input 
    public void MenuOptions(){
       int choice;
       
       do{
-         System.out.println("What would you like to do?");
+         System.out.println("MENU");
          System.out.println("(1) View menu");
          System.out.println("(2) Add new item to menu");
-         System.out.println("(3) Remove item from menu");
-         System.out.println("(4) Update item in menu");
-         System.out.println("(5) Exit menu options");
+         System.out.println("(3) Add new promotional package to menu");
+         System.out.println("(4) Remove item from menu");
+         System.out.println("(5) Remove promotional package from menu");
+         System.out.println("(6) Update item in menu");
+         System.out.println("(7) Update promotional package in menu");
+         System.out.println("(8) Return to home page");
          choice = sc.nextInt();
         
          switch(choice){
@@ -80,198 +36,171 @@ public class MenuCtrl{
                break;
                
             case 2:
-               System.out.println("ITEM TYPE");
-               System.out.println("(1) Food Item");
-               System.out.println("(2) Promotional Package");
+               addFoodItem();
+               break;
+               
+            case 3: 
+               System.out.println("PROMOTIONAL PACKAGE");
+               System.out.println("(1) Add new promotional package");
+               System.out.println("(2) Add item to promotional package");
                System.out.println("(3) Return to previous page");
-                 
-               int itemTypeChoiceAdd = sc.nextInt();
-               switch(itemTypeChoiceAdd){
-                  case 1: 
-                     addFoodItem();
+               
+               int PromotionalPackageChoiceAdd = sc.nextInt();
+               
+               switch(PromotionalPackageChoiceAdd){
+                  case 1:
+                     createPromotionalPackage();
                      break;
-                     
+                  
                   case 2: 
-                     System.out.println("PROMOTIONAL PACKAGE");
-                     System.out.println("(1) Add new promotional package");
-                     System.out.println("(2) Add item to promotional package");
-                     System.out.println("(3) Return to previous page");
-                     int PromotionalPackageChoice = sc.nextInt();
+                     System.out.println("Name of the promotional package to add an item to:");
+                     sc.nextLine();
+                     String packagenameadd = sc.nextLine();
                      
-                     switch(PromotionalPackageChoice){
-                        case 1:
-                           createPromotionalPackage();
-                           break;
-                        
-                        case 2: 
-                           System.out.println("What's the name of the promotional package to add an item to?");
-                           sc.nextLine();
-                           String packagenameadd = sc.nextLine();
-                           
-                           Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
-                           while (iter.hasNext()){
-                              PromotionalPackage pp = iter.next();
-                              if(pp.getPackageName().equals(packagenameadd)){
-                                 addItemtoPromotionalPackage(pp);
-                                 break;
-                              }
+                     Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
+                     String again;
+                     do{
+                        while (iter.hasNext()){
+                           PromotionalPackage pp = iter.next();
+                           if(pp.getPackageName().equals(packagenameadd)){
+                              addItemtoPromotionalPackage(pp);
+                              System.out.println("Item added.");
+                              break;
                            }
-                        
-                           break;
-                           
-                        case 3:
-                           break;
-                     }
+                        }
+                        System.out.println("Continue adding items? (Y/N)");
+                        again = sc.next();
+                     } while (again.equals("Y"));
+                     
                      break;
-                      
+                     
                   case 3:
                      break;
                }
-               
                break;
                
                
-            case 3:
-               System.out.println("ITEM TYPE");
-               System.out.println("(1) Food Item");
-               System.out.println("(2) Promotional Package");
-                 
-               int itemTypeChoiceRemove = sc.nextInt();
-                  
-               switch(itemTypeChoiceRemove){
-                  case 1: 
-                     removeFoodItem();
+            case 4:
+               removeFoodItem();
+               break;
+               
+               
+            case 5: 
+               System.out.println("PROMOTIONAL PACKAGE");
+               System.out.println("(1) Remove promotional package");
+               System.out.println("(2) Remove item from promotional package");
+               System.out.println("(3) Return to previous page");
+               int PromotionalPackageChoiceRemove = sc.nextInt();
+               
+               switch(PromotionalPackageChoiceRemove){
+                  case 1:
+                     removePromotionalPackage();
                      break;
-                  
-                  case 2: 
-                     System.out.println("PROMOTIONAL PACKAGE");
-                     System.out.println("(1) Remove promotional package");
-                     System.out.println("(2) Remove item from promotional package");
-                     System.out.println("(3) Return to previous page");
-                     int PromotionalPackageChoice = sc.nextInt();
                      
-                     switch(PromotionalPackageChoice){
-                        case 1:
-                           removePromotionalPackage();
-                           break;
-                        
-                        case 2: 
-                           System.out.println("What's the name of the promotional package to remove an item from?");
-                           sc.nextLine();
-                           String packagenameremove = sc.nextLine();
-                              
-                           Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
-                           while (iter.hasNext()){
-                              PromotionalPackage pp = iter.next();
-                              if(pp.getPackageName().equals(packagenameremove)){
-                                 removeItemfromPackage(pp);
-                              }
-                           }
-                           
-                           break;
-                           
-                        case 3:
-                           break;
-                     }
-                     break;
-               }
-               
-               break;
-               
-            case 4:   
-               System.out.println("ITEM TYPE");
-               System.out.println("(1) Food Item");
-               System.out.println("(2) Promotional Package");
-                 
-               int itemTypeChoiceUpdate = sc.nextInt();
-                  
-               switch(itemTypeChoiceUpdate){
-                  case 1: 
-                     updateFoodItem();
-                     break;
-                  
                   case 2: 
-                     updatePromotionalPackage();
+                     System.out.println("Name of the promotional package to remove an item from:");
+                     sc.nextLine();
+                     String packagenameremove = sc.nextLine();
+                     
+                     Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
+                     while (iter.hasNext()){
+                        PromotionalPackage pp = iter.next();
+                        if(pp.getPackageName().equals(packagenameremove)){
+                           removeItemfromPackage(pp);
+                        }
+                     } 
                      break;
-                  
+                 
                   case 3:
                      break;
                }
+               break;
+             
+               
+            case 6:
+               updateFoodItem();
+               break;
+               
+               
+            case 7: 
+               updatePromotionalPackage();
                break;
          
-            case 5:
+            case 8:
                break;
          } 
-      } while (choice != 5);
-      FileWriter();
+      } while (choice != 8);
    }
 
 
    // (1) - View Menu
    public void viewMenu(){
-      System.out.println("MENU CATEGORY");
-      System.out.println("(1) Appetisers");
-      System.out.println("(2) Main");
-      System.out.println("(3) Desserts");
-      System.out.println("(4) Drinks");
-      System.out.println("(5) Specials");
-      System.out.println("(6) Promotional Packages");
-      System.out.println("(7) Go Back to Previous Page");
+      int categorychoice;
+      do{
+         System.out.println("MENU CATEGORY");
+         System.out.println("(1) Appetisers");
+         System.out.println("(2) Main");
+         System.out.println("(3) Desserts");
+         System.out.println("(4) Drinks");
+         System.out.println("(5) Specials");
+         System.out.println("(6) Promotional Packages");
+         System.out.println("(7) Go Back to Previous Page");
+                  
+         categorychoice = sc.nextInt();
+         // initialise selectedCategory to a random category
+         Category selectedCategory = Category.MAIN;
+                 
+         switch(categorychoice){
+            case 1:
+               printItems(Category.APPETISER);
+               break;
                
-      int categorychoice = sc.nextInt();
-      // initialise selectedCategory to a random category
-      Category selectedCategory = Category.MAIN;
-              
-      switch(categorychoice){
-         case 1:
-            printItems(Category.APPETISER);
-            break;
-            
-         case 2:
-            printItems(Category.MAIN);
-            break;
-            
-         case 3:
-            printItems(Category.DESSERT);
-            break;
-            
-         case 4:
-            printItems(Category.DRINK);
-            break;
-            
-         case 5:
-            printItems(Category.SPECIAL);
-            break; 
-         
-         case 6: 
-            Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
-            boolean hasPromotionalPackage = false;
-            
-            while (iter.hasNext()){
-               hasPromotionalPackage = true;
-               PromotionalPackage pp = iter.next();
+            case 2:
+               printItems(Category.MAIN);
+               break;
                
-               System.out.println("Package Name: " + pp.getPackageName());
-               System.out.println("Package Price: $" + df.format(pp.getPackagePrice()));
-               System.out.println("Package Description: " + pp.getPackageDescription());
-               System.out.println("Package Items: ");
+            case 3:
+               printItems(Category.DESSERT);
+               break;
                
-               // print all the items in package
-               ArrayList<Item> packageItems = pp.getPackageItems();
-               int index = 0;
-               for (Item item: packageItems)
-                  System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getDescription());
+            case 4:
+               printItems(Category.DRINK);
+               break;
                
-               System.out.println();
-            }
+            case 5:
+               printItems(Category.SPECIAL);
+               break; 
             
-            if (hasPromotionalPackage == false)
-            {
-               System.out.println("There are no promotional packages currently.");
-            }
-            
-            break; 
-      }      
+            case 6: 
+               Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
+               boolean hasPromotionalPackage = false;
+               
+               while (iter.hasNext()){
+                  hasPromotionalPackage = true;
+                  PromotionalPackage pp = iter.next();
+                     
+                  System.out.println("Package Name: " + pp.getPackageName());
+                  System.out.println("Package Price: $" + df.format(pp.getPackagePrice()));
+                  System.out.println("Package Description: " + pp.getPackageDescription());
+                  System.out.println("Package Items: ");
+                     
+                     // print all the items in package
+                  ArrayList<Item> packageItems = pp.getPackageItems();
+                  int index = 1;
+                  for (Item item: packageItems)
+                     System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+                     
+                  System.out.println();
+               }
+                  
+               if (hasPromotionalPackage == false)
+               {
+                  System.out.println("There are no promotional packages currently.");
+               }
+                  
+               break; 
+         }    
+      } while(categorychoice != 7);  
    }
     
     // print out the menu for the category
@@ -302,13 +231,13 @@ public class MenuCtrl{
    public void addFoodItem(){
       do{
          try{
-            System.out.println("What's the category of the item?" );
+            System.out.println("Category of item: " );
             System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
             String categoryStr = sc.next();
             sc.nextLine();
             Category category = Category.valueOf(categoryStr.toUpperCase());
          
-            System.out.println("What's the name of the item? ");
+            System.out.println("Name of item: ");
             String name = sc.nextLine();
          
          // prevent duplicate items 
@@ -316,11 +245,11 @@ public class MenuCtrl{
                break;
             }
          
-            System.out.println("What's the price of the item? Enter numbers only. ");
+            System.out.println("Price of item: (Enter numbers only) "); 
             Double price = sc.nextDouble();
             sc.nextLine();
             
-            System.out.println("What's the description of the item? ");
+            System.out.println("Description of item: ");
             String description = sc.nextLine();
          
             FullMenu.add(new Item(name, category, description, price));
@@ -335,47 +264,25 @@ public class MenuCtrl{
    public void createPromotionalPackage(){
       ArrayList<Item> packageItems = new ArrayList<Item>();
             
-      System.out.println("Name: ");
+      System.out.println("Name of promotional package: ");
       sc.nextLine();
       String packageName = sc.nextLine();
    
-      System.out.println("Description: ");
+      System.out.println("Description of promotional package: ");
       String packageDescription = sc.nextLine();
    
-      System.out.println("Price: (Please only enter an integer)");
-      Integer packagePrice = sc.nextInt();
+      System.out.println("Price of promotional package: (Enter numbers only)");
+      double packagePrice = sc.nextDouble();
              
       PromotionalPackage newPackage = new PromotionalPackage(packageName, packageDescription, packagePrice, packageItems);
       PromotionalPackages.add(newPackage); 
       
       String choice;
       do {
-         addItemtoPromotionalPackage(newPackage);
-         /*
-         System.out.println("What's the category of the item to add?" );
-         System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
-         String categoryStr = sc.next();
-         Category category = Category.valueOf(categoryStr.toUpperCase());
-      
-         System.out.println("What's the name of the item to add?");
-         sc.nextLine();
-         String name = sc.nextLine();
-      
-         int indexofItemtoAdd = getIndexByName(name, category);  
-      // find the index of item and add it to the package
-         if (indexofItemtoAdd == -1){
-            System.out.println("The item does not exist. Please create the item first before adding it to any packages.");
-         }
-         
-         else{
-            Item tempadd = FullMenu.get(indexofItemtoAdd);
-            packageItems.add(tempadd);
-         } */
-         
-        
+         addItemtoPromotionalPackage(newPackage); 
          System.out.println("Continue adding menu item to promotional package? (Y/N)");
          choice = sc.next();
-      } while(choice == "Y");
+      } while(choice.equals("Y"));
       
      
       
@@ -383,19 +290,19 @@ public class MenuCtrl{
    
     //(2)(2)(2) Add items to promotional packages
    public void addItemtoPromotionalPackage(PromotionalPackage pp){
-      System.out.println("What's the category of the item to add?" );
+      System.out.println("Category of item to add: " );
       System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
       String categoryStr = sc.next();
       Category category = Category.valueOf(categoryStr.toUpperCase());
       
-      System.out.println("What's the name of the item to add?");
+      System.out.println("Name of the item to add: ");
       sc.nextLine();
       String name = sc.nextLine();
       
       int indexofItemtoAdd = getIndexByName(name, category);  
       // find the index of item and add it to the package
       if (indexofItemtoAdd == -1){
-         System.out.println("The item does not exist. Please create the item first before adding it to any packages.");
+         System.out.println("Item does not exist. Please create the item first before adding it to any packages.");
       }
       
       else{
@@ -410,12 +317,12 @@ public class MenuCtrl{
     //(3)(1) Remove Food Item
    public void removeFoodItem(){
       try{
-         System.out.println("What's the category of the item to remove?" );
+         System.out.println("Category of the item to remove:" );
          System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
          String categoryStrRemove = sc.next();
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
             
-         System.out.println("What's the name of the item to remove? ");
+         System.out.println("Name of the item to remove: ");
          sc.nextLine();
          String removename = sc.nextLine();
          
@@ -437,7 +344,7 @@ public class MenuCtrl{
    
    // (3)(2)(1) Remove Promotional Package
    public void removePromotionalPackage(){
-      System.out.println("What's the name of the promotional package to remove?");
+      System.out.println("Name of promotional package to remove:");
       sc.nextLine();
       String removepackage = sc.nextLine();
       
@@ -453,12 +360,12 @@ public class MenuCtrl{
    // (3)(2)(2) Remove Item from Promotional Package
    public void removeItemfromPackage(PromotionalPackage pp){
       try{
-         System.out.println("What's the category of the item to remove?" );
+         System.out.println("Category of the item to remove:" );
          System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
          String categoryStrRemove = sc.next();
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
             
-         System.out.println("What's the name of the item to remove? ");
+         System.out.println("Name of the item to remove: ");
          sc.nextLine();
          String removename = sc.nextLine();
          
@@ -481,13 +388,13 @@ public class MenuCtrl{
    public void updateFoodItem(){
       do{
          try{
-            System.out.println("What's the category of the item to update?" );
+            System.out.println("Category of the item to update:" );
             System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
             String categoryStr = sc.next();
             sc.nextLine();
             Category category = Category.valueOf(categoryStr.toUpperCase());
          
-            System.out.println("What's the name of the item to update? ");
+            System.out.println("Name of the item to update: ");
             String name = sc.nextLine();
             
             int indexofItem = getIndexByName(name, category);
@@ -520,10 +427,17 @@ public class MenuCtrl{
                   
                case 3:
                   System.out.println("Enter new description: ");
+                  sc.nextLine();
                   String newDescription = sc.nextLine();
                   FullMenu.get(indexofItem).setDescription(newDescription);
                   
                   break;
+                  
+               case 4:
+                  System.out.println("Enter new category: ");
+                  String newCategoryStr = sc.nextLine();
+                  Category newCategory = Category.valueOf(newCategoryStr.toUpperCase());
+                  FullMenu.get(indexofItem).setCategory(newCategory);
             }
          }
          catch (Exception e){
