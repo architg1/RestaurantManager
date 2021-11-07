@@ -7,12 +7,12 @@ public class Manager {
 
     private ArrayList<Table> tables = new ArrayList<Table>();
     private ArrayList<Staff> staff = new ArrayList<Staff>();
-    private Menu menu = new Menu();
+    private MenuCtrl menu = new MenuCtrl();
 
     Scanner sc = new Scanner(System.in);
 
     public void createMenu(){
-        menu.createMenu();
+        menu.MenuOptions();
     }
 
     public void addTable(){

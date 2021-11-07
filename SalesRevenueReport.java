@@ -5,8 +5,8 @@ public class SalesRevenueReport {
 	Collection<Invoice> invoice;
 	private Integer totalSales;
 	private Item itemsSold;
-	private SetPackage packagesSold;
-	private Menu menu;
+	private PromotionalPackage packagesSold;
+	private MenuCtrl menu;
 
 	public void printDailySalesReport() {
 		// TODO - implement SalesRevenueReport.printDailySalesReport

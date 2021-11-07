@@ -35,10 +35,10 @@ public class Invoice {
 		double cost_item = 0;
 		double cost_package = 0;
 		Order order = table.getOrder();
-		for (Item item: order.items){
+		for (Item item: order.orderItems){
 			cost_item += item.price;
 		}
-		for(SetPackage setPackage: order.packages){
+		for(PromotionalPackage setPackage: order.orderPackages){
 			cost_package += setPackage.packagePrice;
 		}
 

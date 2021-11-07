@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.io.Serializable;
 
-public class Reservation implements Serializable;
+public class Reservation implements Serializable
 {
 	
 	//Table table;
@@ -64,7 +64,7 @@ public class Reservation implements Serializable;
 	 * get the contact number of the customer who made this reservation
 	 * @return this reservation's contact number
 	 */
-	public int getCustomerContact()
+	public long getCustomerContact()
 	{ 
 		return this.reservationContact; 
 	}

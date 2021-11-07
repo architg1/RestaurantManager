@@ -46,7 +46,9 @@ public class PromotionalPackage implements Serializable{
    public ArrayList<Item> getPackageItems(){
       return this.packageItems;
    }
-}import java.util.Scanner;
+}
+/*
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -95,3 +97,4 @@ public class PromotionalPackage implements Serializable{
       return this.packageItems;
    }
 }
+*/
