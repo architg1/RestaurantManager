@@ -8,7 +8,6 @@ public class TableCtrl {
    private static Scanner sc = new Scanner(System.in);
 
    
-
    public void tableOptions(){
       int choice;
       do{
@@ -35,7 +34,7 @@ public class TableCtrl {
                System.out.println("Table ID: ");
                long id = sc.nextLong();
                
-               System.out.println("Maximum Seating Capacity");
+               System.out.println("Maximum Seating Capacity: ");
                int max = sc.nextInt();
                
                Table table = new Table(id, max);
