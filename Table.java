@@ -2,8 +2,10 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Table {
+
+public class Table implements Serializable {
    private long tableID;
    private boolean isReserved;
    private int maximumSeating;
