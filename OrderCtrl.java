@@ -18,7 +18,8 @@ public class OrderCtrl {
       
          System.out.println("ORDER");
          System.out.println("(1) Create a new order.");
-         System.out.println("(2) Return to home page.");
+         System.out.println("(2) View orders.");
+         System.out.println("(3) Return to home page.");
          orderChoice = sc.nextInt();
          
          switch(orderChoice){
@@ -29,12 +30,17 @@ public class OrderCtrl {
                
                int staffIndex = -1;
                int tableIndex = -1;
+              
                
                for(int i = 0; i < Home.Staffs.size(); i++){
                   Staff s = Home.Staffs.get(i);
                   if (s.getStaffName().equals(staffName)){
                      staffIndex = i;
                   }
+               }
+                 
+               if (staffIndex == -1){
+                  System.out.println("Staff does not exist.");
                }
                
                System.out.println("Table ID for this order: ");
@@ -45,6 +51,10 @@ public class OrderCtrl {
                   if (t.getTableID() == tableID){
                      tableIndex = j;
                   }
+               }
+               
+               if (tableIndex == -1){
+                  System.out.println("Table ID does not exist.");
                }
                   
                LocalTime orderTime = LocalTime.now();
@@ -59,9 +69,20 @@ public class OrderCtrl {
                break;
                
             case 2: 
+               Iterator<Order> iter = Orders.iterator();
+               while (iter.hasNext()){
+                  Order o = iter.next();
+                  System.out.println("Order ID: " + Orders.indexOf(o));
+                  System.out.println("Order Table: " + o.getTable());
+                  System.out.println();
+               }
+               
+               break;
+               
+            case 3:
                break;
          }
-      } while (orderChoice == 1);
+      } while (orderChoice != 3);
    }
     
     
@@ -77,7 +98,8 @@ public class OrderCtrl {
          System.out.println("(3) Add a promotional package to order");
          System.out.println("(4) Remove an item from order");
          System.out.println("(5) Remove a promotional package from order");
-         System.out.println("(6) Confirm order");
+         System.out.println("(6) View order");
+         System.out.println("(7) Confirm order & return to previous page");
                      
          choice = sc.nextInt();
          switch(choice){
@@ -100,8 +122,12 @@ public class OrderCtrl {
             case 5: 
                removePackagefromOrder(order); 
                break;
-                           
+            
             case 6:
+               viewOrder(order);
+               break;
+                           
+            case 7:
                System.out.println("Order confirmed.");
                break;
          }
@@ -186,6 +212,15 @@ public class OrderCtrl {
          }
       }
    }
+   
+   // (6) View Order
+   public void viewOrder(Order order){
+      System.out.println("Order Items: " + order.getOrderItems());
+      System.out.println("Order Packages: " + order.getOrderPackages());
+      System.out.println("Order Time: " + order.getOrderTime());
+      System.out.println("Order Table: " + order.getTable());
+   }
+
 
 
 
