@@ -2,9 +2,10 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
-import java.util.Calendar;;
+import java.util.Calendar;
+import java.io.Serializable;
 
-public class Reservation
+public class Reservation implements Serializable;
 {
 	
 	//Table table;
