@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-
 import java.io.IOException;
 
 // driver class to run all the classes
@@ -15,9 +14,36 @@ public class Home {
    public static ArrayList<PromotionalPackage> PromotionalPackages = new ArrayList<PromotionalPackage>();
    public static ArrayList<Staff> Staffs = new ArrayList<Staff>();
    public static ArrayList<Table> Tables = new ArrayList<Table>();
+   public static ArrayList<Order> Orders = new ArrayList<Order>();
+   public static ArrayList<Reservation> Reservations = new ArrayList<Reservation>();
+   
    
    public static void main(String args[]){
       int choice;
+      
+      // read all the arraylists from files
+      MenuCtrl menu = new MenuCtrl();
+      String fullmenu = "./FullMenu.txt";
+      String promotionalpackages = "./PromotionalPackages.txt";
+      FullMenu = readFile(fullmenu);
+      PromotionalPackages = readFile(promotionalpackages);
+      
+      StaffCtrl staff = new StaffCtrl();
+      String staffname = "./Staffs.txt";
+      Staffs = readFile(staffname);
+      
+      TableCtrl table = new TableCtrl();
+      String tablename = "./Tables.txt";
+      Tables = readFile(tablename);
+      
+      OrderCtrl order = new OrderCtrl();
+      String ordername = "./Order.txt";
+      Orders = readFile(ordername);
+      
+      ReservationCtrl reservation = new ReservationCtrl();
+      String reservationname = "./Reservation.txt";
+      Reservations = readFile(reservationname);
+   
       //  options to call the other classes
       do{
          System.out.println("What would you like to access?");
@@ -33,42 +59,31 @@ public class Home {
          choice = sc.nextInt();
          switch(choice){
             case 1:
-               String fullmenu = "./FullMenu.txt";
-               String promotionalpackages = "./PromotionalPackages.txt";
-               
-               FullMenu = readFile(fullmenu);
-               PromotionalPackages = readFile(promotionalpackages);
-               
-               MenuCtrl menu = new MenuCtrl();
                menu.MenuOptions();
-               
+            
                writeFile(fullmenu, FullMenu);
                writeFile(promotionalpackages,PromotionalPackages);
                break;
                
             case 2:
-               OrderCtrl order = new OrderCtrl();
                order.createOrder();
+               
+               writeFile(ordername, Orders);
+               break;
+               
+            case 3: 
+               reservation.createReservation();
+               
+               writeFile(reservationname, Reservations);
                break;
             
             case 6:
-               StaffCtrl staff = new StaffCtrl();
-               
-               String staffname = "./Staffs.txt";
-               Staffs = readFile(staffname);
-               
                staff.staffOptions();
                
                writeFile(staffname, Staffs);
-               
                break;
                
             case 7:
-               TableCtrl table = new TableCtrl();
-               
-               String tablename = "./Tables.txt";
-               Tables = readFile(tablename);
-               
                table.tableOptions();
                
                writeFile(tablename, Tables);
