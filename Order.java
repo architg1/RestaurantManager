@@ -1,7 +1,8 @@
 import java.time.LocalTime;
 import java.util.*;
+import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable {
    public Staff staff;
    public ArrayList<Item> orderItems;
    public ArrayList<PromotionalPackage> orderPackages;
