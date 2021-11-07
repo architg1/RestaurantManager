@@ -108,19 +108,19 @@ public class OrderCtrl {
                break;
                         
             case 2:
-               addItemtoOrder(order);
+               addItemToOrder(order);
                break;
                         
             case 3:
-               addPackagetoOrder(order);
+               addPackageToOrder(order);
                break;
                            
             case 4:
-               removeItemfromOrder(order);
+               removeItemFromOrder(order);
                break;
                            
             case 5: 
-               removePackagefromOrder(order); 
+               removePackageFromOrder(order);
                break;
             
             case 6:
@@ -136,7 +136,7 @@ public class OrderCtrl {
 
 
 // (2) Add item to order
-   public void addItemtoOrder(Order order){
+   public void addItemToOrder(Order order){
       System.out.println("Name of item to add: ");
       sc.nextLine();
       String itemName = sc.nextLine();
@@ -158,7 +158,7 @@ public class OrderCtrl {
    
    
    //(3) Add Promotional Package to Order
-   public void addPackagetoOrder(Order order){
+   public void addPackageToOrder(Order order){
       System.out.println("What's the name of the promotional package you wish to add?");
       sc.nextLine();
       String packageName = sc.nextLine();
@@ -176,7 +176,7 @@ public class OrderCtrl {
    
    
    //(4) Remove Item from Order
-   public void removeItemfromOrder(Order order){
+   public void removeItemFromOrder(Order order){
       System.out.println("What's the name of the item you wish to remove?");
       String itemName = sc.nextLine();
       
@@ -199,7 +199,7 @@ public class OrderCtrl {
    
    
    // (5) Remove Package from Order
-   public void removePackagefromOrder(Order order){
+   public void removePackageFromOrder(Order order){
       System.out.println("What's the name of the package you wish to remove?");
       String packageName = sc.nextLine();
    
@@ -220,8 +220,5 @@ public class OrderCtrl {
       System.out.println("Order Time: " + order.getOrderTime());
       System.out.println("Order Table: " + order.getTable());
    }
-
-
-
 
 }

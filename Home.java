@@ -23,26 +23,26 @@ public class Home {
       
       // read all the arraylists from files
       MenuCtrl menu = new MenuCtrl();
-      String fullmenu = "./FullMenu.txt";
-      String promotionalpackages = "./PromotionalPackages.txt";
-      FullMenu = readFile(fullmenu);
-      PromotionalPackages = readFile(promotionalpackages);
+      String fullMenu = "./FullMenu.txt";
+      String promotionalPackages = "./PromotionalPackages.txt";
+      FullMenu = readFile(fullMenu);
+      PromotionalPackages = readFile(promotionalPackages);
       
       StaffCtrl staff = new StaffCtrl();
-      String staffname = "./Staffs.txt";
-      Staffs = readFile(staffname);
+      String staffName = "./Staffs.txt";
+      Staffs = readFile(staffName);
       
       TableCtrl table = new TableCtrl();
-      String tablename = "./Tables.txt";
-      Tables = readFile(tablename);
+      String tableName = "./Tables.txt";
+      Tables = readFile(tableName);
       
       OrderCtrl order = new OrderCtrl();
-      String ordername = "./Order.txt";
-      Orders = readFile(ordername);
+      String orderName = "./Order.txt";
+      Orders = readFile(orderName);
       
       ReservationCtrl reservation = new ReservationCtrl();
-      String reservationname = "./Reservation.txt";
-      Reservations = readFile(reservationname);
+      String reservationName = "./Reservation.txt";
+      Reservations = readFile(reservationName);
    
       //  options to call the other classes
       do{
@@ -61,32 +61,32 @@ public class Home {
             case 1:
                menu.MenuOptions();
             
-               writeFile(fullmenu, FullMenu);
-               writeFile(promotionalpackages,PromotionalPackages);
+               writeFile(fullMenu, FullMenu);
+               writeFile(promotionalPackages,PromotionalPackages);
                break;
                
             case 2:
                order.createOrder();
                
-               writeFile(ordername, Orders);
+               writeFile(orderName, Orders);
                break;
                
             case 3: 
                reservation.createReservation();
                
-               writeFile(reservationname, Reservations);
+               writeFile(reservationName, Reservations);
                break;
             
             case 6:
                staff.staffOptions();
                
-               writeFile(staffname, Staffs);
+               writeFile(staffName, Staffs);
                break;
                
             case 7:
                table.tableOptions();
                
-               writeFile(tablename, Tables);
+               writeFile(tableName, Tables);
             
             
                break;

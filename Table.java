@@ -16,7 +16,7 @@ public class Table implements Serializable {
    private long reservationContact;
    private boolean reservationMembership;
    private Staff staff;
-   private Order order;
+   //private Order order;
    private boolean arrived;
    
    public Table(long tableID, int maximumSeating) {
@@ -28,7 +28,6 @@ public class Table implements Serializable {
       reservationName = null;
       reservationContact = -1;
       reservationMembership = false;
-      //Order order = new Order(); //empty order initialised
       //Staff staff= new Staff(); //empty staff initialised
    }
    
@@ -54,10 +53,11 @@ public class Table implements Serializable {
          return false;
    }
 
-   public Order getOrder() {
+   /*public Order getOrder() {
       return order;
    }
 
+    */
    public int getMaximumSeating() {
       return maximumSeating;
    }

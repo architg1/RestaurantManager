@@ -11,13 +11,11 @@ public class Invoice {
 	private Integer totalCost;
 	private Boolean discount;
 
-	/**
-	 * 
-	 * @param table
-	 */
-	public void createInvoice(Table table) {
+
+	public void createInvoice(Order order) {
 		try{
 			FileWriter invoice = new FileWriter("invoice.txt");
+
 
 			// BASIC DETAILS
 
@@ -31,10 +29,9 @@ public class Invoice {
 		throw new UnsupportedOperationException();
 	}
 
-	public double calculateTotalPrice(Table table){
+	public double calculateTotalPrice(Order order){
 		double cost_item = 0;
 		double cost_package = 0;
-		Order order = table.getOrder();
 		for (Item item: order.orderItems){
 			cost_item += item.price;
 		}
