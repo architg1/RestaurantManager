@@ -7,7 +7,7 @@ public class Staff implements Serializable {
    private String title;
    
    private Table table;
-   private static int maximumTables = 3;
+   private int maximumTables = 3;
    private int currentTables;
   
    
