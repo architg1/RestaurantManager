@@ -41,7 +41,7 @@ public class Invoice {
 			invoice.write("fpr,");
 			invoice.write(String.valueOf(calculateTotalPrice(order)*1.07*1.10));
 
-
+			// SAMPLE FORMAT
 			// b,12345,12/12,12:12,85877321,James,o,i,Pizza,Very Tasty,MAINS,800,i,Fries,Long Potato,STARTERS,500,
 			// p,House Special,Best meal in NTU,pi,Ice cream,Cold,DESSERT,200,pi,Chips,Lays,STARTERS,50,pr,1000,fpr,800
 
