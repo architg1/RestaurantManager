@@ -16,7 +16,6 @@ public class Table implements Serializable {
    private long reservationContact;
    private boolean reservationMembership;
    private Staff staff;
-   //private Order order;
    private boolean arrived;
    
    public Table(long tableID, int maximumSeating) {
@@ -38,6 +37,22 @@ public class Table implements Serializable {
    public int getTableMax(){
       return this.maximumSeating;
    }
+
+   public LocalTime getReservationTime(){
+      return this.reservationTime;
+   }
+
+   public LocalDate getReservationDate(){
+      return this.reservationDate;
+   }
+
+   public long getReservationContact(){
+      return this.reservationContact;
+   }
+
+   public String getStaffName(){
+      return this.staff.getStaffName();
+   }
    
    public void autoCancel(){
       int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
@@ -53,11 +68,10 @@ public class Table implements Serializable {
          return false;
    }
 
-   /*public Order getOrder() {
-      return order;
+   public boolean isReservationMembership(){
+      return reservationMembership;
    }
 
-    */
    public int getMaximumSeating() {
       return maximumSeating;
    }

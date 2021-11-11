@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.text.DecimalFormat;
@@ -106,7 +105,7 @@ public class MenuCtrl{
                      while (iter.hasNext()){
                         PromotionalPackage pp = iter.next();
                         if(pp.getPackageName().equals(packagenameremove)){
-                           removeItemfromPackage(pp);
+                           removeItemFromPackage(pp);
                         }
                      } 
                      break;
@@ -324,13 +323,13 @@ public class MenuCtrl{
             
          System.out.println("Name of the item to remove: ");
          sc.nextLine();
-         String removename = sc.nextLine();
+         String removeName = sc.nextLine();
          
          Iterator<Item> iter = FullMenu.iterator();
          while (iter.hasNext()){
             Item i = iter.next();
             if(i.category.equals(categoryRemove)){
-               if (i.getName().equals(removename)){
+               if (i.getName().equals(removeName)){
                   iter.remove();
                   System.out.println("Item removed. ");
                }
@@ -358,7 +357,7 @@ public class MenuCtrl{
    }
    
    // (3)(2)(2) Remove Item from Promotional Package
-   public void removeItemfromPackage(PromotionalPackage pp){
+   public void removeItemFromPackage(PromotionalPackage pp){
       try{
          System.out.println("Category of the item to remove:" );
          System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
@@ -367,13 +366,13 @@ public class MenuCtrl{
             
          System.out.println("Name of the item to remove: ");
          sc.nextLine();
-         String removename = sc.nextLine();
+         String removeName = sc.nextLine();
          
          Iterator<Item> iter = pp.getPackageItems().iterator();
          while (iter.hasNext()){
             Item i = iter.next();
             if(i.category.equals(categoryRemove)){
-               if (i.getName().equals(removename)){
+               if (i.getName().equals(removeName)){
                   iter.remove();
                }
             }
@@ -397,7 +396,7 @@ public class MenuCtrl{
             System.out.println("Name of the item to update: ");
             String name = sc.nextLine();
             
-            int indexofItem = getIndexByName(name, category);
+            int indexOfItem = getIndexByName(name, category);
             
             // user input
             System.out.println("Choose what to update: ");
@@ -414,14 +413,14 @@ public class MenuCtrl{
                   System.out.println("Enter new name: ");
                   sc.nextLine();
                   String newname = sc.nextLine();
-                  FullMenu.get(indexofItem).setName(newname);
+                  FullMenu.get(indexOfItem).setName(newname);
                   
                   break;
               
                case 2:
                   System.out.println("Enter new price: ");
                   Double newPrice = sc.nextDouble();
-                  FullMenu.get(indexofItem).setPrice(newPrice);
+                  FullMenu.get(indexOfItem).setPrice(newPrice);
                   
                   break;
                   
@@ -429,7 +428,7 @@ public class MenuCtrl{
                   System.out.println("Enter new description: ");
                   sc.nextLine();
                   String newDescription = sc.nextLine();
-                  FullMenu.get(indexofItem).setDescription(newDescription);
+                  FullMenu.get(indexOfItem).setDescription(newDescription);
                   
                   break;
                   
@@ -437,7 +436,7 @@ public class MenuCtrl{
                   System.out.println("Enter new category: ");
                   String newCategoryStr = sc.nextLine();
                   Category newCategory = Category.valueOf(newCategoryStr.toUpperCase());
-                  FullMenu.get(indexofItem).setCategory(newCategory);
+                  FullMenu.get(indexOfItem).setCategory(newCategory);
             }
          }
          catch (Exception e){
