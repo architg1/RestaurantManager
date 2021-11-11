@@ -18,6 +18,7 @@ public class Invoice {
 		try{
 			FileWriter invoice = new FileWriter("invoice.csv");
 			// BASIC DETAILS
+			invoice.write("b,"); // MARKS BASIC DETAILS
 			// Table ID
 			invoice.write(String.valueOf(order.table.getTableID())); invoice.write(',');
 			// Current date
@@ -29,7 +30,21 @@ public class Invoice {
 			// Staff name
 			invoice.write(String.valueOf(order.table.getStaffName())); invoice.write(',');
 
-			// INDIVIDUAL ITEMS WITH PRICE
+			// INDIVIDUAL ITEMS
+			invoice.write("o,"); // MARKS ORDER DETAILS
+			individualDetails(order, invoice);
+
+			// TOTAL PRICE before GST
+			invoice.write("pr,");
+			invoice.write(String.valueOf(calculateTotalPrice(order)));
+			// TOTAL PRICE AFTER GST
+			invoice.write("fpr,");
+			invoice.write(String.valueOf(calculateTotalPrice(order)*1.07*1.10));
+
+
+			// b,12345,12/12,12:12,85877321,James,o,i,Pizza,Very Tasty,MAINS,800,i,Fries,Long Potato,STARTERS,500,
+			// p,House Special,Best meal in NTU,pi,Ice cream,Cold,DESSERT,200,pi,Chips,Lays,STARTERS,50,pr,1000,fpr,800
+
 
 		}
 		catch(IOException e){
@@ -53,7 +68,10 @@ public class Invoice {
 
 		}
 		for(PromotionalPackage setPackage: order.orderPackages){
-			cost_package += setPackage.packagePrice;
+			if(order.table.isReservationMembership())
+				cost_package += setPackage.getPackagePrice()*0.9; // 10% discount
+			else
+				cost_package += setPackage.getPackagePrice();
 		}
 
 		double total_cost = cost_item + cost_package;
@@ -66,17 +84,14 @@ public class Invoice {
 			boolean isMember = order.table.isReservationMembership();
 
 			// ITEMS
-			file.write("ITEM");
-			file.write(","); // marks the beginning of items
 			for(Item item : order.orderItems){
+				file.write("i,"); // marks the beginning of each item
 				writeItem(item, file, isMember);
 			}
 
 			// PACKAGES
-			file.write("PACKAGE");
-			file.write(",");
+			file.write("p,");
 			for(PromotionalPackage packages: order.getOrderPackages()){
-				file.write("p");
 				file.write(packages.getPackageName());
 				file.write(packages.getPackageDescription());
 
@@ -86,7 +101,7 @@ public class Invoice {
 					file.write(String.valueOf(packages.getPackagePrice()));
 
 				for(Item item: packages.packageItems){
-					file.write(":pi:");
+					file.write("pi,");
 					writeItem(item, file, isMember);
 				}
 			}
