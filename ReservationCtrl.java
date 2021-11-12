@@ -69,6 +69,17 @@ public class ReservationCtrl {
                System.out.println("Contact of customer to remove reservation: ");
                long removeContact = sc.nextLong();
                
+               cancelReservation(String removeName, long removeContact);
+            
+               break;
+               
+            case 4:
+               break;
+         }
+      } while (reservationChoice != 4);
+   }
+   
+   public void cancelReservation(String removeName, long removeContact){
                Iterator<Reservation> iterr = Home.Reservations.iterator();
                while (iterr.hasNext()){
                   Reservation r = iterr.next();
@@ -79,12 +90,5 @@ public class ReservationCtrl {
                      }
                   }
                }
-            
-               break;
-               
-            case 4:
-               break;
-         }
-      } while (reservationChoice != 4);
    }
 }
