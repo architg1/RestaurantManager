@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class PromotionalPackage implements Serializable{
+public class PromotionalPackage extends MenuItem implements Serializable{
    private static Scanner sc = new Scanner(System.in);
    
    public String packageName;
@@ -19,27 +19,25 @@ public class PromotionalPackage implements Serializable{
    }
    
    //accessors
-   public String getPackageName(){
-      return this.packageName;
-   }
+   public String getName(){ return this.packageName; }
    
-   public void setPackageName(String packageName){
+   public void setName(String packageName){
       this.packageName = packageName;
    }
    
-   public String getPackageDescription(){
+   public String getDescription(){
       return this.packageDescription;
    }
    
-   public void setPackageDescription(String packageDescription){
+   public void setDescription(String packageDescription){
       this.packageDescription = packageDescription;
    }
    
-   public double getPackagePrice(){
+   public double getPrice(){
       return this.packagePrice;
    }
    
-   public void setPackagePrice(double packagePrice){
+   public void setPrice(double packagePrice){
       this.packagePrice = packagePrice;
    }
    

@@ -118,9 +118,9 @@ public class Invoice {
 		}
 		for(PromotionalPackage setPackage: order.orderPackages){
 			if(order.table.isReservationMembership())
-				cost_package += setPackage.getPackagePrice()*0.9; // 10% discount
+				cost_package += setPackage.getPrice()*0.9; // 10% discount
 			else
-				cost_package += setPackage.getPackagePrice();
+				cost_package += setPackage.getPrice();
 		}
 
 		double total_cost = cost_item + cost_package;
@@ -142,17 +142,17 @@ public class Invoice {
 			file.write("p,");
 			for(PromotionalPackage packages: order.getOrderPackages()){
 
-				System.out.print(packages.getPackageName());
-				file.write(packages.getPackageName());
-				file.write(packages.getPackageDescription());
+				System.out.print(packages.getName());
+				file.write(packages.getName());
+				file.write(packages.getDescription());
 
 				if(isMember){
-					System.out.print(packages.getPackagePrice()*0.90);
-					file.write(String.valueOf(packages.getPackagePrice()*0.90));
+					System.out.print(packages.getPrice()*0.90);
+					file.write(String.valueOf(packages.getPrice()*0.90));
 				}
 				else{
-					System.out.print(packages.getPackagePrice());
-					file.write(String.valueOf(packages.getPackagePrice()));
+					System.out.print(packages.getPrice());
+					file.write(String.valueOf(packages.getPrice()));
 				}
 
 				for(Item item: packages.packageItems){

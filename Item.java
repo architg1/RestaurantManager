@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Item implements Serializable{
+public class Item extends MenuItem implements Serializable{
    public Category category;
    public String name;
    public double price;
@@ -26,7 +26,7 @@ public class Item implements Serializable{
       return this.price;
    }
    
-   public void setPrice(Double price){
+   public void setPrice(double price){
       this.price = price;
    }
    

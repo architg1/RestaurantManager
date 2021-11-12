@@ -61,7 +61,7 @@ public class MenuCtrl{
                      do{
                         while (iter.hasNext()){
                            PromotionalPackage pp = iter.next();
-                           if(pp.getPackageName().equals(packagenameadd)){
+                           if(pp.getName().equals(packagenameadd)){
                               addItemtoPromotionalPackage(pp);
                               System.out.println("Item added.");
                               break;
@@ -104,7 +104,7 @@ public class MenuCtrl{
                      Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
                      while (iter.hasNext()){
                         PromotionalPackage pp = iter.next();
-                        if(pp.getPackageName().equals(packagenameremove)){
+                        if(pp.getName().equals(packagenameremove)){
                            removeItemFromPackage(pp);
                         }
                      } 
@@ -178,9 +178,9 @@ public class MenuCtrl{
                   hasPromotionalPackage = true;
                   PromotionalPackage pp = iter.next();
                      
-                  System.out.println("Package Name: " + pp.getPackageName());
-                  System.out.println("Package Price: $" + df.format(pp.getPackagePrice()));
-                  System.out.println("Package Description: " + pp.getPackageDescription());
+                  System.out.println("Package Name: " + pp.getName());
+                  System.out.println("Package Price: $" + df.format(pp.getPrice()));
+                  System.out.println("Package Description: " + pp.getDescription());
                   System.out.println("Package Items: ");
                      
                      // print all the items in package
@@ -351,7 +351,7 @@ public class MenuCtrl{
       Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
       while (iter.hasNext()){
          PromotionalPackage pp = iter.next();
-         if(pp.getPackageName().equals(removepackage)){
+         if(pp.getName().equals(removepackage)){
             iter.remove();
          }
       }
@@ -456,7 +456,7 @@ public class MenuCtrl{
             int indexofPackage = -1;
             for (int i = 0; i < PromotionalPackages.size(); i++){
                PromotionalPackage p = PromotionalPackages.get(i);
-               if (p.getPackageName().equals(name)){
+               if (p.getName().equals(name)){
                   indexofPackage = i;
                }
             }
@@ -478,21 +478,21 @@ public class MenuCtrl{
                   System.out.println("Enter new name: ");
                   sc.nextLine();
                   String newname = sc.nextLine();
-                  PromotionalPackages.get(indexofPackage).setPackageName(newname);
+                  PromotionalPackages.get(indexofPackage).setName(newname);
                   
                   break;
               
                case 2:
                   System.out.println("Enter new price: ");
                   Double newPrice = sc.nextDouble();
-                  PromotionalPackages.get(indexofPackage).setPackagePrice(newPrice);
+                  PromotionalPackages.get(indexofPackage).setPrice(newPrice);
                   
                   break;
                   
                case 3:
                   System.out.println("Enter new description: ");
                   String newDescription = sc.nextLine();
-                  PromotionalPackages.get(indexofPackage).setPackageDescription(newDescription);
+                  PromotionalPackages.get(indexofPackage).setDescription(newDescription);
                   
                   break;
                   

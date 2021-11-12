@@ -166,7 +166,7 @@ public class OrderCtrl {
       int indexOfPackagetoAdd = -1;
       for (int i = 0; i < Home.PromotionalPackages.size(); i++) {
          PromotionalPackage p = Home.PromotionalPackages.get(i);
-         if (p != null && p.getPackageName().equals(packageName)){
+         if (p != null && p.getName().equals(packageName)){
             indexOfPackagetoAdd = i;
          }
       }
@@ -206,7 +206,7 @@ public class OrderCtrl {
       Iterator<PromotionalPackage> iter = order.getOrderPackages().iterator();
       while (iter.hasNext()){
          PromotionalPackage p = iter.next();
-         if(p.getPackageName().equals(packageName)){
+         if(p.getName().equals(packageName)){
             iter.remove();
             System.out.println("Package removed from order.");
          }
