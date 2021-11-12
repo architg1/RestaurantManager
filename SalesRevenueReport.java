@@ -12,6 +12,48 @@ public class SalesRevenueReport {
 	private Item itemsSold;
 	private PromotionalPackage packagesSold;
 	private MenuCtrl menu;
+	
+	public void SalesRevenueReport{
+		int choice;
+		do {
+			System.out.println("SALES REVENUE REPORT");
+			System.out.println("(1) View report according to month");
+			System.out.println("(2) View report according to day");
+			System.out.println("(3) Return to previous page");
+			choice = sc.nextInt();
+			
+			switch(choice){
+				case 1:	
+					int month;
+					System.out.println("Month: (Choose an integer between 1 to 12 only)");
+					do {
+						month = sc.nextInt();
+					} while (month < 1 || month > 12);
+					
+					printMonthlySales(month);
+					
+				case 2:
+					int date;
+					int month2; 
+					System.out.println("Date: (Choose an integer between 1 to 31)");
+					do {
+						date = sc.nextInt();
+					} while (date < 1 || date > 31);
+					
+					System.out.println("Month: (Choose an integer between 1 to 12)");
+					do {
+						month2 = sc.nextInt();
+					} while (month2 < 1 || month2 > 12);
+					
+					printDailySales(date, month2);
+					
+				case 3:
+					break;
+			}
+		} while (choice != 3);
+			
+		
+	}
 
 	public void printMonthlySales(int month) {
 		try (BufferedReader br = new BufferedReader(new FileReader("invoice.txt"))) {

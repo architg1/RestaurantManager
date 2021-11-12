@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.lang;
 
 public class ReservationCtrl {
    Scanner sc = new Scanner(System.in);
@@ -45,6 +46,8 @@ public class ReservationCtrl {
                   
                Reservation newReservation = new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating);
                Home.Reservations.add(newReservation);
+               Thread t = new Thread(new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating));
+               t.start();
                   
                System.out.println("New Reservation created.");
                
