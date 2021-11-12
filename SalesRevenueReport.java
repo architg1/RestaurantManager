@@ -31,7 +31,7 @@ public class SalesRevenueReport {
 						}
 						if(elements[pos]=="p"){
 							count.put(elements[pos+1], count.get(elements[pos+1])+1);
-							price.put(elements[pos+1], price.get(elements[pos+1])+Double.valueOf(elements[pos+4]));
+							price.put(elements[pos+1], price.get(elements[pos+1])+Double.valueOf(elements[pos+3]));
 						}
 					}
 				}
