@@ -57,7 +57,7 @@ public class SalesRevenueReport {
 
 	}
 
-	public void printDailySales(int date) {
+	public void printDailySales(int date, int month) {
 
 		try (BufferedReader br = new BufferedReader(new FileReader("invoice.txt"))) {
 			String line;
@@ -71,7 +71,7 @@ public class SalesRevenueReport {
 
 				LocalDate localDate = LocalDate.parse(elements[3]);
 
-				if(date==(localDate.getDayOfYear())){
+				if(date==localDate.getDayOfMonth() && month == localDate.getMonthValue()){
 					for(int pos=0; pos<elements.length; pos++){
 						if(elements[pos]=="i"){
 							count.put(elements[pos+1], count.get(elements[pos+1])+1);
