@@ -45,11 +45,11 @@ public class StaffCtrl {
                System.out.println("Title of staff: ");
                sc.nextLine();
                String title = sc.nextLine();
-
-               System.out.println("Maximum tables they can serve: ");
+            
+               System.out.println("Title of staff: ");
                int maxTables = sc.nextInt();
-
-               Staff staff = new Staff(name, gender, id, title, maxTables);
+            
+               Staff staff = new Staff(name, gender, id, title);
                Home.Staffs.add(staff);
                
                break;
