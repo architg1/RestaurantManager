@@ -13,7 +13,8 @@ public class SalesRevenueReport {
 	private PromotionalPackage packagesSold;
 	private MenuCtrl menu;
 	
-	public void SalesRevenueReport{
+	public void SalesRevenueReport(){
+		Scanner sc = new Scanner(System.in);
 		int choice;
 		do {
 			System.out.println("SALES REVENUE REPORT");
@@ -31,8 +32,11 @@ public class SalesRevenueReport {
 					} while (month < 1 || month > 12);
 					
 					printMonthlySales(month);
+
+					break;
 					
 				case 2:
+
 					int date;
 					int month2; 
 					System.out.println("Date: (Choose an integer between 1 to 31)");
@@ -46,6 +50,8 @@ public class SalesRevenueReport {
 					} while (month2 < 1 || month2 > 12);
 					
 					printDailySales(date, month2);
+
+					break;
 					
 				case 3:
 					break;
