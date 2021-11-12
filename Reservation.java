@@ -4,8 +4,9 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.io.Serializable;
+import java.lang;
 
-public class Reservation implements Serializable
+public class Reservation implements Serializable implements Runnable
 {
 	
 	//Table table;
@@ -93,6 +94,16 @@ public class Reservation implements Serializable
 		return this.reservationDate;
 	}
 
-	
+	public void run()
+	{
+		while(true){
+			int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
+			if(time>=30)
+			{
+				ReservationCtrl.cancelReservation(this.reservationName, this.ReservationContact);
+				break;
+			}
+		}
+	}
 
 }
