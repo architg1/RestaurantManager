@@ -44,6 +44,7 @@ public class Home {
       String reservationName = "./Reservation.txt";
       Reservations = readFile(reservationName);
 
+      Invoice invoice = new Invoice();
       String invoiceFile = "./Invoice.txt";
    
       //  options to call the other classes
@@ -78,6 +79,9 @@ public class Home {
                
                writeFile(reservationName, Reservations);
                break;
+
+            case 4:
+               invoice.invoiceOptions(Orders);
             
             case 6:
                staff.staffOptions();

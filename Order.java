@@ -38,9 +38,9 @@ public class Order implements Serializable {
    public Table getTable(){
       return this.table;
    }
-   
-   // order ID is the index of order in the Orders arraylist
-   /*public int getOrderID(Order order){
-      
-   }*/
+
+   public int getOrderID(){
+      return orderID;
+   }
+
 }

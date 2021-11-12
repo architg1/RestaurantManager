@@ -2,9 +2,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Invoice {
 
@@ -13,6 +15,22 @@ public class Invoice {
 	private Integer totalCost;
 	private Boolean discount;
 
+	public void invoiceOptions(ArrayList<Order> orders){
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("What is the Order ID?");
+		int orderID = sc.nextInt();
+		Order userOrder = null;
+		for(Order order : orders){
+			if(order.getOrderID()==orderID){
+				userOrder = order;
+			}
+		}
+
+		System.out.println("Creating the invoice...");
+		createInvoice(userOrder);
+
+	}
 
 	public void createInvoice(Order order) {
 		try{
