@@ -3,16 +3,15 @@ import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Iterator;
-import java.lang;
 
 public class ReservationCtrl {
    Scanner sc = new Scanner(System.in);
   
    public void createReservation(){
-
+   
       //create new reservation and add to reservation arraylist
       int reservationChoice;
-
+   
       do{
          System.out.println("Reservation");
          System.out.println("(1) Create a new reservation.");
@@ -85,15 +84,15 @@ public class ReservationCtrl {
    }
    
    public void cancelReservation(String removeName, long removeContact){
-               Iterator<Reservation> iterr = Home.Reservations.iterator();
-               while (iterr.hasNext()){
-                  Reservation r = iterr.next();
-                  if (r.getCustomerName().equals(removeName)){
-                     if (r.getCustomerContact() == removeContact){
-                        iterr.remove();
-                        System.out.println("Reservation removed.");
-                     }
-                  }
-               }
+      Iterator<Reservation> iterr = Home.Reservations.iterator();
+      while (iterr.hasNext()){
+         Reservation r = iterr.next();
+         if (r.getCustomerName().equals(removeName)){
+            if (r.getCustomerContact() == removeContact){
+               iterr.remove();
+               System.out.println("Reservation removed.");
+            }
+         }
+      }
    }
 }
