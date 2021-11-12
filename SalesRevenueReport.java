@@ -71,7 +71,7 @@ public class SalesRevenueReport {
 
 				LocalDate localDate = LocalDate.parse(elements[3]);
 
-				if(date==(localDate.getDayOfMonth())){
+				if(date==(localDate.getDayOfYear())){
 					for(int pos=0; pos<elements.length; pos++){
 						if(elements[pos]=="i"){
 							count.put(elements[pos+1], count.get(elements[pos+1])+1);
