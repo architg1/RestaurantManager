@@ -16,7 +16,7 @@ public class Invoice {
 
 	public void createInvoice(Order order) {
 		try{
-			FileWriter invoice = new FileWriter("invoice.csv");
+			FileWriter invoice = new FileWriter("invoice.txt");
 			// BASIC DETAILS
 			invoice.write("b,"); // MARKS BASIC DETAILS
 			// Table ID
@@ -40,6 +40,8 @@ public class Invoice {
 			// TOTAL PRICE AFTER GST
 			invoice.write("fpr,");
 			invoice.write(String.valueOf(calculateTotalPrice(order)*1.07*1.10));
+			// NEW LINE
+			invoice.write('\n');
 
 			// SAMPLE FORMAT
 			// b,12345,12/12,12:12,85877321,James,o,i,Pizza,Very Tasty,MAINS,800,i,Fries,Long Potato,STARTERS,500,

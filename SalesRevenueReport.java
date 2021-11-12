@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class SalesRevenueReport {
@@ -8,8 +10,8 @@ public class SalesRevenueReport {
 	private PromotionalPackage packagesSold;
 	private MenuCtrl menu;
 
-	public void printDailySalesReport() {
-		// TODO - implement SalesRevenueReport.printDailySalesReport
+	public void printDailySalesReport(LocalTime time) {
+
 		throw new UnsupportedOperationException();
 	}
 
