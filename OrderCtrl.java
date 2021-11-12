@@ -131,7 +131,7 @@ public class OrderCtrl {
                System.out.println("Order confirmed.");
                break;
          }
-      } while(choice!=6);  
+      } while(choice!=7);  
    }
 
 
