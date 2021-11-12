@@ -38,6 +38,19 @@ public class Invoice {
 			String filename = "./Invoice.txt";
 
 			FileWriter invoice = new FileWriter("./Invoice.txt", true);
+
+			System.out.println("Pikachu Restaurant");
+			System.out.println("	*********	");
+			System.out.println("	LOCATION	");
+
+			System.out.print("Server: " + order.table.getStaffName() + "		");
+			System.out.println("Table: " + order.table.getTableID());
+
+			System.out.print("Date: " + order.table.getReservationDate() + "		");
+			System.out.println("Time: " + order.table.getReservationTime());
+			System.out.println("	*********	");
+
+
 			// BASIC DETAILS
 			invoice.write("b,"); // MARKS BASIC DETAILS
 			// Table ID
@@ -54,6 +67,20 @@ public class Invoice {
 			// INDIVIDUAL ITEMS
 			invoice.write("o,"); // MARKS ORDER DETAILS
 			individualDetails(order, invoice);
+
+			double price = calculateTotalPrice(order);
+			double priceTax = calculateTotalPrice(order)*1.07*1.10;
+
+			System.out.println("	*********	");
+			System.out.println("Total Price: " + price);
+			System.out.println("Price After GST: " + priceTax);
+
+			System.out.println("	*********	");
+			System.out.println("Thanks for Coming!!!");
+			System.out.println("	*********	");
+
+
+
 
 			// TOTAL PRICE before GST
 			invoice.write("pr,");
@@ -114,16 +141,23 @@ public class Invoice {
 			// PACKAGES
 			file.write("p,");
 			for(PromotionalPackage packages: order.getOrderPackages()){
+
+				System.out.print(packages.getPackageName());
 				file.write(packages.getPackageName());
 				file.write(packages.getPackageDescription());
 
-				if(isMember)
+				if(isMember){
+					System.out.print(packages.getPackagePrice()*0.90);
 					file.write(String.valueOf(packages.getPackagePrice()*0.90));
-				else
+				}
+				else{
+					System.out.print(packages.getPackagePrice());
 					file.write(String.valueOf(packages.getPackagePrice()));
+				}
 
 				for(Item item: packages.packageItems){
 					file.write("pi,");
+					System.out.println("	-	");
 					writeItem(item, file, isMember);
 				}
 			}
@@ -140,15 +174,19 @@ public class Invoice {
 
 		try{
 
+			System.out.print(item.name);
 			file.write(item.name);
+
 			file.write(item.description);
 			file.write(String.valueOf(item.category));
 
 			if(isMember){
+				System.out.print(item.getPrice()*0.9);
 				file.write(String.valueOf(item.getPrice()*0.9)); // 10% discount
 			}
 			else{
 				file.write(String.valueOf(item.getPrice()));
+				System.out.print(item.getPrice());
 			}
 
 			file.write(",");
