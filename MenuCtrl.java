@@ -293,6 +293,7 @@ public class MenuCtrl{
       System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
       String categoryStr = sc.next();
       Category category = Category.valueOf(categoryStr.toUpperCase());
+      printItems(category);
       
       System.out.println("Name of the item to add: ");
       sc.nextLine();
