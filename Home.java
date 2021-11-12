@@ -43,6 +43,8 @@ public class Home {
       ReservationCtrl reservation = new ReservationCtrl();
       String reservationName = "./Reservation.txt";
       Reservations = readFile(reservationName);
+
+      String invoiceFile = "./Invoice.txt";
    
       //  options to call the other classes
       do{

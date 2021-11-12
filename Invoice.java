@@ -16,7 +16,10 @@ public class Invoice {
 
 	public void createInvoice(Order order) {
 		try{
-			FileWriter invoice = new FileWriter("invoice.txt");
+
+			String filename = "./Invoice.txt";
+
+			FileWriter invoice = new FileWriter("./Invoice.txt", true);
 			// BASIC DETAILS
 			invoice.write("b,"); // MARKS BASIC DETAILS
 			// Table ID
