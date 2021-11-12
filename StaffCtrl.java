@@ -46,7 +46,7 @@ public class StaffCtrl {
                sc.nextLine();
                String title = sc.nextLine();
 
-               System.out.println("Title of staff: ");
+               System.out.println("Maximum Tables Available: ");
                int maxTables = sc.nextInt();
 
                Staff staff = new Staff(name, gender, id, title, maxTables);
