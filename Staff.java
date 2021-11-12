@@ -12,7 +12,7 @@ public class Staff implements Serializable {
   
    
    // Constructor for Staff
-   public Staff(String staffName, String gender, long id, String title){
+   public Staff(String staffName, String gender, long id, String title, int maximumTables){
       this.staffName = staffName;
       this.gender = gender;
       this.id = id;

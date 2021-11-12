@@ -49,7 +49,7 @@ public class StaffCtrl {
                System.out.println("Title of staff: ");
                int maxTables = sc.nextInt();
             
-               Staff staff = new Staff(name, gender, id, title);
+               Staff staff = new Staff(name, gender, id, title, maxTables);
                Home.Staffs.add(staff);
                
                break;
