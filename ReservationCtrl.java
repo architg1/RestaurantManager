@@ -8,8 +8,10 @@ public class ReservationCtrl {
    Scanner sc = new Scanner(System.in);
   
    public void createReservation(){
+
       //create new reservation and add to reservation arraylist
       int reservationChoice;
+
       do{
          System.out.println("Reservation");
          System.out.println("(1) Create a new reservation.");
@@ -69,7 +71,7 @@ public class ReservationCtrl {
                System.out.println("Contact of customer to remove reservation: ");
                long removeContact = sc.nextLong();
                
-               cancelReservation(String removeName, long removeContact);
+               cancelReservation(removeName,removeContact);
             
                break;
                
