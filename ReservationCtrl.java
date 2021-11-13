@@ -43,8 +43,11 @@ public class ReservationCtrl {
                String date = sc.nextLine();
                LocalDate reservationDate = LocalDate.parse(date);
                   
+               //new reservation created and initialised with input from above
                Reservation newReservation = new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating);
                Home.Reservations.add(newReservation);
+               
+               //new thread is created and run with the auto-cancel function for this reservation to be automatically cancelled after 15 minutes
                Thread t = new Thread(new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating));
                t.start();
                   
@@ -53,6 +56,7 @@ public class ReservationCtrl {
                break;
                
             case 2: 
+               //print out all existing reservations
                Iterator<Reservation> iter = Home.Reservations.iterator();
                while (iter.hasNext()){
                   Reservation r = iter.next();
@@ -83,6 +87,9 @@ public class ReservationCtrl {
       } while (reservationChoice != 4);
    }
    
+   
+   //function to cancel reservation with details as function input
+   //to be used in auto-cancel function as well 
    public void cancelReservation(String removeName, long removeContact){
       Iterator<Reservation> iterr = Home.Reservations.iterator();
       while (iterr.hasNext()){
