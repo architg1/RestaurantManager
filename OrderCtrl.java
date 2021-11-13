@@ -247,32 +247,7 @@ public class OrderCtrl {
    // (5) Remove Package from Order
    public void removePackageFromOrder(Order order){
 	   
-	 //******* print the current promo package
-	      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
-	      boolean hasPromotionalPackage = false;
-	      
-	      while (iters.hasNext()){
-	         hasPromotionalPackage = true;
-	         PromotionalPackage pp = iters.next();
-	            
-	         System.out.println("Package Name: " + pp.getName());
-	         System.out.println("Package Items: ");
-	            
-	            // print all the items in package
-	         ArrayList<Item> packageItems = pp.getPackageItems();
-	         int index = 1;
-	         for (Item item: packageItems)
-	            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
-	            
-	         System.out.println();
-	      }
-	      
-	         
-	      if (hasPromotionalPackage == false)
-	      {
-	         System.out.println("There are no promotional packages currently.");
-	      }
-	      //**********
+	viewOrder(order);
 	   
       System.out.println("What's the name of the package you wish to remove?");
       sc.nextLine();
