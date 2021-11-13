@@ -24,6 +24,7 @@ public class OrderCtrl {
          
          switch(orderChoice){
             case 1:
+               //get user input for new order details
                System.out.println("Name of staff creating this order: ");
                sc.nextLine();
                String staffName = sc.nextLine();
@@ -32,6 +33,7 @@ public class OrderCtrl {
                int tableIndex = -1;
               
                
+               //check if input staff exists in staff arraylist
                for(int i = 0; i < Home.Staffs.size(); i++){
                   Staff s = Home.Staffs.get(i);
                   if (s.getStaffName().equals(staffName)){
@@ -46,6 +48,7 @@ public class OrderCtrl {
                System.out.println("Table ID for this order: ");
                long tableID = sc.nextLong();
                
+               //check if tableID input exists in table arraylist
                for (int j = 0; j < Home.Tables.size(); j++){
                   Table t = Home.Tables.get(j);
                   if (t.getTableID() == tableID){
@@ -56,7 +59,8 @@ public class OrderCtrl {
                if (tableIndex == -1){
                   System.out.println("Table ID does not exist.");
                }
-                  
+               
+               //initialise new order with details received from input
                LocalTime orderTime = LocalTime.now();
                   
                Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, Home.Tables.get(tableIndex));
@@ -69,6 +73,7 @@ public class OrderCtrl {
                break;
                
             case 2: 
+               //print out all existing orders
                Iterator<Order> iter = Orders.iterator();
                while (iter.hasNext()){
                   Order o = iter.next();
@@ -135,6 +140,9 @@ public class OrderCtrl {
    }
 
 
+   //below are implementations for order processing functions to be called in the above orderOptions() function
+   
+   
 // (2) Add item to order
    public void addItemToOrder(Order order){
       System.out.println("Name of item to add: ");
