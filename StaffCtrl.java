@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-
 public class StaffCtrl {
    private static Scanner sc = new Scanner(System.in); 
 
    public void staffOptions(){
+      //control class function
       int choice;
       do{
          System.out.println("STAFF");
@@ -19,6 +19,7 @@ public class StaffCtrl {
          
          switch(choice){
             case 1:
+               //print out details of every staff member
                Iterator<Staff> iter = Home.Staffs.iterator();
                while (iter.hasNext()){
                   Staff s = iter.next();
@@ -31,6 +32,7 @@ public class StaffCtrl {
                
                break;
             
+            //create and add new staff member 
             case 2:
                System.out.println("Name of staff: ");
                sc.nextLine();
@@ -54,6 +56,7 @@ public class StaffCtrl {
                
                break;
             
+              //remove staff member from collection in driver class
             case 3:
                System.out.println("Name of staff to remove: ");
                sc.nextLine();
@@ -68,6 +71,7 @@ public class StaffCtrl {
                   }
                }
             
+            //return to previous interface
             case 4:
                break;
          
