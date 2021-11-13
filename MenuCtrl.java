@@ -8,6 +8,7 @@ public class MenuCtrl{
    private static final DecimalFormat df = new DecimalFormat("0.00");   
    
    // Declare an array list for menu and populate with items
+   //Menu is represented as 2 array lists made up of all the items as well as promotional packages only
    ArrayList<Item> FullMenu = Home.FullMenu;
    ArrayList<PromotionalPackage> PromotionalPackages = Home.PromotionalPackages;
    
@@ -18,6 +19,7 @@ public class MenuCtrl{
       int choice;
       
       do{
+         //interface display for user
          System.out.println("MENU");
          System.out.println("(1) View menu");
          System.out.println("(2) Add new item to menu");
@@ -60,6 +62,7 @@ public class MenuCtrl{
                      String again;
                      do{
                         while (iter.hasNext()){
+                           //find the desired promotional package name and add desired item to it
                            PromotionalPackage pp = iter.next();
                            if(pp.getName().equals(packagenameadd)){
                               addItemtoPromotionalPackage(pp);
@@ -74,6 +77,7 @@ public class MenuCtrl{
                      break;
                      
                   case 3:
+                     //go back to previous enclosing while loop, return to previous interface
                      break;
                }
                break;
@@ -101,6 +105,7 @@ public class MenuCtrl{
                      sc.nextLine();
                      String packagenameremove = sc.nextLine();
                      
+                     //search for desired promotional package and remove item from it
                      Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
                      while (iter.hasNext()){
                         PromotionalPackage pp = iter.next();
@@ -136,6 +141,7 @@ public class MenuCtrl{
    public void viewMenu(){
       int categorychoice;
       do{
+         //user can choose to filter menu items based on category
          System.out.println("MENU CATEGORY");
          System.out.println("(1) Appetisers");
          System.out.println("(2) Main");
@@ -174,6 +180,7 @@ public class MenuCtrl{
                Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
                boolean hasPromotionalPackage = false;
                
+               //check if there are any promotional packages
                while (iter.hasNext()){
                   hasPromotionalPackage = true;
                   PromotionalPackage pp = iter.next();
@@ -207,6 +214,7 @@ public class MenuCtrl{
       boolean hasCategoryItem = false; 
          
       Iterator<Item> iter = FullMenu.iterator();
+      //sequential search and print menu item if it matches input category type
       while (iter.hasNext()){
          Item i = iter.next();
          if (i.category == selectedCategory){
@@ -326,6 +334,7 @@ public class MenuCtrl{
          sc.nextLine();
          String removeName = sc.nextLine();
          
+         //search for food item by name and remove it
          Iterator<Item> iter = FullMenu.iterator();
          while (iter.hasNext()){
             Item i = iter.next();
@@ -348,6 +357,7 @@ public class MenuCtrl{
       sc.nextLine();
       String removepackage = sc.nextLine();
       
+      //search for promotional package by name and remove it
       Iterator<PromotionalPackage> iter = PromotionalPackages.iterator();
       while (iter.hasNext()){
          PromotionalPackage pp = iter.next();
@@ -369,6 +379,7 @@ public class MenuCtrl{
          sc.nextLine();
          String removeName = sc.nextLine();
          
+         //search for specific item in promotional package by name and remove it
          Iterator<Item> iter = pp.getPackageItems().iterator();
          while (iter.hasNext()){
             Item i = iter.next();
@@ -399,7 +410,7 @@ public class MenuCtrl{
             
             int indexOfItem = getIndexByName(name, category);
             
-            // user input
+            // user input to change attributes of existing item
             System.out.println("Choose what to update: ");
             System.out.println("(1) Name");
             System.out.println("(2) Price");
@@ -446,7 +457,7 @@ public class MenuCtrl{
       } while(false);
    }
    
-   //(4)(2) Update Promotional Package
+   //(4)(2) Update existing Promotional Package
    public void updatePromotionalPackage(){
       do{
          try{
