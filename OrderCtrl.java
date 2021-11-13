@@ -185,13 +185,15 @@ public class OrderCtrl {
    
    //(4) Remove Item from Order
    public void removeItemFromOrder(Order order){
-      System.out.println("What's the name of the item you wish to remove?");
-      String itemName = sc.nextLine();
-      
       System.out.println("What's the category of the item?" );
       System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
       String categoryStrRemove = sc.next();
       Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
+      viewOrder(order);
+
+      System.out.println("What's the name of the item you wish to remove?");
+      sc.nextLine();
+      String itemName = sc.nextLine();
       
       Iterator<Item> iter = order.getOrderItems().iterator();
       while (iter.hasNext()){
