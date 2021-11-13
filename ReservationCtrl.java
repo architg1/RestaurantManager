@@ -37,6 +37,7 @@ public class ReservationCtrl {
                
                System.out.println("Estimated arrival time: ");
                String time = sc.nextLine();
+               time = sc.nextLine();
                LocalTime reservationTime = LocalTime.parse(time);
                
                System.out.println("Reservation date: ");

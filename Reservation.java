@@ -87,7 +87,7 @@ public class Reservation implements Serializable, Runnable
    {
       while(true){
          int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
-         if(time>=30)
+         if(time>=900)
          {
             reservationctrl.cancelReservation(this.reservationName, this.reservationContact);
             break;
