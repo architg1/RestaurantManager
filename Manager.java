@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Manager {
 
+    //initialise a menu and 2 array lists of tables and staff respectively
     private ArrayList<Table> tables = new ArrayList<Table>();
     private ArrayList<Staff> staff = new ArrayList<Staff>();
     private MenuCtrl menu = new MenuCtrl();
@@ -12,9 +13,11 @@ public class Manager {
     Scanner sc = new Scanner(System.in);
 
     public void createMenu(){
+        //call MenuOptions from MenuCtrl class
         menu.MenuOptions();
     }
 
+    //adding a new table to the arraylist
     public void addTable(){
         System.out.println("What's the table ID?");
         int maximumSeating = sc.nextInt();
@@ -26,6 +29,7 @@ public class Manager {
         tables.add(newTable);
     }
 
+    //adding a new staff to the arraylist
     public void addStaff(){
 
         System.out.println("What's their name?");
@@ -48,8 +52,10 @@ public class Manager {
 
     }
 
+    
     public void makeReservation(){
 
+        //get the reservation details
         System.out.println("What's your name?");
         String reservationName = sc.next();
 
@@ -65,6 +71,7 @@ public class Manager {
         LocalTime reservationTime = LocalTime.now();
         LocalDate reservationDate = LocalDate.now();
 
+        //find a free table and staff to assign the reservation to
         for(Table table: tables){
             if(table.isReserved()==false && table.getMaximumSeating()<=reservedSeating){
                 table.reserveTable(reservationName, reservationContact, reservationMembership, reservationDate, reservationTime, reservedSeating);
