@@ -1,10 +1,6 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
 
 // driver class to run all the classes
 public class Home {
@@ -23,29 +19,32 @@ public class Home {
       
       // read all the arraylists from files
       MenuCtrl menu = new MenuCtrl();
+
       String fullMenu = "./FullMenu.txt";
       String promotionalPackages = "./PromotionalPackages.txt";
+
       FullMenu = readFile(fullMenu);
       PromotionalPackages = readFile(promotionalPackages);
-      
+
       StaffCtrl staff = new StaffCtrl();
       String staffName = "./Staffs.txt";
       Staffs = readFile(staffName);
-      
+
       TableCtrl table = new TableCtrl();
       String tableName = "./Tables.txt";
       Tables = readFile(tableName);
-      
+
       OrderCtrl order = new OrderCtrl();
       String orderName = "./Order.txt";
       Orders = readFile(orderName);
-      
+
       ReservationCtrl reservation = new ReservationCtrl();
       String reservationName = "./Reservation.txt";
       Reservations = readFile(reservationName);
 
       Invoice invoice = new Invoice();
       String invoiceFile = "./Invoice.txt";
+
    
       //  options to call the other classes
       do{
@@ -101,6 +100,8 @@ public class Home {
                break;
          }
       } while(choice != 8);
+
+
    }
    
 // Read arraylists from a file
@@ -117,7 +118,13 @@ public class Home {
          ois.close();
          fis.close();
          return arrayList;
-      } catch (IOException ioe) {
+      }
+      catch(EOFException e){
+         e.printStackTrace();
+         return arrayList;
+      }
+
+      catch (IOException ioe) {
          ioe.printStackTrace();
          return arrayList; 
       } 
@@ -127,6 +134,7 @@ public class Home {
          c.printStackTrace();
          return arrayList;
       }
+
    }
    
    // Write arraylists into a file
@@ -138,11 +146,17 @@ public class Home {
          oos.writeObject(arraylist);
          oos.close();
          fos.close();
-      } 
+      }
+
+      catch(EOFException e){
+         e.printStackTrace();
+      }
+
       catch (IOException ioe) 
       {
          ioe.printStackTrace();
       }
+
    }
 
 }
