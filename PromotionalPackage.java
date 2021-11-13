@@ -18,7 +18,7 @@ public class PromotionalPackage extends MenuItem implements Serializable{
       this.packageItems = packageItems;
    }
    
-   //accessors
+   //accessors and setters
    public String getName(){ return this.packageName; }
    
    public void setName(String packageName){
