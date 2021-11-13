@@ -38,6 +38,7 @@ public class Staff implements Serializable {
       return this.title;
    }
    
+   //boolean to check if staff can serve more tables
    public boolean serveMoreTables(){
       if((maximumTables-currentTables) > 0 ) 
          return true;
@@ -45,6 +46,7 @@ public class Staff implements Serializable {
          return false;
    }
    
+   //function to assign to table if staff is free to serve more tables
    public void allocateTable(Table table){
       this.table = table;
       if(serveMoreTables() == true) 
