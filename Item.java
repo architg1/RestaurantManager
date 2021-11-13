@@ -7,6 +7,7 @@ public class Item extends MenuItem implements Serializable{
    public String description;
    
    
+   //constructor
    public Item(String name, Category category, String description, double price){
       this.price = price;
       this.category = category;
@@ -14,6 +15,7 @@ public class Item extends MenuItem implements Serializable{
       this.description = description;
    }
    
+   //accessors and setters
    public String getName(){
       return this.name;
    }
