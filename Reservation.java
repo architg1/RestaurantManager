@@ -83,6 +83,9 @@ public class Reservation implements Serializable, Runnable
       return this.reservationDate;
    }
 
+
+   //implementation of autocancel function
+   //to be run as a thread in ReservationCtrl class
    public void run()
    {
       while(true){
