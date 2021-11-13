@@ -45,6 +45,7 @@ public class PromotionalPackage extends MenuItem implements Serializable{
       return this.packageItems;
    }
 }
+
 /*
 import java.util.Scanner;
 import java.util.ArrayList;

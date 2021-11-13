@@ -12,5 +12,4 @@ public abstract class MenuItem {
 
     public abstract void setDescription(String description);
 
-
 }
