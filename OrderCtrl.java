@@ -145,14 +145,18 @@ public class OrderCtrl {
    
 // (2) Add item to order
    public void addItemToOrder(Order order){
-      System.out.println("Name of item to add: ");
+	   System.out.println("Category of item to add: " );
+	   System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
+	   String categoryStr = sc.next();
+	   Category category = Category.valueOf(categoryStr.toUpperCase());
+	   menuctrl.printItems(category);
+	   
+	   System.out.println("Name of item to add: ");
       sc.nextLine();
       String itemName = sc.nextLine();
+      System.out.println("Item added. ");
    
-      System.out.println("Category of item to add: " );
-      System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
-      String categoryStr = sc.next();
-      Category category = Category.valueOf(categoryStr.toUpperCase());
+      
    
       int indexofItemtoAdd = menuctrl.getIndexByName(itemName, category);
       if (indexofItemtoAdd == -1){
@@ -167,6 +171,34 @@ public class OrderCtrl {
    
    //(3) Add Promotional Package to Order
    public void addPackageToOrder(Order order){
+	 //******* print the current promo package
+	      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
+	      boolean hasPromotionalPackage = false;
+	      
+	      while (iters.hasNext()){
+	         hasPromotionalPackage = true;
+	         PromotionalPackage pp = iters.next();
+	            
+	         System.out.println("Package Name: " + pp.getName());
+	         System.out.println("Package Items: ");
+	            
+	            // print all the items in package
+	         ArrayList<Item> packageItems = pp.getPackageItems();
+	         int index = 1;
+	         for (Item item: packageItems)
+	            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+	            
+	         System.out.println();
+	      }
+	      
+	         
+	      if (hasPromotionalPackage == false)
+	      {
+	         System.out.println("There are no promotional packages currently.");
+	      }
+	      //**********
+	   
+	   
       System.out.println("What's the name of the promotional package you wish to add?");
       sc.nextLine();
       String packageName = sc.nextLine();
@@ -176,6 +208,8 @@ public class OrderCtrl {
          PromotionalPackage p = Home.PromotionalPackages.get(i);
          if (p != null && p.getName().equals(packageName)){
             indexOfPackagetoAdd = i;
+            System.out.println("Package added. ");
+
          }
       }
       
@@ -185,6 +219,8 @@ public class OrderCtrl {
    
    //(4) Remove Item from Order
    public void removeItemFromOrder(Order order){
+      
+      
       System.out.println("What's the category of the item?" );
       System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
       String categoryStrRemove = sc.next();
@@ -210,7 +246,36 @@ public class OrderCtrl {
    
    // (5) Remove Package from Order
    public void removePackageFromOrder(Order order){
+	   
+	 //******* print the current promo package
+	      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
+	      boolean hasPromotionalPackage = false;
+	      
+	      while (iters.hasNext()){
+	         hasPromotionalPackage = true;
+	         PromotionalPackage pp = iters.next();
+	            
+	         System.out.println("Package Name: " + pp.getName());
+	         System.out.println("Package Items: ");
+	            
+	            // print all the items in package
+	         ArrayList<Item> packageItems = pp.getPackageItems();
+	         int index = 1;
+	         for (Item item: packageItems)
+	            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+	            
+	         System.out.println();
+	      }
+	      
+	         
+	      if (hasPromotionalPackage == false)
+	      {
+	         System.out.println("There are no promotional packages currently.");
+	      }
+	      //**********
+	   
       System.out.println("What's the name of the package you wish to remove?");
+      sc.nextLine();
       String packageName = sc.nextLine();
    
       Iterator<PromotionalPackage> iter = order.getOrderPackages().iterator();
