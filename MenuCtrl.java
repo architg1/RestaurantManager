@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import out.production.BaseCtrl;
+//import out.production.BaseCtrl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,7 +80,7 @@ public class MenuCtrl extends BaseCtrl
                         System.out.println("There are no promotional packages currently.");
                      }
                      //****
-                     sc.nextLine();
+                     //sc.nextLine();
                      String packagenameadd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
@@ -128,7 +128,7 @@ public class MenuCtrl extends BaseCtrl
                      
                   case 2: 
                      System.out.println("Name of the promotional package to remove an item from:");
-                     sc.nextLine();
+                     //sc.nextLine();
                      String packagenameremove = sc.nextLine();
                      
                      //search for desired promotional package and remove item from it
@@ -289,7 +289,7 @@ public class MenuCtrl extends BaseCtrl
             System.out.println("Category of item: " );
             System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
             String categoryStr = sc.next();
-            sc.nextLine();
+            sc.nextLine(); // works so don't remove
             Category category = Category.valueOf(categoryStr.toUpperCase());
          
             System.out.println("Name of item: ");
@@ -301,7 +301,7 @@ public class MenuCtrl extends BaseCtrl
             }
          
             System.out.println("Price of item: (Enter numbers only) "); 
-            Double price = sc.nextDouble();
+            double price = sc.nextDouble();
             sc.nextLine();
             
             System.out.println("Description of item: ");
@@ -320,7 +320,7 @@ public class MenuCtrl extends BaseCtrl
       ArrayList<Item> packageItems = new ArrayList<Item>();
             
       System.out.println("Name of promotional package: ");
-      sc.nextLine();
+      //sc.nextLine();
       String packageName = sc.nextLine();
    
       System.out.println("Description of promotional package: ");
@@ -352,7 +352,7 @@ public class MenuCtrl extends BaseCtrl
       printItems(category);
       
       System.out.println("Name of the item to add: ");
-      sc.nextLine();
+      //sc.nextLine();
       String name = sc.nextLine();
       
       int indexofItemtoAdd = getIndexByName(name, category);  
@@ -380,7 +380,7 @@ public class MenuCtrl extends BaseCtrl
          printItems(categoryRemove);
       
          System.out.println("Name of the item to remove: ");
-         sc.nextLine();
+         //sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for food item by name and remove it
@@ -430,7 +430,7 @@ public class MenuCtrl extends BaseCtrl
       //**********
       
       System.out.println("Name of promotional package to remove:");
-      sc.nextLine();
+      //sc.nextLine();
       String removepackage = sc.nextLine();
       
       //search for promotional package by name and remove it
@@ -481,7 +481,7 @@ public class MenuCtrl extends BaseCtrl
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
             
          System.out.println("Name of the item to remove: ");
-         sc.nextLine();
+         //sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for specific item in promotional package by name and remove it
@@ -530,7 +530,7 @@ public class MenuCtrl extends BaseCtrl
             {
                case 1:
                   System.out.println("Enter new name: ");
-                  sc.nextLine();
+                  //sc.nextLine();
                   String newname = sc.nextLine();
                   Home.FullMenu.get(indexOfItem).setName(newname);
                   
@@ -538,14 +538,14 @@ public class MenuCtrl extends BaseCtrl
               
                case 2:
                   System.out.println("Enter new price: ");
-                  Double newPrice = sc.nextDouble();
+                  double newPrice = sc.nextDouble();
                   Home.FullMenu.get(indexOfItem).setPrice(newPrice);
                   
                   break;
                   
                case 3:
                   System.out.println("Enter new description: ");
-                  sc.nextLine();
+                  //sc.nextLine();
                   String newDescription = sc.nextLine();
                   Home.FullMenu.get(indexOfItem).setDescription(newDescription);
                   
@@ -619,7 +619,7 @@ public class MenuCtrl extends BaseCtrl
             {
                case 1:
                   System.out.println("Enter new name: ");
-                  sc.nextLine();
+                  //sc.nextLine();
                   String newname = sc.nextLine();
                   Home.PromotionalPackages.get(indexofPackage).setName(newname);
                   
