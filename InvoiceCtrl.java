@@ -10,10 +10,6 @@ import java.util.Scanner;
 
 public class InvoiceCtrl {
 
-	// private LocalTime timestamp = LocalTime.now();
-	// private LocalDate datestamp = LocalDate.now();
-	// private double totalCost;
-	// private Boolean discount;
 
 	public void invoiceOptions(){
 		Scanner sc = new Scanner(System.in);
@@ -107,6 +103,30 @@ public class InvoiceCtrl {
 
 	}
 
+	public double calculateTotalPrice(Order order){
+		double cost_item = 0;
+		double cost_package = 0;
+		for (Item item: order.orderItems){
+			if(order.table.isReservationMembership()){
+				cost_item += item.getPrice()*0.9; // 10% discount
+			}
+			else{
+				cost_item += item.getPrice();
+			}
+
+		}
+		for(PromotionalPackage setPackage: order.orderPackages){
+			if(order.table.isReservationMembership())
+				cost_package += setPackage.getPrice()*0.9; // 10% discount
+			else
+				cost_package += setPackage.getPrice();
+		}
+
+		double total_cost = cost_item + cost_package;
+		//this.totalCost = total_cost;
+		return total_cost;
+	}
+
 	/*
 	public void createInvoice(Order order) {
 		try{
@@ -176,33 +196,7 @@ public class InvoiceCtrl {
 
 		throw new UnsupportedOperationException();
 	}
-	 */
 
-	public double calculateTotalPrice(Order order){
-		double cost_item = 0;
-		double cost_package = 0;
-		for (Item item: order.orderItems){
-			if(order.table.isReservationMembership()){
-				cost_item += item.getPrice()*0.9; // 10% discount
-			}
-			else{
-				cost_item += item.getPrice();
-			}
-
-		}
-		for(PromotionalPackage setPackage: order.orderPackages){
-			if(order.table.isReservationMembership())
-				cost_package += setPackage.getPrice()*0.9; // 10% discount
-			else
-				cost_package += setPackage.getPrice();
-		}
-
-		double total_cost = cost_item + cost_package;
-		//this.totalCost = total_cost;
-		return total_cost;
-	}
-
-	/*
 	public void individualDetails(Order order, FileWriter file){
 
 		try{
