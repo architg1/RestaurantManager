@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class Invoice {
+public class InvoiceCtrl {
 
 	private LocalTime timestamp = LocalTime.now();
 	private LocalDate datestamp = LocalDate.now();
