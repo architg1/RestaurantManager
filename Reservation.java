@@ -39,6 +39,7 @@ public class Reservation implements Serializable, Runnable
       this.reservationTime = reservationTime;
       this.reservationDate = reservationDate;
       this.reservedSeating = reservedSeating;
+      this.isReserved = true;
    }
 	
 	/**
