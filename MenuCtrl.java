@@ -513,6 +513,7 @@ public class MenuCtrl extends BaseCtrl
             String categoryStr = sc.next();
             sc.nextLine();
             Category category = Category.valueOf(categoryStr.toUpperCase());
+            printItems(category);
          
             System.out.println("Name of the item to update: ");
             String name = sc.nextLine();
@@ -535,6 +536,7 @@ public class MenuCtrl extends BaseCtrl
                   //sc.nextLine();
                   String newname = sc.nextLine();
                   Home.FullMenu.get(indexOfItem).setName(newname);
+                  System.out.println("Name of the item updated. ");
                   
                   break;
               
@@ -542,6 +544,7 @@ public class MenuCtrl extends BaseCtrl
                   System.out.println("Enter new price: ");
                   double newPrice = sc.nextDouble();
                   Home.FullMenu.get(indexOfItem).setPrice(newPrice);
+                  System.out.println("Price of the item updated. ");
                   
                   break;
                   
@@ -550,6 +553,7 @@ public class MenuCtrl extends BaseCtrl
                   //sc.nextLine();
                   String newDescription = sc.nextLine();
                   Home.FullMenu.get(indexOfItem).setDescription(newDescription);
+                  System.out.println("Description of the item updated. ");
                   
                   break;
                   
@@ -558,6 +562,7 @@ public class MenuCtrl extends BaseCtrl
                   String newCategoryStr = sc.nextLine();
                   Category newCategory = Category.valueOf(newCategoryStr.toUpperCase());
                   Home.FullMenu.get(indexOfItem).setCategory(newCategory);
+                  System.out.println("Category of the item updated. ");
             }
          }
          catch (Exception e){
@@ -624,6 +629,7 @@ public class MenuCtrl extends BaseCtrl
                   //sc.nextLine();
                   String newname = sc.nextLine();
                   Home.PromotionalPackages.get(indexofPackage).setName(newname);
+                  System.out.println("Name of the promotion package updated. ");
                   
                   break;
               
@@ -631,6 +637,7 @@ public class MenuCtrl extends BaseCtrl
                   System.out.println("Enter new price: ");
                   Double newPrice = sc.nextDouble();
                   Home.PromotionalPackages.get(indexofPackage).setPrice(newPrice);
+                  System.out.println("Price of the promotion package updated. ");
                   
                   break;
                   
@@ -638,6 +645,7 @@ public class MenuCtrl extends BaseCtrl
                   System.out.println("Enter new description: ");
                   String newDescription = sc.nextLine();
                   Home.PromotionalPackages.get(indexofPackage).setDescription(newDescription);
+                  System.out.println("Description of the promotion package updated. ");
                   
                   break;
                   
