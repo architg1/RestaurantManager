@@ -36,9 +36,33 @@ public class Table implements Serializable {
       return this.maximumSeating;
    }
 
-   public void tableEmpty(){ this.isReserved = false;}
-   
+   public void reserveTable(){ this.isReserved = true;}
 
+   public void tableEmpty(){ this.isReserved = false;}
+   public LocalTime getReservationTime(){
+      return this.reservationTime;
+   }
+
+   public LocalDate getReservationDate(){
+      return this.reservationDate;
+   }
+
+   public long getReservationContact(){
+      return this.reservationContact;
+   }
+
+   public String getStaffName(){
+      return this.staff.getStaffName();
+   }
+   
+   //dont need this function anymore, auto cancel implemented in reservation
+   /*
+   public void autoCancel(){
+      int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
+      if(time > 1800){
+         this.cancelReservation();
+      }
+   }*/
   
    public boolean isReserved(){
       if(this.isReserved == true) 

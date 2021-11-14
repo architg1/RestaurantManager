@@ -69,7 +69,7 @@ public class OrderCtrl extends BaseCtrl{
                      LocalDate orderDate = LocalDate.now();
                         
                      Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
-                     newOrder.getTable().isReserved = true;
+                     newOrder.getTable().reserveTable();
                      Home.Orders.add(newOrder);
                      int orderID = Home.Orders.indexOf(newOrder);
                      Home.Orders.get(orderID).setOrderID(orderID);
