@@ -340,7 +340,11 @@ public class MenuCtrl extends BaseCtrl
             hasCategoryItem = true;
          }
          
-         if (hasCategoryItem == true){
+         if (hasCategoryItem == false){
+            System.out.println("List is empty.");
+         }
+         
+         else{
             System.out.println("Name of the item to add: ");
             sc.nextLine();
             String name = sc.nextLine();
@@ -593,7 +597,6 @@ public class MenuCtrl extends BaseCtrl
             }
              //********
             System.out.println("What's the name of the promotional package to update? ");
-            sc.nextLine();
             String name = sc.nextLine();
             
             int indexofPackage = -1;
