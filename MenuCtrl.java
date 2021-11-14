@@ -301,7 +301,7 @@ public class MenuCtrl extends BaseCtrl
             }
          
             System.out.println("Price of item: (Enter numbers only) "); 
-            Double price = sc.nextDouble();
+            double price = sc.nextDouble();
             sc.nextLine();
             
             System.out.println("Description of item: ");

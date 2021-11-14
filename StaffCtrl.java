@@ -38,7 +38,7 @@ public class StaffCtrl extends BaseCtrl {
             //create and add new staff member 
             case 2:
                System.out.println("Name of staff: ");
-               sc.nextLine();
+               //sc.nextLine();
                String name = sc.nextLine();
                
                System.out.println("Gender of staff: (Male/Female)");
