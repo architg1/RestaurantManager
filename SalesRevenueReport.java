@@ -7,7 +7,7 @@ import java.io.*;
 
 public class SalesRevenueReport {
 
-	Collection<Invoice> invoice;
+	//Collection<Invoice> invoice;
 	private Integer totalSales;
 	private Item itemsSold;
 	private PromotionalPackage packagesSold;

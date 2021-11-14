@@ -43,7 +43,7 @@ public class InvoiceCtrl {
 
 	public void createInvoice(Order order){
 
-		boolean isMember = order.table.isReservationMembership();
+		boolean isMember = order.getTable().isReservationMembership();
 
 		// BASIC DETAILS
 
@@ -51,8 +51,8 @@ public class InvoiceCtrl {
 		System.out.println("	*********	");
 		System.out.println("	LOCATION	");
 
-		System.out.print("Server: " + order.table.getStaffName() + "		");
-		System.out.println("Table: " + order.table.getTableID());
+		System.out.print("Server: " + order.getStaff().getStaffName() + "		");
+		System.out.println("Table: " + order.getTable().getTableID());
 
 		System.out.print("Date: " + order.getOrderDate() + "		");
 		System.out.println("Time: " + order.getOrderDate());
@@ -60,9 +60,9 @@ public class InvoiceCtrl {
 
 		// ITEM DETAILS
 
-		for(Item item : order.orderItems){
+		for(Item item : order.getOrderItems()){
 
-			System.out.print(item.name);
+			System.out.print(item.getName());
 
 			if(isMember){
 				System.out.print(item.getPrice()*0.9); // 10% discount
@@ -82,8 +82,8 @@ public class InvoiceCtrl {
 				System.out.print(packages.getPrice());
 			}
 
-			for (Item item : packages.packageItems) {
-				System.out.print(item.name);
+			for (Item item : packages.getPackageItems()) {
+				System.out.print(item.getName());
 
 				if (isMember) {
 					System.out.print(item.getPrice() * 0.9); // 10% discount
