@@ -12,6 +12,7 @@ public class Home {
    public static ArrayList<Table> Tables = new ArrayList<Table>();
    public static ArrayList<Order> Orders = new ArrayList<Order>();
    public static ArrayList<Reservation> Reservations = new ArrayList<Reservation>();
+   public static ArrayList<Invoice> Invoices = new ArrayList<Invoice>();
    
    
    public static void main(String args[]){
@@ -42,7 +43,7 @@ public class Home {
       String reservationName = "./Reservation.txt";
       Reservations = readFile(reservationName);
 
-      
+
       Invoice invoice = new Invoice();
       String invoiceFile = "./Invoice.txt";
 
@@ -83,6 +84,10 @@ public class Home {
 
             case 4:
                invoice.invoiceOptions(Orders);
+               break;
+
+            case 5:
+               break;
             
             case 6:
                staff.staffOptions();
