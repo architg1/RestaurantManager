@@ -44,8 +44,9 @@ public class Home {
       Reservations = readFile(reservationName);
 
 
-      Invoice invoice = new Invoice();
-      String invoiceFile = "./Invoice.txt";
+      InvoiceCtrl invoice = new InvoiceCtrl();
+      String invoiceName = "./Invoice.txt";
+      Invoices = readFile(invoiceName);
 
 
    
