@@ -42,38 +42,22 @@ public class Reservation implements Serializable, Runnable
       this.isReserved = true;
    }
 	
-	/**
-	 * get the name of the customer who made this reservation
-	 * @return this reservation's name
-	 */
+
    public String getCustomerName()
    { 
       return this.reservationName; 
    }
-	
-	/**
-	 * get the contact number of the customer who made this reservation
-	 * @return this reservation's contact number
-	 */
+
    public long getCustomerContact()
    { 
       return this.reservationContact; 
    }
-	
-	/**
-	 * get the number of expected people for this reservation
-	 * @return this reservation's number of expected people
-	 */
+
    public int getNumPax()
    { 
       return this.reservedSeating; 
    }
-	
-	
-	/**
-	 * get the expected arrival time of this reservation
-	 * @return this reservation's expected arrival time
-	 */
+
    public LocalTime getArrivalTime()
    {
       return this.reservationTime; 
@@ -85,8 +69,9 @@ public class Reservation implements Serializable, Runnable
    }
 
 
-   //implementation of autocancel function
+   //implementation of auto cancel function
    //to be run as a thread in ReservationCtrl class
+
    public void run()
    {
       while(true){

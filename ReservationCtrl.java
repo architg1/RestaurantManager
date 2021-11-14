@@ -109,12 +109,12 @@ public class ReservationCtrl extends BaseCtrl {
    //function to cancel reservation with details as function input
    //to be used in auto-cancel function as well 
    public void cancelReservation(String removeName, long removeContact){
-      Iterator<Reservation> iterr = Home.Reservations.iterator();
-      while (iterr.hasNext()){
-         Reservation r = iterr.next();
+      Iterator<Reservation> iterator = Home.Reservations.iterator();
+      while (iterator.hasNext()){
+         Reservation r = iterator.next();
          if (r.getCustomerName().equals(removeName)){
             if (r.getCustomerContact() == removeContact){
-               iterr.remove();
+               iterator.remove();
                System.out.println("Reservation removed.");
             }
          }

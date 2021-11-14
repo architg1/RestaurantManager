@@ -65,11 +65,11 @@ public class StaffCtrl extends BaseCtrl {
                //sc.nextLine();
                String nameRemove = sc.nextLine();
                
-               Iterator<Staff> iterRemove = Home.Staffs.iterator();
-               while (iterRemove.hasNext()){
-                  Staff s = iterRemove.next();
+               Iterator<Staff> staffIterator = Home.Staffs.iterator();
+               while (staffIterator.hasNext()){
+                  Staff s = staffIterator.next();
                   if (s.getStaffName().equals(nameRemove)){
-                     iterRemove.remove();
+                     staffIterator.remove();
                      System.out.println("Staff removed.");
                   }
                }
