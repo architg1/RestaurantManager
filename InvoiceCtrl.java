@@ -24,7 +24,7 @@ public class InvoiceCtrl {
       int userOrder = -1;
       for (int i = 0; i < Home.Orders.size(); i++){
          if (Home.Orders.get(i).getOrderID() == orderID){
-            userOrder == i;
+            userOrder = i;
          }
       }
       
@@ -33,10 +33,11 @@ public class InvoiceCtrl {
       }
 
 		System.out.println("Creating the invoice...");
-      Invoice newInvoice = new Invoice(Home.Orders.get(userOrder));
-      Invoices.add(newInvoice);
+
+      	Invoice newInvoice = new Invoice(Home.Orders.get(userOrder));
+      	Home.Invoices.add(newInvoice);
       
-		createInvoice(Home.Order.get(userOrder));
+		createInvoice(Home.Orders.get(userOrder));
 
 	}
 

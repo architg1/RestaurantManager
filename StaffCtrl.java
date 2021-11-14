@@ -62,7 +62,7 @@ public class StaffCtrl extends BaseCtrl {
               //remove staff member from collection in driver class
             case 3:
                System.out.println("Name of staff to remove: ");
-               sc.nextLine();
+               //sc.nextLine();
                String nameRemove = sc.nextLine();
                
                Iterator<Staff> iterRemove = Home.Staffs.iterator();

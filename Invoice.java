@@ -3,10 +3,10 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Invoice implements Serializable {
-   private Order order
+   private Order order;
    
    //Constructor for order
-   public Invoice(order){
+   public Invoice(Order order){
      this.order = order;
    }
 

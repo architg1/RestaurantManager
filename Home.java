@@ -46,7 +46,7 @@ public class Home {
 
       InvoiceCtrl invoice = new InvoiceCtrl();
       String invoiceName = "./Invoice.txt";
-      Invoices = readFile(invoiceName);
+      //Invoices = readFile(invoiceName);
 
 
    
