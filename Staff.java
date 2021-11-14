@@ -5,8 +5,6 @@ public class Staff implements Serializable {
    private String gender;
    private long id;
    private String title;
-   
-   private Table table;
    private int maximumTables = 3;
    private int currentTables;
   
@@ -45,17 +43,5 @@ public class Staff implements Serializable {
       else 
          return false;
    }
-   
-   //function to assign to table if staff is free to serve more tables
-   public void allocateTable(Table table){
-      this.table = table;
-      if(serveMoreTables() == true) 
-         this.currentTables++;
-   }
-   
-   public void deallocateTable(){
-      this.table = null;
-      if(this.currentTables>0) 
-         this.currentTables--;
-   }
+
 }

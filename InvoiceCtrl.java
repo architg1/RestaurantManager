@@ -100,8 +100,8 @@ public class InvoiceCtrl {
    public double calculateTotalPrice(Order order){
       double cost_item = 0;
       double cost_package = 0;
-      for (Item item: order.orderItems){
-         if(order.table.isReservationMembership()){
+      for (Item item: order.getOrderItems()){
+         if(order.getTable().isReservationMembership()){
             cost_item += item.getPrice()*0.9; // 10% discount
          }
          else{
@@ -109,8 +109,8 @@ public class InvoiceCtrl {
          }
       
       }
-      for(PromotionalPackage setPackage: order.orderPackages){
-         if(order.table.isReservationMembership())
+      for(PromotionalPackage setPackage: order.getOrderPackages()){
+         if(order.getTable().isReservationMembership())
             cost_package += setPackage.getPrice()*0.9; // 10% discount
          else
             cost_package += setPackage.getPrice();

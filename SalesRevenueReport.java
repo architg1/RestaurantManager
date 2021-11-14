@@ -1,9 +1,4 @@
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
-import java.io.*;
 
 public class SalesRevenueReport {
 
@@ -99,7 +94,7 @@ public class SalesRevenueReport {
       ArrayList<Order> Orders = Home.Orders;
       for (Order order : Orders) {
       
-         for (Item item : order.orderItems) {
+         for (Item item : order.getOrderItems()) {
             if (!count.containsValue(item.getName())) {
                count.put(item.getName(), 1);
                price.put(item.getName(), item.getPrice());

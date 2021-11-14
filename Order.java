@@ -4,13 +4,13 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-   public Staff staff;
-   public ArrayList<Item> orderItems;
-   public ArrayList<PromotionalPackage> orderPackages;
-   public LocalTime orderTime;
-   public LocalDate orderDate;
-   public Table table;
-   public int orderID;
+   private  Staff staff;
+   private ArrayList<Item> orderItems;
+   private ArrayList<PromotionalPackage> orderPackages;
+   private LocalTime orderTime;
+   private LocalDate orderDate;
+   private Table table;
+   private int orderID;
    
   
    //Constructor for order
