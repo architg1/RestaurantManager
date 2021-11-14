@@ -15,7 +15,7 @@ public class TableCtrl extends BaseCtrl {
       do{
          System.out.println("TABLE");
          System.out.println("(1) View tables");
-         System.out.println("(2) View all tables");
+         System.out.println("(2) View available tables");
          System.out.println("(3) Add table");
          System.out.println("(4) Remove table");
          System.out.println("(5) Return to previous page");
