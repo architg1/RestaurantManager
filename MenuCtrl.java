@@ -352,7 +352,7 @@ public class MenuCtrl extends BaseCtrl
       printItems(category);
       
       System.out.println("Name of the item to add: ");
-      //sc.nextLine();
+      sc.nextLine();
       String name = sc.nextLine();
       
       int indexofItemtoAdd = getIndexByName(name, category);  
