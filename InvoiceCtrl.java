@@ -54,8 +54,8 @@ public class InvoiceCtrl {
 		System.out.print("Server: " + order.table.getStaffName() + "		");
 		System.out.println("Table: " + order.table.getTableID());
 
-		System.out.print("Date: " + order.table.getReservationDate() + "		");
-		System.out.println("Time: " + order.table.getReservationTime());
+		System.out.print("Date: " + order.getOrderDate() + "		");
+		System.out.println("Time: " + order.getOrderDate());
 		System.out.println("	*********	");
 
 		// ITEM DETAILS
