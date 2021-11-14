@@ -13,7 +13,7 @@ public class InvoiceCtrl {
       Scanner sc = new Scanner(System.in);
    
       int userOrder = -1;
-      System.out.print("What is the Order ID?");
+      System.out.print("What is the Order ID? ");
       int orderID = sc.nextInt();
       for (int i = 0; i < Home.Orders.size(); i++){
          if (Home.Orders.get(i).getOrderID() == orderID){
