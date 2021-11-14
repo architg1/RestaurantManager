@@ -1,9 +1,12 @@
 import java.util.Scanner;
+
+import out.production.BaseCtrl;
+
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.util.Iterator;
 
-public class OrderCtrl {
+public class OrderCtrl extends BaseCtrl{
    Scanner sc = new Scanner(System.in);
    MenuCtrl menuctrl = new MenuCtrl();
   
@@ -18,7 +21,7 @@ public class OrderCtrl {
          System.out.println("(1) Create a new order.");
          System.out.println("(2) View orders.");
          System.out.println("(3) Return to home page.");
-         orderChoice = sc.nextInt();
+         orderChoice = doCtrlChoice(3);
          
          switch(orderChoice){
             case 1:
@@ -104,7 +107,7 @@ public class OrderCtrl {
          System.out.println("(6) View order");
          System.out.println("(7) Confirm order & return to previous page");
                      
-         choice = sc.nextInt();
+         choice = doCtrlChoice(7);
          switch(choice){
             case 1:
                menuctrl.viewMenu(); 
@@ -264,40 +267,28 @@ public class OrderCtrl {
    // (6) View Order
    public void viewOrder(Order order){
       System.out.println("Order Items: ");
-      if (order.getOrderItems().size() == 0){
-         System.out.println("There are no items in the order currently.");
+      Iterator<Item> iter = order.getOrderItems().iterator();
+      while (iter.hasNext()){
+         Item i = iter.next();
+         System.out.println(" Name of item: " + i.getName());
+         System.out.println(" Category of item: " + i.getCategory());
+         System.out.println(" Price of item: " + i.getPrice());
       }
       
-      else{
-         Iterator<Item> iter = order.getOrderItems().iterator();
-         while (iter.hasNext()){
-            Item i = iter.next();
-            System.out.println(" Name of item: " + i.getName());
-            System.out.println(" Category of item: " + i.getCategory());
-            System.out.println(" Price of item: " + i.getPrice());
-         }
-      }
       System.out.println();
       
       System.out.println("Order Packages: ");
-      if (order.getOrderPackages().size() == 0){
-         System.out.println("There are no packages in the order currently.");
-      }
-      
-      else{
-         Iterator<PromotionalPackage> iterp = order.getOrderPackages().iterator();
-         while (iterp.hasNext()){
-            PromotionalPackage p = iterp.next();
-            System.out.println(" Name of package: " + p.getName());
-            System.out.println(" Price of item: " + p.getPrice());
-         }
+      Iterator<PromotionalPackage> iterp = order.getOrderPackages().iterator();
+      while (iterp.hasNext()){
+         PromotionalPackage p = iterp.next();
+         System.out.println(" Name of package: " + p.getName());
+         System.out.println(" Price of item: " + p.getPrice());
       }
       
       System.out.println();
    
       System.out.println("Order Time: " + order.getOrderTime());
       System.out.println("Order Table: " + order.getTable().getTableID());
-      System.out.println();
    }
 
 }

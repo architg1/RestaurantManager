@@ -1,9 +1,12 @@
 import java.util.Scanner;
+
+import out.production.BaseCtrl;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public class StaffCtrl {
+public class StaffCtrl extends BaseCtrl {
    private static Scanner sc = new Scanner(System.in); 
 
    public void staffOptions(){
@@ -15,7 +18,7 @@ public class StaffCtrl {
          System.out.println("(2) Add staff member");
          System.out.println("(3) Remove staff member");
          System.out.println("(4) Return to previous page");
-         choice = sc.nextInt();
+         choice = doCtrlChoice(4);
          
          switch(choice){
             case 1:

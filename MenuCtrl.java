@@ -44,9 +44,10 @@ public class MenuCtrl extends BaseCtrl
                System.out.println("(1) Add new promotional package");
                System.out.println("(2) Add item to promotional package");
                System.out.println("(3) Return to previous page");
+             
+              //intPromotionalPackageChoiceAdd = sc.nextInt();
                
-               int PromotionalPackageChoiceAdd = sc.nextInt();
-               
+               int PromotionalPackageChoiceAdd = doCtrlChoice(3);
                switch(PromotionalPackageChoiceAdd){
                   case 1:
                      createPromotionalPackage();
@@ -117,7 +118,8 @@ public class MenuCtrl extends BaseCtrl
                System.out.println("(1) Remove promotional package");
                System.out.println("(2) Remove item from promotional package");
                System.out.println("(3) Return to previous page");
-               int PromotionalPackageChoiceRemove = sc.nextInt();
+               //intPromotionalPackageChoiceRemove = sc.nextInt();
+               int PromotionalPackageChoiceRemove = doCtrlChoice(3);
                
                switch(PromotionalPackageChoiceRemove){
                   case 1:
@@ -176,7 +178,8 @@ public class MenuCtrl extends BaseCtrl
          System.out.println("(7) Promotional Packages");
          System.out.println("(8) Go Back to Previous Page");
                   
-         categorychoice = sc.nextInt();
+         //categorychoice = sc.nextInt();
+         categorychoice = doCtrlChoice(8);
          // initialise selectedCategory to a random category
          Category selectedCategory = Category.MAIN;
                  
@@ -521,7 +524,7 @@ public class MenuCtrl extends BaseCtrl
             System.out.println("(3) Description");
             System.out.println("(4) Category");
             System.out.println("(5) Return back to menu options");
-            int updateChoice = sc.nextInt();
+            int updateChoice = doCtrlChoice(5);
             
             switch(updateChoice)
             {
@@ -610,7 +613,7 @@ public class MenuCtrl extends BaseCtrl
             System.out.println("(2) Price");
             System.out.println("(3) Description");
             System.out.println("(4) Return back to menu options");
-            int updateChoice = sc.nextInt();
+            int updateChoice = doCtrlChoice(4);
             
             switch(updateChoice)
             {
