@@ -27,7 +27,7 @@ public class OrderCtrl extends BaseCtrl{
             case 1:
                //get user input for new order details
                System.out.println("Name of staff creating this order: ");
-               sc.nextLine();
+               //sc.nextLine();
                String staffName = sc.nextLine();
                
                int staffIndex = -1;
@@ -43,7 +43,7 @@ public class OrderCtrl extends BaseCtrl{
                }
                  
                if (staffIndex == -1){
-                  System.out.println("Staff does not exist.");
+                  System.out.println("Staff does not exist ");
                }
                
                System.out.println("Table ID for this order: ");
