@@ -27,7 +27,7 @@ public class ReservationCtrl extends BaseCtrl {
          switch(reservationChoice){
             case 1:
                System.out.println("Name of customer: ");
-               sc.nextLine();
+               //sc.nextLine();
                String customerName = sc.nextLine();
                   
                System.out.println("Contact of customer: ");
