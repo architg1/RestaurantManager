@@ -354,6 +354,8 @@ public class MenuCtrl extends BaseCtrl
       System.out.println("Name of the item to add: ");
       sc.nextLine();
       String name = sc.nextLine();
+      System.out.println("Item added into Promotion Package.");
+
       
       int indexofItemtoAdd = getIndexByName(name, category);  
       // find the index of item and add it to the package
