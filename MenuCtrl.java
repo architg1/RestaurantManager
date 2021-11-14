@@ -66,7 +66,6 @@ public class MenuCtrl extends BaseCtrl
                            PromotionalPackage pp = iters.next();
                            if(pp.getName().equals(packageNameAdd)){
                               addItemtoPromotionalPackage(pp);
-                              System.out.println("Item added.");
                               break;
                            }
                            System.out.println("Continue adding items? (Y/N)");
