@@ -55,6 +55,8 @@ public class TableCtrl extends BaseCtrl {
                
                Table table = new Table(id, max);
                Home.Tables.add(table);
+               System.out.println("Table added.");
+
                break;
             
             case 4:
