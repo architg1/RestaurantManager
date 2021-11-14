@@ -165,13 +165,13 @@ public class OrderCtrl extends BaseCtrl{
    
       
    
-      int indexofItemtoAdd = menuctrl.getIndexByName(itemName, category);
-      if (indexofItemtoAdd == -1){
+      int indexOfItemToAdd = menuctrl.getIndexByName(itemName, category);
+      if (indexOfItemToAdd == -1){
          System.out.println("The item does not exist. Please create the item first before adding it to any order.");
       }
       
       else {
-         order.getOrderItems().add(Home.FullMenu.get(indexofItemtoAdd));
+         order.getOrderItems().add(Home.FullMenu.get(indexOfItemToAdd));
       }
    }
    
@@ -210,12 +210,12 @@ public class OrderCtrl extends BaseCtrl{
       sc.reset();
       String packageName = sc.nextLine();
       
-      int indexOfPackagetoAdd;
+      int indexOfPackageToAdd;
       for (int i = 0; i < Home.PromotionalPackages.size(); i++) {
          PromotionalPackage p = Home.PromotionalPackages.get(i);
          if (p != null && p.getName().equals(packageName)){
-            indexOfPackagetoAdd = i;
-            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackagetoAdd));
+            indexOfPackageToAdd = i;
+            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackageToAdd));
             System.out.println("Package added. ");
          
          }

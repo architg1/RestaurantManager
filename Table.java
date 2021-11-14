@@ -53,15 +53,10 @@ public class Table implements Serializable {
    public String getStaffName(){
       return this.staff.getStaffName();
    }
+
+   public void tableEmpty(){ this.isReserved = false;}
    
-   //dont need this function anymore, auto cancel implemented in reservation
-   /*
-   public void autoCancel(){
-      int time = LocalTime.now().toSecondOfDay() - reservationTime.toSecondOfDay();
-      if(time > 1800){
-         this.cancelReservation();
-      }
-   }*/
+
   
    public boolean isReserved(){
       if(this.isReserved == true) 

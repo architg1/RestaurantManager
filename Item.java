@@ -15,7 +15,7 @@ public class Item extends MenuItem implements Serializable{
       this.description = description;
    }
    
-   //accessors and setters
+   // mutators
    public String getName(){
       return this.name;
    }
