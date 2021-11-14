@@ -71,6 +71,8 @@ public class OrderCtrl extends BaseCtrl{
                         
                      Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
                      Home.Orders.add(newOrder);
+                     int orderID = Home.Orders.indexOf(newOrder);
+                     Home.Orders.get(orderID).setOrderID(orderID);
                         
                      System.out.println("New order created.");
                      orderOptions(newOrder);
