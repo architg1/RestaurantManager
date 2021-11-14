@@ -12,6 +12,7 @@ public class Order implements Serializable {
    public Table table;
    public int orderID;
    
+  
    //Constructor for order
    public Order(Staff staff, ArrayList<Item> orderItems, ArrayList<PromotionalPackage> orderPackages, LocalTime orderTime, LocalDate orderDate, Table table){
       this.staff = staff;
@@ -20,6 +21,8 @@ public class Order implements Serializable {
       this.orderTime = orderTime;
       this.orderDate = orderDate;
       this.table = table;
+      this.orderID = -1;
+      
    }
    
    public Staff getStaff(){
@@ -38,7 +41,8 @@ public class Order implements Serializable {
       return this.orderTime;
    }
 
-   public LocalDate getOrderDate() { return this.orderDate; }
+   public LocalDate getOrderDate() { 
+      return this.orderDate; }
    
    public Table getTable(){
       return this.table;
@@ -46,6 +50,10 @@ public class Order implements Serializable {
 
    public int getOrderID(){
       return orderID;
+   }
+   
+   public void setOrderID(int orderID){
+      this.orderID = orderID;
    }
 
 }
