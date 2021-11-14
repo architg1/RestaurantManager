@@ -12,7 +12,7 @@ public class Invoice {
 
 	private LocalTime timestamp = LocalTime.now();
 	private LocalDate datestamp = LocalDate.now();
-	private Integer totalCost;
+	private double totalCost;
 	private Boolean discount;
 
 	public void invoiceOptions(ArrayList<Order> orders){
@@ -124,6 +124,7 @@ public class Invoice {
 		}
 
 		double total_cost = cost_item + cost_package;
+		this.totalCost = total_cost;
 		return total_cost;
 	}
 
