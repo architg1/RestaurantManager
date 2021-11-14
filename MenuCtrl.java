@@ -601,6 +601,7 @@ public class MenuCtrl extends BaseCtrl
             }
              //********
             System.out.println("What's the name of the promotional package to update? ");
+            sc.nextLine();
             String name = sc.nextLine();
             
             int indexofPackage = -1;
