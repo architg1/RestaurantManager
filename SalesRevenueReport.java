@@ -84,6 +84,7 @@ public class SalesRevenueReport {
          System.out.print("Item Name: " + entry.getKey());
          System.out.print(" Quantity Sold: " + entry.getValue());
          System.out.print(" Money Made: " + price.get(entry.getKey()));
+         System.out.println();
       }
 
       System.out.println("Total items sold: " + this.itemsSold);
