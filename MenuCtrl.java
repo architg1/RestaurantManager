@@ -198,24 +198,24 @@ public class MenuCtrl{
                break; 
             
             case 6:
-            	System.out.println("**********APPETISERS***********");
-            	printItems(Category.APPETISER);
-            	System.out.println();
-            	System.out.println("**********MAINS***********");
-            	printItems(Category.MAIN);
-            	System.out.println();
-            	System.out.println("**********DESSERTS***********");
-            	printItems(Category.DESSERT);
-            	System.out.println();
-            	System.out.println("**********DRINKS***********");
-            	printItems(Category.DRINK);
-            	System.out.println("**********SPECIALS***********");
-            	System.out.println();
+               System.out.println("**********APPETISERS***********");
+               printItems(Category.APPETISER);
+               System.out.println();
+               System.out.println("**********MAINS***********");
+               printItems(Category.MAIN);
+               System.out.println();
+               System.out.println("**********DESSERTS***********");
+               printItems(Category.DESSERT);
+               System.out.println();
+               System.out.println("**********DRINKS***********");
+               printItems(Category.DRINK);
+               System.out.println();
+               System.out.println("**********SPECIALS***********");
+               printItems(Category.SPECIAL);
+               System.out.println();
             	
             	
-            	printItems(Category.SPECIAL);
-            	
-            	break;   
+               break;   
                
             case 7: 
                Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
@@ -371,7 +371,7 @@ public class MenuCtrl{
          String categoryStrRemove = sc.next();
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
          printItems(categoryRemove);
-   
+      
          System.out.println("Name of the item to remove: ");
          sc.nextLine();
          String removeName = sc.nextLine();
@@ -433,7 +433,7 @@ public class MenuCtrl{
          if(pp.getName().equals(removepackage)){
             iter.remove();
             System.out.println("Package removed. ");
-
+         
          }
       }
    }
@@ -442,30 +442,30 @@ public class MenuCtrl{
    public void removeItemFromPackage(PromotionalPackage pp){
       //print items in promo package
       Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
-       boolean hasPromotionalPackage = false;
+      boolean hasPromotionalPackage = false;
        
-       while (iters.hasNext()){
-          hasPromotionalPackage = true;
-          PromotionalPackage pp2 = iters.next();
+      while (iters.hasNext()){
+         hasPromotionalPackage = true;
+         PromotionalPackage pp2 = iters.next();
              
-          System.out.println("Package Name: " + pp2.getName());
-          System.out.println("Package Items: ");
+         System.out.println("Package Name: " + pp2.getName());
+         System.out.println("Package Items: ");
              
              // print all the items in package
-          ArrayList<Item> packageItems = pp2.getPackageItems();
-          int index = 1;
-          for (Item item: packageItems)
-             System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+         ArrayList<Item> packageItems = pp2.getPackageItems();
+         int index = 1;
+         for (Item item: packageItems)
+            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
              
-          System.out.println();
-       }
+         System.out.println();
+      }
           
-       if (hasPromotionalPackage == false)
-       {
-          System.out.println("There are no promotional packages currently.");
-       }
+      if (hasPromotionalPackage == false)
+      {
+         System.out.println("There are no promotional packages currently.");
+      }
       //***********
-
+   
       
       try{
          System.out.println("Category of the item to remove:" );
@@ -485,7 +485,7 @@ public class MenuCtrl{
                if (i.getName().equals(removeName)){
                   iter.remove();
                   System.out.println("Item in Package removed. ");
-
+               
                }
             }
          }
@@ -562,29 +562,29 @@ public class MenuCtrl{
       do{
          try{
             //print current package
-             Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
-             boolean hasPromotionalPackage = false;
+            Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
+            boolean hasPromotionalPackage = false;
              
-             while (iter.hasNext()){
-                hasPromotionalPackage = true;
-                PromotionalPackage pp = iter.next();
+            while (iter.hasNext()){
+               hasPromotionalPackage = true;
+               PromotionalPackage pp = iter.next();
                    
-                System.out.println("Package Name: " + pp.getName());
-                System.out.println("Package Items: ");
+               System.out.println("Package Name: " + pp.getName());
+               System.out.println("Package Items: ");
                    
                    // print all the items in package
-                ArrayList<Item> packageItems = pp.getPackageItems();
-                int index = 1;
-                for (Item item: packageItems)
-                   System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+               ArrayList<Item> packageItems = pp.getPackageItems();
+               int index = 1;
+               for (Item item: packageItems)
+                  System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
                    
-                System.out.println();
-             }
+               System.out.println();
+            }
                 
-             if (hasPromotionalPackage == false)
-             {
-                System.out.println("There are no promotional packages currently.");
-             }
+            if (hasPromotionalPackage == false)
+            {
+               System.out.println("There are no promotional packages currently.");
+            }
              //********
             System.out.println("What's the name of the promotional package to update? ");
             String name = sc.nextLine();
@@ -689,6 +689,5 @@ public class MenuCtrl{
 
 
    
-
 
 
