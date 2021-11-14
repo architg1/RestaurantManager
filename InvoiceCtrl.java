@@ -15,30 +15,33 @@ public class InvoiceCtrl {
 	private double totalCost;
 	private Boolean discount;
 
-	public void invoiceOptions(ArrayList<Order> orders){
+	public void invoiceOptions(){
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("What is the Order ID?");
 		int orderID = sc.nextInt();
-		Order userOrder = null;
-		for(Order order : orders){
-			if(order.getOrderID()==orderID){
-				userOrder = order;
-			}
-		}
+      
+      int userOrder = -1;
+      for (int i = 0; i < Home.Orders.size(); i++){
+         if (Home.Orders.get(i).getOrderID() == orderID){
+            userOrder == i;
+         }
+      }
+      
+      if (userOrder == -1){
+         System.out.println("The order does not exist");
+      }
 
 		System.out.println("Creating the invoice...");
-		createInvoice(userOrder);
+      Invoice newInvoice = new Invoice(Home.Orders.get(userOrder));
+      Invoices.add(newInvoice);
+      
+		createInvoice(Home.Order.get(userOrder));
 
 	}
 
 	public void createInvoice(Order order) {
 		try{
-
-			String filename = "./Invoice.txt";
-
-			FileWriter invoice = new FileWriter("./Invoice.txt", true);
-
 			System.out.println("Pikachu Restaurant");
 			System.out.println("	*********	");
 			System.out.println("	LOCATION	");
@@ -79,9 +82,6 @@ public class InvoiceCtrl {
 			System.out.println("Thanks for Coming!!!");
 			System.out.println("	*********	");
 
-
-
-
 			// TOTAL PRICE before GST
 			invoice.write("pr,");
 			invoice.write(String.valueOf(calculateTotalPrice(order)));
@@ -94,6 +94,8 @@ public class InvoiceCtrl {
 			// SAMPLE FORMAT
 			// b,12345,12/12,12:12,85877321,James,o,i,Pizza,Very Tasty,MAINS,800,i,Fries,Long Potato,STARTERS,500,
 			// p,House Special,Best meal in NTU,100,pi,Ice cream,Cold,DESSERT,200,pi,Chips,Lays,STARTERS,50,pr,1000,fpr,800
+         
+        
 
 		}
 		catch(IOException e){
