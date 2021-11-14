@@ -84,7 +84,7 @@ public class MenuCtrl extends BaseCtrl
                      String packageNameAdd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
-                     String again;
+                     String again = "N";
                      do{
                         while (iters.hasNext()){
                            //find the desired promotional package name and add desired item to it
@@ -94,9 +94,9 @@ public class MenuCtrl extends BaseCtrl
                               System.out.println("Item added.");
                               break;
                            }
+                           System.out.println("Continue adding items? (Y/N)");
+                           again = sc.next();
                         }
-                        System.out.println("Continue adding items? (Y/N)");
-                        again = sc.next();
                      } while (again.equals("Y"));
                      
                      break;
