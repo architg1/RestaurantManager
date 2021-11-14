@@ -55,32 +55,7 @@ public class MenuCtrl extends BaseCtrl
                   
                   case 2: 
                      System.out.println("Name of the promotional package to add an item to:");
-                     //print current package***
-                     Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
-                     boolean hasPromotionalPackage = false;
-                     
-                     while (iter.hasNext()){
-                        hasPromotionalPackage = true;
-                        PromotionalPackage pp = iter.next();
-                           
-                        System.out.println("Package Name: " + pp.getName());
-                        System.out.println("Package Items: ");
-                           
-                           // print all the items in package
-                        ArrayList<Item> packageItems = pp.getPackageItems();
-                        int index = 1;
-                        for (Item item: packageItems)
-                           System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
-                           
-                        System.out.println();
-                     }
-                        
-                     if (hasPromotionalPackage == false)
-                     {
-                        System.out.println("There are no promotional packages currently.");
-                     }
-                     //****
-                     sc.nextLine(); // ?
+                     sc.nextLine();
                      String packageNameAdd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
@@ -355,7 +330,7 @@ public class MenuCtrl extends BaseCtrl
       sc.nextLine();
       String name = sc.nextLine();
       System.out.println("Item added into Promotion Package.");
-
+   
       
       int indexofItemtoAdd = getIndexByName(name, category);  
       // find the index of item and add it to the package
@@ -707,5 +682,4 @@ public class MenuCtrl extends BaseCtrl
 
 
    
-
 
