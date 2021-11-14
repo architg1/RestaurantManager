@@ -96,6 +96,15 @@ public class InvoiceCtrl {
 		double price = calculateTotalPrice(order);
 		double priceTax = calculateTotalPrice(order)*1.07*1.10;
 
+		System.out.println("	*********	");
+		System.out.println("Total Price: " + price);
+		System.out.println("Price After GST: " + priceTax);
+
+		System.out.println("	*********	");
+		System.out.println("Thanks for Coming!!!");
+		System.out.println("	*********	");
+
+
 	}
 
 	/*
