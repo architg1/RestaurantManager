@@ -41,6 +41,64 @@ public class InvoiceCtrl {
 
 	}
 
+	public void createInvoice(Order order){
+
+		boolean isMember = order.table.isReservationMembership();
+
+		// BASIC DETAILS
+
+		System.out.println("Pikachu Restaurant");
+		System.out.println("	*********	");
+		System.out.println("	LOCATION	");
+
+		System.out.print("Server: " + order.table.getStaffName() + "		");
+		System.out.println("Table: " + order.table.getTableID());
+
+		System.out.print("Date: " + order.table.getReservationDate() + "		");
+		System.out.println("Time: " + order.table.getReservationTime());
+		System.out.println("	*********	");
+
+		// ITEM DETAILS
+
+		for(Item item : order.orderItems){
+
+			System.out.print(item.name);
+
+			if(isMember){
+				System.out.print(item.getPrice()*0.9); // 10% discount
+			}
+			else{
+				System.out.print(item.getPrice());
+			}
+		}
+
+		for(PromotionalPackage packages: order.getOrderPackages()) {
+
+			System.out.print(packages.getName());
+
+			if (isMember) {
+				System.out.print(packages.getPrice() * 0.90); // 10% discount
+			} else {
+				System.out.print(packages.getPrice());
+			}
+
+			for (Item item : packages.packageItems) {
+				System.out.print(item.name);
+
+				if (isMember) {
+					System.out.print(item.getPrice() * 0.9); // 10% discount
+				} else {
+					System.out.print(item.getPrice());
+				}
+			}
+		}
+
+		double price = calculateTotalPrice(order);
+		double priceTax = calculateTotalPrice(order)*1.07*1.10;
+
+	}
+
+	/*
 	public void createInvoice(Order order) {
 		try{
 
@@ -109,6 +167,7 @@ public class InvoiceCtrl {
 
 		throw new UnsupportedOperationException();
 	}
+	 */
 
 	public double calculateTotalPrice(Order order){
 		double cost_item = 0;
@@ -134,6 +193,7 @@ public class InvoiceCtrl {
 		return total_cost;
 	}
 
+	/*
 	public void individualDetails(Order order, FileWriter file){
 
 		try{
@@ -176,6 +236,7 @@ public class InvoiceCtrl {
 		}
 
 	}
+	*/
 
 	public void writeItem(Item item, FileWriter file, boolean isMember){
 
