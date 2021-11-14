@@ -7,15 +7,13 @@ import java.io.*;
 
 public class SalesRevenueReport {
 
-	//Collection<Invoice> invoice;
-   private Integer totalSales;
-   private Item itemsSold;
-   private PromotionalPackage packagesSold;
-   private MenuCtrl menu;
 
 
    Map<String, Integer> count = new HashMap<String, Integer>();
    Map<String, Double> price = new HashMap<String, Double>();
+   private Double totalSales = 0.0;
+   private Integer itemsSold = 0;
+   private Integer packagesSold = 0;
 
 
    public void reportOptions(){
@@ -84,9 +82,14 @@ public class SalesRevenueReport {
       updateValues();
       for(Map.Entry<String, Integer> entry : count.entrySet()){
          System.out.print("Item Name: " + entry.getKey());
-         System.out.print("Quantity Sold: " + entry.getValue());
-         System.out.println("Money Made: " + price.get(entry.getKey()));
+         System.out.print(" Quantity Sold: " + entry.getValue());
+         System.out.print(" Money Made: " + price.get(entry.getKey()));
       }
+
+      System.out.println("Total items sold: " + this.itemsSold);
+      System.out.println("Total packages sold: " + this.packagesSold);
+      System.out.println("Total sales: " + this.totalSales);
+
    }
 
 
@@ -102,17 +105,21 @@ public class SalesRevenueReport {
             }
             count.put(item.getName(), count.get(item.getName()) + 1);
             price.put(item.getName(), count.get(item.getName()) + item.getPrice());
+            this.totalSales +=item.getPrice();
+            this.itemsSold += 1;
          }
       
          for (PromotionalPackage packages : order.getOrderPackages()) {
             if (!count.containsValue(packages.getName())) {
                count.put(packages.getName(), 0);
                price.put(packages.getName(), 0.0);
-               count.put(packages.getName(), count.get(packages.getName()) + 1);
-               price.put(packages.getName(), count.get(packages.getName()) + packages.getPrice());
+
             }
+            count.put(packages.getName(), count.get(packages.getName()) + 1);
+            price.put(packages.getName(), count.get(packages.getName()) + packages.getPrice());
+            this.totalSales +=packages.getPrice();
+            this.packagesSold +=1;
          }
-      
       }
    }
 
