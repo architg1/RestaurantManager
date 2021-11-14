@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import java.util.ArrayList;
 import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.Iterator;
 
 public class OrderCtrl extends BaseCtrl{
@@ -63,8 +64,9 @@ public class OrderCtrl extends BaseCtrl{
                
                //initialise new order with details received from input
                LocalTime orderTime = LocalTime.now();
+               LocalDate orderDate = LocalDate.now();
                   
-               Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, Home.Tables.get(tableIndex));
+               Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
                Home.Orders.add(newOrder);
                   
                System.out.println("New order created.");
