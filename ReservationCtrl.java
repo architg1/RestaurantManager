@@ -39,12 +39,12 @@ public class ReservationCtrl extends BaseCtrl {
                System.out.println("Number of seats: ");
                int customerSeating = sc.nextInt();
                   
-               System.out.println("Estimated arrival time: ");
+               System.out.println("Estimated arrival time (HH:MM): ");
                String time = sc.nextLine();
                time = sc.nextLine();
                LocalTime reservationTime = LocalTime.parse(time);
                   
-               System.out.println("Reservation date: ");
+               System.out.println("Reservation date (YYYY-MM-DD): ");
                String date = sc.nextLine();
                LocalDate reservationDate = LocalDate.parse(date);
                      
