@@ -362,9 +362,9 @@ public class MenuCtrl extends BaseCtrl
       }
       
       else{
-         Item tempadd = Home.FullMenu.get(indexofItemtoAdd);
+         Item tempAdd = Home.FullMenu.get(indexofItemtoAdd);
          
-         pp.getPackageItems().add(tempadd);
+         pp.getPackageItems().add(tempAdd);
       }
    }
    
