@@ -87,7 +87,7 @@ public class ReservationCtrl extends BaseCtrl {
    public void viewReservations(){
    
       if (Home.Reservations.size() == 0){
-         System.out.println("There are no reservations currently.")'
+         System.out.println("There are no reservations currently.");
       }
       
       else{
