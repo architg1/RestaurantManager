@@ -539,7 +539,7 @@ public class MenuCtrl extends BaseCtrl
               
                case 2:
                   System.out.println("Enter new price: ");
-                  Double newPrice = sc.nextDouble();
+                  double newPrice = sc.nextDouble();
                   Home.FullMenu.get(indexOfItem).setPrice(newPrice);
                   
                   break;
