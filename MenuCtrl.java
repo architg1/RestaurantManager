@@ -380,7 +380,7 @@ public class MenuCtrl extends BaseCtrl
          printItems(categoryRemove);
       
          System.out.println("Name of the item to remove: ");
-         //sc.nextLine();
+         sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for food item by name and remove it
