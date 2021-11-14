@@ -43,6 +43,9 @@ public class InvoiceCtrl {
 
 	public void createInvoice(Order order) {
 		try{
+
+			FileWriter invoice = new FileWriter("Invoice.txt");
+
 			System.out.println("Pikachu Restaurant");
 			System.out.println("	*********	");
 			System.out.println("	LOCATION	");

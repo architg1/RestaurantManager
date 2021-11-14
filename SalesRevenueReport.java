@@ -12,7 +12,38 @@ public class SalesRevenueReport {
 	private Item itemsSold;
 	private PromotionalPackage packagesSold;
 	private MenuCtrl menu;
-	
+
+
+
+	public void updateValues() {
+
+		Map<String, Integer> count = new HashMap<String, Integer>();
+		Map<String, Double> price = new HashMap<String, Double>();
+
+		ArrayList<Order> Orders = Home.Orders;
+		for (Order order : Orders) {
+
+			for (Item item : order.orderItems) {
+				if (!count.containsValue(item.getName())) {
+					count.put(item.getName(), 0);
+					price.put(item.getName(), 0.0);
+				}
+				count.put(item.getName(), count.get(item.getName()) + 1);
+				price.put(item.getName(), count.get(item.getName()) + item.getPrice());
+			}
+
+			for (PromotionalPackage packages : order.getOrderPackages()) {
+				if (!count.containsValue(packages.getName())) {
+					count.put(packages.getName(), 0);
+					price.put(packages.getName(), 0.0);
+					count.put(packages.getName(), count.get(packages.getName()) + 1);
+					price.put(packages.getName(), count.get(packages.getName()) + packages.getPrice());
+				}
+			}
+
+		}
+	}
+
 	public void SalesRevenueReport(){
 		Scanner sc = new Scanner(System.in);
 		int choice;
@@ -22,43 +53,96 @@ public class SalesRevenueReport {
 			System.out.println("(2) View report according to day");
 			System.out.println("(3) Return to previous page");
 			choice = sc.nextInt();
-			
+
 			switch(choice){
-				case 1:	
+				case 1:
 					int month;
 					System.out.println("Month: (Choose an integer between 1 to 12 only)");
 					do {
 						month = sc.nextInt();
 					} while (month < 1 || month > 12);
-					
-					printMonthlySales(month);
+
+					//printMonthlySales(month);
 
 					break;
-					
+
 				case 2:
 
 					int date;
-					int month2; 
+					int month2;
 					System.out.println("Date: (Choose an integer between 1 to 31)");
 					do {
 						date = sc.nextInt();
 					} while (date < 1 || date > 31);
-					
+
 					System.out.println("Month: (Choose an integer between 1 to 12)");
 					do {
 						month2 = sc.nextInt();
 					} while (month2 < 1 || month2 > 12);
-					
+
 					printDailySales(date, month2);
 
 					break;
-					
+
 				case 3:
 					break;
 			}
 		} while (choice != 3);
-			
-		
+
+
+	}
+
+	public void printDailySales(int date, int month){
+
+	}
+
+	/*
+	public void SalesRevenueReport(){
+		Scanner sc = new Scanner(System.in);
+		int choice;
+		do {
+			System.out.println("SALES REVENUE REPORT");
+			System.out.println("(1) View report according to month");
+			System.out.println("(2) View report according to day");
+			System.out.println("(3) Return to previous page");
+			choice = sc.nextInt();
+
+			switch(choice){
+				case 1:
+					int month;
+					System.out.println("Month: (Choose an integer between 1 to 12 only)");
+					do {
+						month = sc.nextInt();
+					} while (month < 1 || month > 12);
+
+					printMonthlySales(month);
+
+					break;
+
+				case 2:
+
+					int date;
+					int month2;
+					System.out.println("Date: (Choose an integer between 1 to 31)");
+					do {
+						date = sc.nextInt();
+					} while (date < 1 || date > 31);
+
+					System.out.println("Month: (Choose an integer between 1 to 12)");
+					do {
+						month2 = sc.nextInt();
+					} while (month2 < 1 || month2 > 12);
+
+					printDailySales(date, month2);
+
+					break;
+
+				case 3:
+					break;
+			}
+		} while (choice != 3);
+
+
 	}
 
 	public void printMonthlySales(int month) {
@@ -149,9 +233,10 @@ public class SalesRevenueReport {
 		throw new UnsupportedOperationException();
 	}
 
+
 	public void calculateTotalRevenue() {
-		// TODO - implement SalesRevenueReport.calculateTotalRevenue
 		throw new UnsupportedOperationException();
 	}
 
+	 */
 }

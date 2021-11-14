@@ -45,7 +45,7 @@ public class Home {
 
 
       InvoiceCtrl invoice = new InvoiceCtrl();
-      String invoiceName = "./Invoice.txt";
+      //String invoiceName = "./Invoice.txt";
       //Invoices = readFile(invoiceName);
 
 
@@ -84,7 +84,7 @@ public class Home {
                break;
 
             case 4:
-               invoice.invoiceOptions(Orders);
+               invoice.invoiceOptions();
                break;
 
             case 5:
