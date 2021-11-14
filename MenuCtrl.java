@@ -54,8 +54,15 @@ public class MenuCtrl extends BaseCtrl
                      break;
                   
                   case 2: 
+                     Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
+                     while(iter.hasNext()){
+                        PromotionalPackage pp = iter.next();
+                        System.out.println("Name of Package: " + pp.getName());
+                        System.out.println();
+                     }
+                     
                      System.out.println("Name of the promotional package to add an item to:");
-                     sc.nextLine();
+                     sc.reset();
                      String packageNameAdd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
@@ -325,24 +332,36 @@ public class MenuCtrl extends BaseCtrl
       Category category = Category.valueOf(categoryStr.toUpperCase());
       printItems(category);
       
-      System.out.println("Name of the item to add: ");
-      sc.nextLine();
-      String name = sc.nextLine();
-      System.out.println("Item added into Promotion Package.");
-   
-      
-      int indexofItemtoAdd = getIndexByName(name, category);  
-      // find the index of item and add it to the package
-      if (indexofItemtoAdd == -1){
-         System.out.println("Item does not exist. Please create the item first before adding it to any packages.");
-      }
-      
-      else{
-         Item tempAdd = Home.FullMenu.get(indexofItemtoAdd);
+      boolean hasCategoryItem = false;
+      Iterator<Item> iter = Home.FullMenu.iterator();
+      while (iter.hasNext()){
+         Item i = iter.next();
+         if (i.category == category){
+            hasCategoryItem = true;
+         }
          
-         pp.getPackageItems().add(tempAdd);
+         if (hasCategoryItem == true){
+            System.out.println("Name of the item to add: ");
+            sc.nextLine();
+            String name = sc.nextLine();
+            System.out.println("Item added into Promotion Package.");
+         
+         
+            int indexofItemtoAdd = getIndexByName(name, category);  
+         // find the index of item and add it to the package
+            if (indexofItemtoAdd == -1){
+               System.out.println("Item does not exist. Please create the item first before adding it to any packages.");
+            }
+            
+            else{
+               Item tempAdd = Home.FullMenu.get(indexofItemtoAdd);
+            
+               pp.getPackageItems().add(tempAdd);
+            }
+         }
       }
    }
+   
    
          
    
@@ -416,7 +435,6 @@ public class MenuCtrl extends BaseCtrl
          if(pp.getName().equals(removepackage)){
             iter.remove();
             System.out.println("Package removed. ");
-         
          }
       }
    }
