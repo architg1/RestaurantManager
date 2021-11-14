@@ -19,7 +19,7 @@ public class TableCtrl extends BaseCtrl {
          System.out.println("(3) Add table");
          System.out.println("(4) Remove table");
          System.out.println("(5) Return to previous page");
-         choice = doCtrlChoice(4);
+         choice = doCtrlChoice(5);
          
          switch(choice){
             case 1:
@@ -69,7 +69,9 @@ public class TableCtrl extends BaseCtrl {
                      System.out.println("Table removed.");
                   }
                }
-            
+               System.out.println("Table does not exist"); // new
+               break; // new
+
             case 5:
                break;
          

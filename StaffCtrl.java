@@ -65,16 +65,18 @@ public class StaffCtrl extends BaseCtrl {
                sc.nextLine();
                String nameRemove = sc.nextLine();
                
-               Iterator<Staff> iterremove = Home.Staffs.iterator();
-               while (iterremove.hasNext()){
-                  Staff s = iterremove.next();
+               Iterator<Staff> iterRemove = Home.Staffs.iterator();
+               while (iterRemove.hasNext()){
+                  Staff s = iterRemove.next();
                   if (s.getStaffName().equals(nameRemove)){
-                     iterremove.remove();
+                     iterRemove.remove();
                      System.out.println("Staff removed.");
                   }
                }
-            
-            //return to previous interface
+               System.out.println("Staff does not exist"); // new
+               break; // new
+
+               //return to previous interface
             case 4:
                break;
          
