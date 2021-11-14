@@ -7,7 +7,7 @@ public class Invoice implements Serializable {
    
    //Constructor for order
    public Invoice(order){
-     
+     this.order = order;
    }
 
 }
