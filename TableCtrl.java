@@ -23,9 +23,9 @@ public class TableCtrl extends BaseCtrl {
          
          switch(choice){
             case 1:
-               Iterator<Table> iter = Home.Tables.iterator();
-               while (iter.hasNext()){
-                  Table t = iter.next();
+               Iterator<Table> tableIterator = Home.Tables.iterator();
+               while (tableIterator.hasNext()){
+                  Table t = tableIterator.next();
                   System.out.println("Table ID: " + t.getTableID());
                   System.out.println("Table Maximum Seating: " + t.getTableMax());
                   System.out.println();
@@ -34,9 +34,9 @@ public class TableCtrl extends BaseCtrl {
                break;
 
             case 2:
-               Iterator<Table> iter2 = Home.Tables.iterator();
-               while (iter2.hasNext()){
-                  Table t = iter2.next();
+               Iterator<Table> iterator = Home.Tables.iterator();
+               while (iterator.hasNext()){
+                  Table t = iterator.next();
                   if(t.isReserved()==false){
                      System.out.println("Table ID: " + t.getTableID());
                      System.out.println("Table Maximum Seating: " + t.getTableMax());
@@ -61,13 +61,13 @@ public class TableCtrl extends BaseCtrl {
             
             case 4:
                System.out.println("Table ID to remove: ");
-               long idremove = sc.nextLong();
+               long idRemove = sc.nextLong();
                
-               Iterator<Table> iterr = Home.Tables.iterator();
-               while (iterr.hasNext()){
-                  Table t = iterr.next();
-                  if (t.getTableID() == idremove){
-                     iterr.remove();
+               Iterator<Table> iterator1 = Home.Tables.iterator();
+               while (iterator1.hasNext()){
+                  Table t = iterator1.next();
+                  if (t.getTableID() == idRemove){
+                     iterator1.remove();
                      System.out.println("Table removed.");
                   }
                }

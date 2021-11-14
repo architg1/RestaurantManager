@@ -1,8 +1,4 @@
 import java.util.Scanner;
-
-//import out.production.BaseCtrl;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -23,9 +19,9 @@ public class StaffCtrl extends BaseCtrl {
          switch(choice){
             case 1:
                //print out details of every staff member
-               Iterator<Staff> iter = Home.Staffs.iterator();
-               while (iter.hasNext()){
-                  Staff s = iter.next();
+               Iterator<Staff> iterator = Home.Staffs.iterator();
+               while (iterator.hasNext()){
+                  Staff s = iterator.next();
                   System.out.println("Staff Name: " + s.getStaffName());
                   System.out.println("Staff Gender: " + s.getStaffGender());
                   System.out.println("Staff ID: " + s.getStaffID());

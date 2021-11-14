@@ -1,7 +1,5 @@
 import java.time.LocalTime;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.ArrayList;
 import java.io.Serializable;
 
 
@@ -38,22 +36,6 @@ public class Table implements Serializable {
       return this.maximumSeating;
    }
 
-   public LocalTime getReservationTime(){
-      return this.reservationTime;
-   }
-
-   public LocalDate getReservationDate(){
-      return this.reservationDate;
-   }
-
-   public long getReservationContact(){
-      return this.reservationContact;
-   }
-
-   public String getStaffName(){
-      return this.staff.getStaffName();
-   }
-
    public void tableEmpty(){ this.isReserved = false;}
    
 
@@ -69,28 +51,5 @@ public class Table implements Serializable {
       return reservationMembership;
    }
 
-   public int getMaximumSeating() {
-      return maximumSeating;
-   }
-
-   public void setStaff(Staff staff){
-      this.staff = staff;
-   }
-
-
-   public void reserveTable(String reservationName, long reservationContact, boolean reservationMembership, LocalDate reservationDate, LocalTime reservationTime, int reservedSeating){
-      this.reservationName = reservationName;
-      this.reservationContact = reservationContact;
-      this.reservationMembership = reservationMembership;
-      this.reservationTime = reservationTime;
-      this.reservationDate = reservationDate;
-      this.reservedSeating = reservedSeating;
-      this.isReserved = true;
-   }
-
-   public void cancelReservation(){
-      this.isReserved = false;
-      this.reservedSeating = 0;
-   }
 	
 }

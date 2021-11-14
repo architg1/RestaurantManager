@@ -52,9 +52,9 @@ public class MenuCtrl extends BaseCtrl
                      break;
                   
                   case 2: 
-                     Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
-                     while(iter.hasNext()){
-                        PromotionalPackage pp = iter.next();
+                     Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
+                     while(iterator.hasNext()){
+                        PromotionalPackage pp = iterator.next();
                         System.out.println("Name of Package: " + pp.getName());
                         System.out.println();
                      }
@@ -70,7 +70,7 @@ public class MenuCtrl extends BaseCtrl
                            //find the desired promotional package name and add desired item to it
                            PromotionalPackage pp = iters.next();
                            if(pp.getName().equals(packageNameAdd)){
-                              addItemtoPromotionalPackage(pp);
+                              addItemToPromotionalPackage(pp);
                               break;
                            }
                            System.out.println("Continue adding items? (Y/N)");
@@ -107,13 +107,13 @@ public class MenuCtrl extends BaseCtrl
                   case 2: 
                      System.out.println("Name of the promotional package to remove an item from:");
                      //sc.nextLine();
-                     String packagenameremove = sc.nextLine();
+                     String packageNameRemove = sc.nextLine();
                      
                      //search for desired promotional package and remove item from it
-                     Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
-                     while (iter.hasNext()){
-                        PromotionalPackage pp = iter.next();
-                        if(pp.getName().equals(packagenameremove)){
+                     Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
+                     while (iterator.hasNext()){
+                        PromotionalPackage pp = iterator.next();
+                        if(pp.getName().equals(packageNameRemove)){
                            removeItemFromPackage(pp);
                         }
                      } 
@@ -152,7 +152,7 @@ public class MenuCtrl extends BaseCtrl
          System.out.println("(3) Desserts");
          System.out.println("(4) Drinks");
          System.out.println("(5) Specials");
-         System.out.println("(6) View all Alacartes");
+         System.out.println("(6) View all Ala cartes");
          System.out.println("(7) Promotional Packages");
          System.out.println("(8) Go Back to Previous Page");
 
@@ -202,13 +202,13 @@ public class MenuCtrl extends BaseCtrl
                break;   
                
             case 7: 
-               Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
+               Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
                boolean hasPromotionalPackage = false;
                
                //check if there are any promotional packages
-               while (iter.hasNext()){
+               while (iterator.hasNext()){
                   hasPromotionalPackage = true;
-                  PromotionalPackage pp = iter.next();
+                  PromotionalPackage pp = iterator.next();
                      
                   System.out.println("Package Name: " + pp.getName());
                   System.out.println("Package Price: $" + df.format(pp.getPrice()));
@@ -311,7 +311,7 @@ public class MenuCtrl extends BaseCtrl
       
       String choice;
       do {
-         addItemtoPromotionalPackage(newPackage); 
+         addItemToPromotionalPackage(newPackage);
          System.out.println("Continue adding menu item to promotional package? (Y/N)");
          choice = sc.next();
       } while(choice.equals("Y"));
@@ -321,7 +321,7 @@ public class MenuCtrl extends BaseCtrl
    }
    
     //(2)(2)(2) Add items to promotional packages
-   public void addItemtoPromotionalPackage(PromotionalPackage pp){
+   public void addItemToPromotionalPackage(PromotionalPackage pp){
       System.out.println("Category of item to add: " );
       System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
       String categoryStr = sc.next();
@@ -429,11 +429,11 @@ public class MenuCtrl extends BaseCtrl
       String removePackage = sc.nextLine();
       
       //search for promotional package by name and remove it
-      Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
-      while (iter.hasNext()){
-         PromotionalPackage pp = iter.next();
+      Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
+      while (iterator.hasNext()){
+         PromotionalPackage pp = iterator.next();
          if(pp.getName().equals(removePackage)){
-            iter.remove();
+            iterator.remove();
             System.out.println("Package removed. ");
          }
       }
@@ -442,12 +442,12 @@ public class MenuCtrl extends BaseCtrl
    // (3)(2)(2) Remove Item from Promotional Package
    public void removeItemFromPackage(PromotionalPackage pp){
       //print items in promo package
-      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
+      Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
       boolean hasPromotionalPackage = false;
        
-      while (iters.hasNext()){
+      while (iterator.hasNext()){
          hasPromotionalPackage = true;
-         PromotionalPackage pp2 = iters.next();
+         PromotionalPackage pp2 = iterator.next();
              
          System.out.println("Package Name: " + pp2.getName());
          System.out.println("Package Items: ");
@@ -567,12 +567,12 @@ public class MenuCtrl extends BaseCtrl
       do{
          try{
             //print current package
-            Iterator<PromotionalPackage> iter = Home.PromotionalPackages.iterator();
+            Iterator<PromotionalPackage> iterator = Home.PromotionalPackages.iterator();
             boolean hasPromotionalPackage = false;
              
-            while (iter.hasNext()){
+            while (iterator.hasNext()){
                hasPromotionalPackage = true;
-               PromotionalPackage pp = iter.next();
+               PromotionalPackage pp = iterator.next();
                    
                System.out.println("Package Name: " + pp.getName());
                System.out.println("Package Items: ");
@@ -594,15 +594,15 @@ public class MenuCtrl extends BaseCtrl
             System.out.println("What's the name of the promotional package to update? ");
             String name = sc.nextLine();
             
-            int indexofPackage = -1;
+            int indexOfPackage = -1;
             for (int i = 0; i < Home.PromotionalPackages.size(); i++){
                PromotionalPackage p = Home.PromotionalPackages.get(i);
                if (p.getName().equals(name)){
-                  indexofPackage = i;
+                  indexOfPackage = i;
                }
             }
             
-            if (indexofPackage == -1){
+            if (indexOfPackage == -1){
                System.out.println("Promotional Package does not exist.");
             }
          
@@ -618,8 +618,8 @@ public class MenuCtrl extends BaseCtrl
                case 1:
                   System.out.println("Enter new name: ");
                   //sc.nextLine();
-                  String newname = sc.nextLine();
-                  Home.PromotionalPackages.get(indexofPackage).setName(newname);
+                  String newName = sc.nextLine();
+                  Home.PromotionalPackages.get(indexOfPackage).setName(newName);
                   System.out.println("Name of the promotion package updated. ");
                   
                   break;
@@ -627,7 +627,7 @@ public class MenuCtrl extends BaseCtrl
                case 2:
                   System.out.println("Enter new price: ");
                   Double newPrice = sc.nextDouble();
-                  Home.PromotionalPackages.get(indexofPackage).setPrice(newPrice);
+                  Home.PromotionalPackages.get(indexOfPackage).setPrice(newPrice);
                   System.out.println("Price of the promotion package updated. ");
                   
                   break;
@@ -635,7 +635,7 @@ public class MenuCtrl extends BaseCtrl
                case 3:
                   System.out.println("Enter new description: ");
                   String newDescription = sc.nextLine();
-                  Home.PromotionalPackages.get(indexofPackage).setDescription(newDescription);
+                  Home.PromotionalPackages.get(indexOfPackage).setDescription(newDescription);
                   System.out.println("Description of the promotion package updated. ");
                   
                   break;
@@ -655,9 +655,9 @@ public class MenuCtrl extends BaseCtrl
    
    // check for duplicate items already in FullMenu array
    public boolean checkDuplicateItem(String name, Category category){
-      Iterator<Item> iter = Home.FullMenu.iterator();
-      while (iter.hasNext()){
-         Item i = iter.next();
+      Iterator<Item> iterator = Home.FullMenu.iterator();
+      while (iterator.hasNext()){
+         Item i = iterator.next();
          if(i.getName().equals(name)){
             if (i.category.equals(category)){
                System.out.println("Item already exists in the menu.");

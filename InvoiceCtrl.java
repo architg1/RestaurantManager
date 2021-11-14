@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class InvoiceCtrl {
@@ -84,6 +85,7 @@ public class InvoiceCtrl {
    
       System.out.println("	*********	");
       System.out.println("Total Price: " + price);
+
       System.out.println("Price After GST: " + priceTax);
    
       System.out.println("	*********	");
