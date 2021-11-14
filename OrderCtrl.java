@@ -64,12 +64,12 @@ public class OrderCtrl extends BaseCtrl{
                   }
                   
                   else {
-                  
                      //initialise new order with details received from input
                      LocalTime orderTime = LocalTime.now();
                      LocalDate orderDate = LocalDate.now();
                         
                      Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
+                     newOrder.getTable().isReserved = true;
                      Home.Orders.add(newOrder);
                      int orderID = Home.Orders.indexOf(newOrder);
                      Home.Orders.get(orderID).setOrderID(orderID);
@@ -165,13 +165,13 @@ public class OrderCtrl extends BaseCtrl{
    
       
    
-      int indexOfItemToAdd = menuctrl.getIndexByName(itemName, category);
-      if (indexOfItemToAdd == -1){
+      int indexofItemtoAdd = menuctrl.getIndexByName(itemName, category);
+      if (indexofItemtoAdd == -1){
          System.out.println("The item does not exist. Please create the item first before adding it to any order.");
       }
       
       else {
-         order.getOrderItems().add(Home.FullMenu.get(indexOfItemToAdd));
+         order.getOrderItems().add(Home.FullMenu.get(indexofItemtoAdd));
       }
    }
    
@@ -207,15 +207,15 @@ public class OrderCtrl extends BaseCtrl{
       
       
       System.out.println("What's the name of the promotional package you wish to add?");
-      sc.reset();
+      sc.nextLine();
       String packageName = sc.nextLine();
       
-      int indexOfPackageToAdd;
+      int indexOfPackagetoAdd;
       for (int i = 0; i < Home.PromotionalPackages.size(); i++) {
          PromotionalPackage p = Home.PromotionalPackages.get(i);
          if (p != null && p.getName().equals(packageName)){
-            indexOfPackageToAdd = i;
-            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackageToAdd));
+            indexOfPackagetoAdd = i;
+            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackagetoAdd));
             System.out.println("Package added. ");
          
          }
@@ -257,7 +257,6 @@ public class OrderCtrl extends BaseCtrl{
       viewOrder(order);
       
       System.out.println("What's the name of the package you wish to remove?");
-      sc.nextLine();
       String packageName = sc.nextLine();
    
       Iterator<PromotionalPackage> iter = order.getOrderPackages().iterator();
