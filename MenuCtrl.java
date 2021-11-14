@@ -481,7 +481,7 @@ public class MenuCtrl extends BaseCtrl
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
             
          System.out.println("Name of the item to remove: ");
-         //sc.nextLine();
+         sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for specific item in promotional package by name and remove it
