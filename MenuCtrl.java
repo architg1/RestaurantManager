@@ -306,6 +306,7 @@ public class MenuCtrl extends BaseCtrl
             
             System.out.println("Description of item: ");
             String description = sc.nextLine();
+            System.out.println("Item added. " );
          
             Home.FullMenu.add(new Item(name, category, description, price));
          } catch (Exception e){
