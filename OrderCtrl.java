@@ -47,31 +47,35 @@ public class OrderCtrl extends BaseCtrl{
                   System.out.println("Staff does not exist ");
                }
                
-               System.out.println("Table ID for this order: ");
-               long tableID = sc.nextLong();
-               
-               //check if tableID input exists in table arraylist
-               for (int j = 0; j < Home.Tables.size(); j++){
-                  Table t = Home.Tables.get(j);
-                  if (t.getTableID() == tableID){
-                     tableIndex = j;
+               else {
+                  System.out.println("Table ID for this order: ");
+                  long tableID = sc.nextLong();
+                  
+                  //check if tableID input exists in table arraylist
+                  for (int j = 0; j < Home.Tables.size(); j++){
+                     Table t = Home.Tables.get(j);
+                     if (t.getTableID() == tableID){
+                        tableIndex = j;
+                     }
+                  }
+                  
+                  if (tableIndex == -1){
+                     System.out.println("Table ID does not exist.");
+                  }
+                  
+                  else {
+                  
+                     //initialise new order with details received from input
+                     LocalTime orderTime = LocalTime.now();
+                     LocalDate orderDate = LocalDate.now();
+                        
+                     Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
+                     Home.Orders.add(newOrder);
+                        
+                     System.out.println("New order created.");
+                     orderOptions(newOrder);
                   }
                }
-               
-               if (tableIndex == -1){
-                  System.out.println("Table ID does not exist.");
-               }
-               
-               //initialise new order with details received from input
-               LocalTime orderTime = LocalTime.now();
-               LocalDate orderDate = LocalDate.now();
-                  
-               Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
-               Home.Orders.add(newOrder);
-                  
-               System.out.println("New order created.");
-               orderOptions(newOrder);
-               
               
                break;
                
