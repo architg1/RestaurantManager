@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//import out.production.BaseCtrl;
+import out.production.BaseCtrl;
 
 import java.util.ArrayList;
 import java.time.LocalTime;
@@ -79,7 +79,7 @@ public class OrderCtrl extends BaseCtrl{
                while (iter.hasNext()){
                   Order o = iter.next();
                   System.out.println("Order ID: " + Home.Orders.indexOf(o));
-                  System.out.println("Order Table: " + o.getTable().getTableID());
+                  System.out.println("Order Table: " + o.getTable());
                   System.out.println();
                }
                

@@ -19,7 +19,7 @@ public class TableCtrl extends BaseCtrl {
          System.out.println("(3) Add table");
          System.out.println("(4) Remove table");
          System.out.println("(5) Return to previous page");
-         choice = doCtrlChoice(5);
+         choice = doCtrlChoice(4);
          
          switch(choice){
             case 1:

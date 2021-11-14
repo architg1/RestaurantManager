@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//import out.production.BaseCtrl;
+import out.production.BaseCtrl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -301,12 +301,11 @@ public class MenuCtrl extends BaseCtrl
             }
          
             System.out.println("Price of item: (Enter numbers only) "); 
-            double price = sc.nextDouble();
+            Double price = sc.nextDouble();
             sc.nextLine();
             
             System.out.println("Description of item: ");
             String description = sc.nextLine();
-            System.out.println("Item added. " );
          
             Home.FullMenu.add(new Item(name, category, description, price));
          } catch (Exception e){
@@ -539,7 +538,7 @@ public class MenuCtrl extends BaseCtrl
               
                case 2:
                   System.out.println("Enter new price: ");
-                  double newPrice = sc.nextDouble();
+                  Double newPrice = sc.nextDouble();
                   Home.FullMenu.get(indexOfItem).setPrice(newPrice);
                   
                   break;
