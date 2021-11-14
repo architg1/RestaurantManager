@@ -38,7 +38,7 @@ public class StaffCtrl extends BaseCtrl {
             //create and add new staff member 
             case 2:
                System.out.println("Name of staff: ");
-               sc.nextLine();
+               //sc.nextLine();
                String name = sc.nextLine();
                
                System.out.println("Gender of staff: (Male/Female)");
@@ -63,12 +63,12 @@ public class StaffCtrl extends BaseCtrl {
             case 3:
                System.out.println("Name of staff to remove: ");
                sc.nextLine();
-               String nameremove = sc.nextLine();
+               String nameRemove = sc.nextLine();
                
                Iterator<Staff> iterremove = Home.Staffs.iterator();
                while (iterremove.hasNext()){
                   Staff s = iterremove.next();
-                  if (s.getStaffName().equals(nameremove)){
+                  if (s.getStaffName().equals(nameRemove)){
                      iterremove.remove();
                      System.out.println("Staff removed.");
                   }
