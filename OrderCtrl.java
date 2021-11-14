@@ -7,292 +7,239 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-public class OrderCtrl extends BaseCtrl{
+public class ReservationCtrl extends BaseCtrl {
    Scanner sc = new Scanner(System.in);
-   MenuCtrl menuctrl = new MenuCtrl();
   
-   public void createOrder(){
-      //create new order and add to orders arraylist
-      int orderChoice;
+   public void createReservation(){
+   
+      //create new reservation and add to reservation arraylist
+      int reservationChoice;
+     
+   
       do{
-         ArrayList<Item> orderItems = new ArrayList<Item>();
-         ArrayList<PromotionalPackage> orderPackages = new ArrayList<PromotionalPackage>();
-      
-         System.out.println("ORDER");
-         System.out.println("(1) Create a new order.");
-         System.out.println("(2) View orders.");
-         System.out.println("(3) Return to home page.");
-         orderChoice = doCtrlChoice(3);
-         
-         switch(orderChoice){
+         System.out.println("Reservation");
+         System.out.println("(1) Create a new reservation.");
+         System.out.println("(2) View reservations.");
+         System.out.println("(3) Remove reservations.");
+         System.out.println("(4) Return to home page.");
+         reservationChoice = doCtrlChoice(4);
+            
+         switch(reservationChoice){
             case 1:
-               //get user input for new order details
-               System.out.println("Name of staff creating this order: ");
+               System.out.println("Name of customer: ");
                //sc.nextLine();
-               String staffName = sc.nextLine();
-               
-               int staffIndex = -1;
-               int tableIndex = -1;
-              
-               
-               //check if input staff exists in staff arraylist
-               for(int i = 0; i < Home.Staffs.size(); i++){
-                  Staff s = Home.Staffs.get(i);
-                  if (s.getStaffName().equals(staffName)){
-                     staffIndex = i;
-                  }
-               }
-                 
-               if (staffIndex == -1){
-                  System.out.println("Staff does not exist ");
-               }
-               
-               else {
-                  System.out.println("Table ID for this order: ");
-                  long tableID = sc.nextLong();
+               String customerName = sc.nextLine();
                   
-                  //check if tableID input exists in table arraylist
-                  for (int j = 0; j < Home.Tables.size(); j++){
-                     Table t = Home.Tables.get(j);
-                     if (t.getTableID() == tableID){
-                        tableIndex = j;
-                     }
-                  }
+               System.out.println("Contact of customer: ");
+               long customerContact = sc.nextLong();
                   
-                  if (tableIndex == -1){
-                     System.out.println("Table ID does not exist.");
-                  }
+               System.out.println("Customer membership: (True/False) ");
+               boolean customerMembership = sc.nextBoolean();
                   
-                  else {
+               System.out.println("Number of seats: ");
+               int customerSeating = sc.nextInt();
                   
-                     //initialise new order with details received from input
-                     LocalTime orderTime = LocalTime.now();
-                     LocalDate orderDate = LocalDate.now();
-                        
-                     Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, orderDate, Home.Tables.get(tableIndex));
-                     Home.Orders.add(newOrder);
-                        
-                     System.out.println("New order created.");
-                     orderOptions(newOrder);
-                  }
-               }
-              
-               break;
-               
-            case 2: 
-               //print out all existing orders
-               Iterator<Order> iter = Home.Orders.iterator();
-               while (iter.hasNext()){
-                  Order o = iter.next();
-                  System.out.println("Order ID: " + Home.Orders.indexOf(o));
-                  System.out.println("Order Table: " + o.getTable().getTableID());
-                  System.out.println();
-               }
-               
-               break;
-               
-            case 3:
-               break;
-         }
-      } while (orderChoice != 3);
-   }
-
-    
-    
-   public void orderOptions(Order order){
-      int choice;
-      do {
-         System.out.println("NEW ORDER");
-         System.out.println("(1) View menu");
-         System.out.println("(2) Add an item to the order");
-         System.out.println("(3) Add a promotional package to order");
-         System.out.println("(4) Remove an item from order");
-         System.out.println("(5) Remove a promotional package from order");
-         System.out.println("(6) View order");
-         System.out.println("(7) Confirm order & return to previous page");
+               System.out.println("Estimated arrival time: ");
+               String time = sc.nextLine();
+               time = sc.nextLine();
+               LocalTime reservationTime = LocalTime.parse(time);
+                  
+               System.out.println("Reservation date: ");
+               String date = sc.nextLine();
+               LocalDate reservationDate = LocalDate.parse(date);
                      
-         choice = doCtrlChoice(7);
-         switch(choice){
-            case 1:
-               menuctrl.viewMenu(); 
+                  //new reservation created and initialised with input from above
+               Reservation newReservation = new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating);
+               Home.Reservations.add(newReservation);
+                  
+                  //new thread is created and run with the auto-cancel function for this reservation to be automatically cancelled after 15 minutes
+               Thread t = new Thread(new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating));
+               t.start();
+                     
+               System.out.println("New Reservation created.");
+                  
                break;
-                        
-            case 2:
-               addItemToOrder(order);
+                  
+            case 2: 
+                  //print out all existing reservations
+               viewReservations();
+                  
                break;
-                        
+                  
             case 3:
-               addPackageToOrder(order);
+               System.out.println("Name of customer to remove reservation: ");
+               String removeName = sc.nextLine();
+                  
+               System.out.println("Contact of customer to remove reservation: ");
+               long removeContact = sc.nextLong();
+                  
+               cancelReservation(removeName,removeContact);
+               
                break;
-                           
+                  
             case 4:
-               removeItemFromOrder(order);
-               break;
-                           
-            case 5: 
-               removePackageFromOrder(order);
-               break;
-            
-            case 6:
-               viewOrder(order);
-               break;
-                           
-            case 7:
-               System.out.println("Order confirmed.");
                break;
          }
-      } while(choice!=7);  
-   }
-
-
-   //below are implementations for order processing functions to be called in the above orderOptions() function
-   
-   
-// (2) Add item to order
-   public void addItemToOrder(Order order){
-      System.out.println("Category of item to add: " );
-      System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
-      String categoryStr = sc.next();
-      Category category = Category.valueOf(categoryStr.toUpperCase());
-      menuctrl.printItems(category);
-      
-      System.out.println("Name of item to add: ");
-      sc.nextLine();
-      String itemName = sc.nextLine();
-      System.out.println("Item added. ");
-   
-      
-   
-      int indexofItemtoAdd = menuctrl.getIndexByName(itemName, category);
-      if (indexofItemtoAdd == -1){
-         System.out.println("The item does not exist. Please create the item first before adding it to any order.");
-      }
-      
-      else {
-         order.getOrderItems().add(Home.FullMenu.get(indexofItemtoAdd));
-      }
+      } while (reservationChoice != 4);
+       
    }
    
+   public void viewReservations(){
    
-   //(3) Add Promotional Package to Order
-   public void addPackageToOrder(Order order){
-    //******* print the current promo package
-      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
-      boolean hasPromotionalPackage = false;
-         
-      while (iters.hasNext()){
-         hasPromotionalPackage = true;
-         PromotionalPackage pp = iters.next();
-               
-         System.out.println("Package Name: " + pp.getName());
-         System.out.println("Package Items: ");
-               
-               // print all the items in package
-         ArrayList<Item> packageItems = pp.getPackageItems();
-         int index = 1;
-         for (Item item: packageItems)
-            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
-               
-         System.out.println();
+      if (Home.Reservations.size() == 0){
+         System.out.println("There are no reservations currently.");
       }
-         
-            
-      if (hasPromotionalPackage == false)
-      {
-         System.out.println("There are no promotional packages currently.");
-      }
-         //**********
       
-      
-      System.out.println("What's the name of the promotional package you wish to add?");
-      sc.nextLine();
-      String packageName = sc.nextLine();
-      
-      int indexOfPackagetoAdd;
-      for (int i = 0; i < Home.PromotionalPackages.size(); i++) {
-         PromotionalPackage p = Home.PromotionalPackages.get(i);
-         if (p != null && p.getName().equals(packageName)){
-            indexOfPackagetoAdd = i;
-            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackagetoAdd));
-            System.out.println("Package added. ");
-         
+      else{
+         Iterator<Reservation> iter = Home.Reservations.iterator();
+         while (iter.hasNext()){
+            Reservation r = iter.next();
+            System.out.println("Reservation Name: " + r.getCustomerName());
+            System.out.println("Reservation Contact: " + r.getCustomerContact());
+            System.out.println("Reservation Seating: " + r.getNumPax());
+            System.out.println("Reservation Arrival Time: " + r.getArrivalTime());
+            System.out.println("Reservation Date: " + r.getReservationDate());
+            System.out.println();
          }
       }
      
    }
    
    
-   //(4) Remove Item from Order
-   public void removeItemFromOrder(Order order){
-      
-      
-      System.out.println("What's the category of the item?" );
-      System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
-      String categoryStrRemove = sc.next();
-      Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
-      viewOrder(order);
-   
-      System.out.println("What's the name of the item you wish to remove?");
-      sc.nextLine();
-      String itemName = sc.nextLine();
-      
-      Iterator<Item> iter = order.getOrderItems().iterator();
-      while (iter.hasNext()){
-         Item i = iter.next();
-         if(i.category.equals(categoryRemove)){
-            if (i.getName().equals(itemName)){
-               iter.remove();
-               System.out.println("Item removed from order.");
+   //function to cancel reservation with details as function input
+   //to be used in auto-cancel function as well 
+   public void cancelReservation(String removeName, long removeContact){
+      Iterator<Reservation> iterr = Home.Reservations.iterator();
+      while (iterr.hasNext()){
+         Reservation r = iterr.next();
+         if (r.getCustomerName().equals(removeName)){
+            if (r.getCustomerContact() == removeContact){
+               iterr.remove();
+               System.out.println("Reservation removed.");
             }
          }
       }
    }
+}import java.util.Scanner;
+
+//import out.production.BaseCtrl;
+
+import java.util.ArrayList;
+import java.time.LocalTime;
+import java.time.LocalDate;
+import java.util.Iterator;
+
+public class ReservationCtrl extends BaseCtrl {
+   Scanner sc = new Scanner(System.in);
+  
+   public void createReservation(){
    
+      //create new reservation and add to reservation arraylist
+      int reservationChoice;
+     
    
-   // (5) Remove Package from Order
-   public void removePackageFromOrder(Order order){
+      do{
+         System.out.println("Reservation");
+         System.out.println("(1) Create a new reservation.");
+         System.out.println("(2) View reservations.");
+         System.out.println("(3) Remove reservations.");
+         System.out.println("(4) Return to home page.");
+         reservationChoice = doCtrlChoice(4);
+            
+         switch(reservationChoice){
+            case 1:
+               System.out.println("Name of customer: ");
+               //sc.nextLine();
+               String customerName = sc.nextLine();
+                  
+               System.out.println("Contact of customer: ");
+               long customerContact = sc.nextLong();
+                  
+               System.out.println("Customer membership: (True/False) ");
+               boolean customerMembership = sc.nextBoolean();
+                  
+               System.out.println("Number of seats: ");
+               int customerSeating = sc.nextInt();
+                  
+               System.out.println("Estimated arrival time: ");
+               String time = sc.nextLine();
+               time = sc.nextLine();
+               LocalTime reservationTime = LocalTime.parse(time);
+                  
+               System.out.println("Reservation date: ");
+               String date = sc.nextLine();
+               LocalDate reservationDate = LocalDate.parse(date);
+                     
+                  //new reservation created and initialised with input from above
+               Reservation newReservation = new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating);
+               Home.Reservations.add(newReservation);
+                  
+                  //new thread is created and run with the auto-cancel function for this reservation to be automatically cancelled after 15 minutes
+               Thread t = new Thread(new Reservation(customerName, customerContact, customerMembership, reservationDate, reservationTime, customerSeating));
+               t.start();
+                     
+               System.out.println("New Reservation created.");
+                  
+               break;
+                  
+            case 2: 
+                  //print out all existing reservations
+               viewReservations();
+                  
+               break;
+                  
+            case 3:
+               System.out.println("Name of customer to remove reservation: ");
+               String removeName = sc.nextLine();
+                  
+               System.out.println("Contact of customer to remove reservation: ");
+               long removeContact = sc.nextLong();
+                  
+               cancelReservation(removeName,removeContact);
+               
+               break;
+                  
+            case 4:
+               break;
+         }
+      } while (reservationChoice != 4);
+       
+   }
+   
+   public void viewReservations(){
+   
+      if (Home.Reservations.size() == 0){
+         System.out.println("There are no reservations currently.");
+      }
       
-      viewOrder(order);
-      
-      System.out.println("What's the name of the package you wish to remove?");
-      sc.nextLine();
-      String packageName = sc.nextLine();
+      else{
+         Iterator<Reservation> iter = Home.Reservations.iterator();
+         while (iter.hasNext()){
+            Reservation r = iter.next();
+            System.out.println("Reservation Name: " + r.getCustomerName());
+            System.out.println("Reservation Contact: " + r.getCustomerContact());
+            System.out.println("Reservation Seating: " + r.getNumPax());
+            System.out.println("Reservation Arrival Time: " + r.getArrivalTime());
+            System.out.println("Reservation Date: " + r.getReservationDate());
+            System.out.println();
+         }
+      }
+     
+   }
    
-      Iterator<PromotionalPackage> iter = order.getOrderPackages().iterator();
-      while (iter.hasNext()){
-         PromotionalPackage p = iter.next();
-         if(p.getName().equals(packageName)){
-            iter.remove();
-            System.out.println("Package removed from order.");
+   
+   //function to cancel reservation with details as function input
+   //to be used in auto-cancel function as well 
+   public void cancelReservation(String removeName, long removeContact){
+      Iterator<Reservation> iterr = Home.Reservations.iterator();
+      while (iterr.hasNext()){
+         Reservation r = iterr.next();
+         if (r.getCustomerName().equals(removeName)){
+            if (r.getCustomerContact() == removeContact){
+               iterr.remove();
+               System.out.println("Reservation removed.");
+            }
          }
       }
    }
-   
-   // (6) View Order
-   public void viewOrder(Order order){
-      System.out.println("Order Items: ");
-      Iterator<Item> iter = order.getOrderItems().iterator();
-      while (iter.hasNext()){
-         Item i = iter.next();
-         System.out.println(" Name of item: " + i.getName());
-         System.out.println(" Category of item: " + i.getCategory());
-         System.out.println(" Price of item: " + i.getPrice());
-      }
-      
-      System.out.println();
-      
-      System.out.println("Order Packages: ");
-      Iterator<PromotionalPackage> iterp = order.getOrderPackages().iterator();
-      while (iterp.hasNext()){
-         PromotionalPackage p = iterp.next();
-         System.out.println(" Name of package: " + p.getName());
-         System.out.println(" Price of item: " + p.getPrice());
-      }
-      
-      System.out.println();
-   
-      System.out.println("Order Time: " + order.getOrderTime());
-      System.out.println("Order Table: " + order.getTable().getTableID());
-   }
-
 }
