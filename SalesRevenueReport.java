@@ -21,7 +21,7 @@ public class SalesRevenueReport {
 
 
 
-	public void viewOptions(){
+	public void reportOptions(){
 		Scanner sc = new Scanner(System.in);
 		int choice;
 		do {
