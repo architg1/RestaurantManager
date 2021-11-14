@@ -80,7 +80,7 @@ public class MenuCtrl extends BaseCtrl
                         System.out.println("There are no promotional packages currently.");
                      }
                      //****
-                    // sc.nextLine(); // ?
+                     sc.nextLine(); // ?
                      String packageNameAdd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
@@ -352,7 +352,7 @@ public class MenuCtrl extends BaseCtrl
       printItems(category);
       
       System.out.println("Name of the item to add: ");
-      //sc.nextLine();
+      sc.nextLine();
       String name = sc.nextLine();
       System.out.println("Item added into Promotion Package.");
 
@@ -382,7 +382,7 @@ public class MenuCtrl extends BaseCtrl
          printItems(categoryRemove);
       
          System.out.println("Name of the item to remove: ");
-        // sc.nextLine();
+         sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for food item by name and remove it
@@ -483,7 +483,7 @@ public class MenuCtrl extends BaseCtrl
          Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
             
          System.out.println("Name of the item to remove: ");
-        // sc.nextLine();
+         sc.nextLine();
          String removeName = sc.nextLine();
          
          //search for specific item in promotional package by name and remove it
@@ -511,7 +511,7 @@ public class MenuCtrl extends BaseCtrl
             System.out.println("Category of the item to update:" );
             System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
             String categoryStr = sc.next();
-            //sc.nextLine();
+            sc.nextLine();
             Category category = Category.valueOf(categoryStr.toUpperCase());
             printItems(category);
          
@@ -601,7 +601,7 @@ public class MenuCtrl extends BaseCtrl
             }
              //********
             System.out.println("What's the name of the promotional package to update? ");
-           // sc.nextLine();
+            sc.nextLine();
             String name = sc.nextLine();
             
             int indexofPackage = -1;
