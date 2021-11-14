@@ -81,7 +81,7 @@ public class MenuCtrl extends BaseCtrl
                      }
                      //****
                      sc.nextLine(); // ?
-                     String packagenameadd = sc.nextLine();
+                     String packageNameAdd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
                      String again;
@@ -89,7 +89,7 @@ public class MenuCtrl extends BaseCtrl
                         while (iters.hasNext()){
                            //find the desired promotional package name and add desired item to it
                            PromotionalPackage pp = iters.next();
-                           if(pp.getName().equals(packagenameadd)){
+                           if(pp.getName().equals(packageNameAdd)){
                               addItemtoPromotionalPackage(pp);
                               System.out.println("Item added.");
                               break;
