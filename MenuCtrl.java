@@ -80,7 +80,7 @@ public class MenuCtrl extends BaseCtrl
                         System.out.println("There are no promotional packages currently.");
                      }
                      //****
-                     //sc.nextLine();
+                     sc.nextLine(); // ?
                      String packagenameadd = sc.nextLine();
                      
                      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
