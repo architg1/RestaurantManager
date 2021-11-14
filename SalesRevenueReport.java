@@ -102,6 +102,8 @@ public class SalesRevenueReport {
             if (!count.containsValue(item.getName())) {
                count.put(item.getName(), 1);
                price.put(item.getName(), item.getPrice());
+               this.totalSales += item.getPrice();
+               this.itemsSold +=1;
             }
             else{
                count.put(item.getName(), count.get(item.getName()) + 1);
@@ -115,6 +117,8 @@ public class SalesRevenueReport {
             if (!count.containsValue(packages.getName())) {
                count.put(packages.getName(), 1);
                price.put(packages.getName(), packages.getPrice());
+               this.totalSales +=packages.getPrice();
+               this.packagesSold +=1;
             }
             else{
                count.put(packages.getName(), count.get(packages.getName()) + 1);
