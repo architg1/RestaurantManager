@@ -80,7 +80,8 @@ public class SalesRevenueReport {
    }
 
    public void printOverallSales(){
-   
+
+      updateValues();
       for(Map.Entry<String, Integer> entry : count.entrySet()){
          System.out.print("Item Name: " + entry.getKey());
          System.out.print("Quantity Sold: " + entry.getValue());
