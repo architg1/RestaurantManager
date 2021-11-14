@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
-import out.production.BaseCtrl;
+//import System.out.production.BaseCtrl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 
 
 public class TableCtrl extends BaseCtrl {
@@ -16,9 +15,10 @@ public class TableCtrl extends BaseCtrl {
       do{
          System.out.println("TABLE");
          System.out.println("(1) View tables");
-         System.out.println("(2) Add table");
-         System.out.println("(3) Remove table");
-         System.out.println("(4) Return to previous page");
+         System.out.println("(2) View all tables");
+         System.out.println("(3) Add table");
+         System.out.println("(4) Remove table");
+         System.out.println("(5) Return to previous page");
          choice = doCtrlChoice(4);
          
          switch(choice){
@@ -32,11 +32,24 @@ public class TableCtrl extends BaseCtrl {
                }
                
                break;
-            
+
             case 2:
+               Iterator<Table> iter2 = Home.Tables.iterator();
+               while (iter2.hasNext()){
+                  Table t = iter2.next();
+                  if(t.isReserved()==false){
+                     System.out.println("Table ID: " + t.getTableID());
+                     System.out.println("Table Maximum Seating: " + t.getTableMax());
+                     System.out.println();
+                  }
+               }
+
+               break;
+
+            case 3:
                System.out.println("Table ID: ");
                long id = sc.nextLong();
-               
+
                System.out.println("Maximum Seating Capacity: ");
                int max = sc.nextInt();
                
@@ -44,7 +57,7 @@ public class TableCtrl extends BaseCtrl {
                Home.Tables.add(table);
                break;
             
-            case 3:
+            case 4:
                System.out.println("Table ID to remove: ");
                long idremove = sc.nextLong();
                
@@ -57,12 +70,12 @@ public class TableCtrl extends BaseCtrl {
                   }
                }
             
-            case 4:
+            case 5:
                break;
          
          }
          
-      }while(choice != 4);
+      }while(choice != 5);
    
    }
 }

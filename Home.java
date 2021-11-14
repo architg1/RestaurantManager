@@ -119,10 +119,6 @@ public class Home {
          fis.close();
          return arrayList;
       }
-      catch(EOFException e){
-         e.printStackTrace();
-         return arrayList;
-      }
 
       catch (IOException ioe) {
          ioe.printStackTrace();
@@ -148,9 +144,6 @@ public class Home {
          fos.close();
       }
 
-      catch(EOFException e){
-         e.printStackTrace();
-      }
 
       catch (IOException ioe) 
       {
