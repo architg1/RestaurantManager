@@ -45,6 +45,8 @@ public class Home {
 
       InvoiceCtrl invoice = new InvoiceCtrl();
 
+      SalesRevenueReport report = new SalesRevenueReport();
+
 
    
       //  options to call the other classes
@@ -85,6 +87,7 @@ public class Home {
                break;
 
             case 5:
+               report.printOverallSales();
                break;
             
             case 6:
