@@ -6,8 +6,6 @@ import java.util.Iterator;
 public class OrderCtrl {
    Scanner sc = new Scanner(System.in);
    MenuCtrl menuctrl = new MenuCtrl();
-   
-   ArrayList<Order> Orders = new ArrayList<Order>();
   
    public void createOrder(){
       //create new order and add to orders arraylist
@@ -64,7 +62,7 @@ public class OrderCtrl {
                LocalTime orderTime = LocalTime.now();
                   
                Order newOrder = new Order(Home.Staffs.get(staffIndex), orderItems, orderPackages, orderTime, Home.Tables.get(tableIndex));
-               Orders.add(newOrder);
+               Home.Orders.add(newOrder);
                   
                System.out.println("New order created.");
                orderOptions(newOrder);
@@ -74,10 +72,10 @@ public class OrderCtrl {
                
             case 2: 
                //print out all existing orders
-               Iterator<Order> iter = Orders.iterator();
+               Iterator<Order> iter = Home.Orders.iterator();
                while (iter.hasNext()){
                   Order o = iter.next();
-                  System.out.println("Order ID: " + Orders.indexOf(o));
+                  System.out.println("Order ID: " + Home.Orders.indexOf(o));
                   System.out.println("Order Table: " + o.getTable());
                   System.out.println();
                }
@@ -145,13 +143,13 @@ public class OrderCtrl {
    
 // (2) Add item to order
    public void addItemToOrder(Order order){
-	   System.out.println("Category of item to add: " );
-	   System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
-	   String categoryStr = sc.next();
-	   Category category = Category.valueOf(categoryStr.toUpperCase());
-	   menuctrl.printItems(category);
-	   
-	   System.out.println("Name of item to add: ");
+      System.out.println("Category of item to add: " );
+      System.out.println("Select between: Main, Appetiser, Drink, Dessert, Special");
+      String categoryStr = sc.next();
+      Category category = Category.valueOf(categoryStr.toUpperCase());
+      menuctrl.printItems(category);
+      
+      System.out.println("Name of item to add: ");
       sc.nextLine();
       String itemName = sc.nextLine();
       System.out.println("Item added. ");
@@ -171,34 +169,34 @@ public class OrderCtrl {
    
    //(3) Add Promotional Package to Order
    public void addPackageToOrder(Order order){
-	 //******* print the current promo package
-	      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
-	      boolean hasPromotionalPackage = false;
-	      
-	      while (iters.hasNext()){
-	         hasPromotionalPackage = true;
-	         PromotionalPackage pp = iters.next();
-	            
-	         System.out.println("Package Name: " + pp.getName());
-	         System.out.println("Package Items: ");
-	            
-	            // print all the items in package
-	         ArrayList<Item> packageItems = pp.getPackageItems();
-	         int index = 1;
-	         for (Item item: packageItems)
-	            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
-	            
-	         System.out.println();
-	      }
-	      
-	         
-	      if (hasPromotionalPackage == false)
-	      {
-	         System.out.println("There are no promotional packages currently.");
-	      }
-	      //**********
-	   
-	   
+    //******* print the current promo package
+      Iterator<PromotionalPackage> iters = Home.PromotionalPackages.iterator();
+      boolean hasPromotionalPackage = false;
+         
+      while (iters.hasNext()){
+         hasPromotionalPackage = true;
+         PromotionalPackage pp = iters.next();
+               
+         System.out.println("Package Name: " + pp.getName());
+         System.out.println("Package Items: ");
+               
+               // print all the items in package
+         ArrayList<Item> packageItems = pp.getPackageItems();
+         int index = 1;
+         for (Item item: packageItems)
+            System.out.println("(" + index++ + ") " + item.getName() + ", " + item.getCategory());
+               
+         System.out.println();
+      }
+         
+            
+      if (hasPromotionalPackage == false)
+      {
+         System.out.println("There are no promotional packages currently.");
+      }
+         //**********
+      
+      
       System.out.println("What's the name of the promotional package you wish to add?");
       sc.nextLine();
       String packageName = sc.nextLine();
@@ -209,7 +207,7 @@ public class OrderCtrl {
          if (p != null && p.getName().equals(packageName)){
             indexOfPackagetoAdd = i;
             System.out.println("Package added. ");
-
+         
          }
       }
       
@@ -226,7 +224,7 @@ public class OrderCtrl {
       String categoryStrRemove = sc.next();
       Category categoryRemove = Category.valueOf(categoryStrRemove.toUpperCase());
       viewOrder(order);
-
+   
       System.out.println("What's the name of the item you wish to remove?");
       sc.nextLine();
       String itemName = sc.nextLine();
@@ -246,9 +244,9 @@ public class OrderCtrl {
    
    // (5) Remove Package from Order
    public void removePackageFromOrder(Order order){
-	   
-	viewOrder(order);
-	   
+      
+      viewOrder(order);
+      
       System.out.println("What's the name of the package you wish to remove?");
       sc.nextLine();
       String packageName = sc.nextLine();
@@ -265,10 +263,29 @@ public class OrderCtrl {
    
    // (6) View Order
    public void viewOrder(Order order){
-      System.out.println("Order Items: " + order.getOrderItems());
-      System.out.println("Order Packages: " + order.getOrderPackages());
+      System.out.println("Order Items: ");
+      Iterator<Item> iter = order.getOrderItems().iterator();
+      while (iter.hasNext()){
+         Item i = iter.next();
+         System.out.println(" Name of item: " + i.getName());
+         System.out.println(" Category of item: " + i.getCategory());
+         System.out.println(" Price of item: " + i.getPrice());
+      }
+      
+      System.out.println();
+      
+      System.out.println("Order Packages: ");
+      Iterator<PromotionalPackage> iterp = order.getOrderPackages().iterator();
+      while (iterp.hasNext()){
+         PromotionalPackage p = iterp.next();
+         System.out.println(" Name of package: " + p.getName());
+         System.out.println(" Price of item: " + p.getPrice());
+      }
+      
+      System.out.println();
+   
       System.out.println("Order Time: " + order.getOrderTime());
-      System.out.println("Order Table: " + order.getTable());
+      System.out.println("Order Table: " + order.getTable().getTableID());
    }
 
 }
