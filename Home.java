@@ -87,7 +87,7 @@ public class Home {
                break;
 
             case 5:
-               report.printOverallSales();
+               report.viewOptions();
                break;
             
             case 6:
