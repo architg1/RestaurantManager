@@ -12,7 +12,6 @@ public class Home {
    public static ArrayList<Table> Tables = new ArrayList<Table>();
    public static ArrayList<Order> Orders = new ArrayList<Order>();
    public static ArrayList<Reservation> Reservations = new ArrayList<Reservation>();
-   public static ArrayList<Invoice> Invoices = new ArrayList<Invoice>();
    
    
    public static void main(String args[]){
@@ -45,8 +44,6 @@ public class Home {
 
 
       InvoiceCtrl invoice = new InvoiceCtrl();
-      //String invoiceName = "./Invoice.txt";
-      //Invoices = readFile(invoiceName);
 
 
    

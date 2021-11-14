@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class InvoiceCtrl {
 
-	private LocalTime timestamp = LocalTime.now();
-	private LocalDate datestamp = LocalDate.now();
-	private double totalCost;
-	private Boolean discount;
+	// private LocalTime timestamp = LocalTime.now();
+	// private LocalDate datestamp = LocalDate.now();
+	// private double totalCost;
+	// private Boolean discount;
 
 	public void invoiceOptions(){
 		Scanner sc = new Scanner(System.in);
@@ -34,8 +34,8 @@ public class InvoiceCtrl {
 
 		System.out.println("Creating the invoice...");
 
-      	Invoice newInvoice = new Invoice(Home.Orders.get(userOrder));
-      	Home.Invoices.add(newInvoice);
+      	//Invoice newInvoice = new Invoice(Home.Orders.get(userOrder));
+		//Home.Invoices.add(newInvoice);
       
 		createInvoice(Home.Orders.get(userOrder));
 
@@ -198,7 +198,7 @@ public class InvoiceCtrl {
 		}
 
 		double total_cost = cost_item + cost_package;
-		this.totalCost = total_cost;
+		//this.totalCost = total_cost;
 		return total_cost;
 	}
 

@@ -92,9 +92,7 @@ public class OrderCtrl extends BaseCtrl{
          }
       } while (orderChoice != 3);
    }
-    
-    
-    
+
     
     
    public void orderOptions(Order order){
