@@ -85,16 +85,24 @@ public class ReservationCtrl extends BaseCtrl {
    }
    
    public void viewReservations(){
-      Iterator<Reservation> iter = Home.Reservations.iterator();
-      while (iter.hasNext()){
-         Reservation r = iter.next();
-         System.out.println("Reservation Name: " + r.getCustomerName());
-         System.out.println("Reservation Contact: " + r.getCustomerContact());
-         System.out.println("Reservation Seating: " + r.getNumPax());
-         System.out.println("Reservation Arrival Time: " + r.getArrivalTime());
-         System.out.println("Reservation Date: " + r.getReservationDate());
-         System.out.println();
+   
+      if (Home.Reservations.size() == 0){
+         System.out.println("There are no reservations currently.")'
       }
+      
+      else{
+            Iterator<Reservation> iter = Home.Reservations.iterator();
+            while (iter.hasNext()){
+               Reservation r = iter.next();
+               System.out.println("Reservation Name: " + r.getCustomerName());
+               System.out.println("Reservation Contact: " + r.getCustomerContact());
+               System.out.println("Reservation Seating: " + r.getNumPax());
+               System.out.println("Reservation Arrival Time: " + r.getArrivalTime());
+               System.out.println("Reservation Date: " + r.getReservationDate());
+               System.out.println();
+            }
+       }
+     
    }
    
    
