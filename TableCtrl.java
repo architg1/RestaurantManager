@@ -1,10 +1,13 @@
 import java.util.Scanner;
+
+import out.production.BaseCtrl;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 
 
-public class TableCtrl {
+public class TableCtrl extends BaseCtrl {
    private static Scanner sc = new Scanner(System.in);
 
    
@@ -16,7 +19,7 @@ public class TableCtrl {
          System.out.println("(2) Add table");
          System.out.println("(3) Remove table");
          System.out.println("(4) Return to previous page");
-         choice = sc.nextInt();
+         choice = doCtrlChoice(4);
          
          switch(choice){
             case 1:

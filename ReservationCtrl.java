@@ -1,10 +1,13 @@
 import java.util.Scanner;
+
+import out.production.BaseCtrl;
+
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-public class ReservationCtrl {
+public class ReservationCtrl extends BaseCtrl {
    Scanner sc = new Scanner(System.in);
   
    public void createReservation(){
@@ -18,7 +21,7 @@ public class ReservationCtrl {
          System.out.println("(2) View reservations.");
          System.out.println("(3) Remove reservations.");
          System.out.println("(4) Return to home page.");
-         reservationChoice = sc.nextInt();
+         reservationChoice = doCtrlChoice(4);
          
          switch(reservationChoice){
             case 1:
