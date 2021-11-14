@@ -208,17 +208,17 @@ public class OrderCtrl extends BaseCtrl{
       sc.nextLine();
       String packageName = sc.nextLine();
       
-      int indexOfPackagetoAdd = -1;
+      int indexOfPackagetoAdd;
       for (int i = 0; i < Home.PromotionalPackages.size(); i++) {
          PromotionalPackage p = Home.PromotionalPackages.get(i);
          if (p != null && p.getName().equals(packageName)){
             indexOfPackagetoAdd = i;
+            order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackagetoAdd));
             System.out.println("Package added. ");
          
          }
       }
-      
-      order.getOrderPackages().add(Home.PromotionalPackages.get(indexOfPackagetoAdd));
+     
    }
    
    
