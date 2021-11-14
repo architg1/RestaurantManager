@@ -1,9 +1,13 @@
 import java.util.Scanner;
+
+import out.production.BaseCtrl;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.text.DecimalFormat;
 
-public class MenuCtrl{
+public class MenuCtrl extends BaseCtrl
+{
    private static Scanner sc = new Scanner(System.in);
    private static final DecimalFormat df = new DecimalFormat("0.00");   
    
@@ -24,7 +28,7 @@ public class MenuCtrl{
          System.out.println("(6) Update item in menu");
          System.out.println("(7) Update promotional package in menu");
          System.out.println("(8) Return to home page");
-         choice = sc.nextInt();
+         choice = doCtrlChoice(8);
         
          switch(choice){
             case 1:
@@ -299,8 +303,7 @@ public class MenuCtrl{
             
             System.out.println("Description of item: ");
             String description = sc.nextLine();
-            System.out.println("Item added.");
-
+         
             Home.FullMenu.add(new Item(name, category, description, price));
          } catch (Exception e){
             System.out.println("Invalid input. Please try again.");
