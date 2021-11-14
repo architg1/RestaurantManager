@@ -97,7 +97,7 @@ public class MenuCtrl extends BaseCtrl
                            System.out.println("Continue adding items? (Y/N)");
                            again = sc.next();
                         }
-                     } while (again.equals("Y"));
+                     } while (again.equals("Y")||again.equals("y"));
                      
                      break;
                      
